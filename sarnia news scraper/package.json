@@ -1,0 +1,15 @@
+{
+  "name": "sarnia-news-scraper",
+  "version": "1.0.0",
+  "description": "Scraper for Sarnia Observer headlines",
+  "main": "scraper.js",
+  "scripts": {
+    "start": "node scraper.js"
+  },
+  "author": "Tw",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.12.2",
+    "cheerio": "^1.1.2"
+  }
+}

@@ -1,0 +1,351 @@
+{
+  "updatedAt": "2026-01-05T18:01:07.557Z",
+  "routes": [
+    {
+      "routeId": "39",
+      "routeShortName": "1",
+      "routeLongName": "CONFEDERATION",
+      "color": "#000000",
+      "textColor": "#FFFFFF",
+      "status": "On Time",
+      "totalActiveTrips": 3,
+      "delayedTrips": 0,
+      "percentDelayed": 0,
+      "sampleDelays": [
+        {
+          "tripId": "1006939:1282394",
+          "delayMinutes": 0
+        },
+        {
+          "tripId": "35281:1461139",
+          "delayMinutes": 0
+        },
+        {
+          "tripId": "1043239:1281828",
+          "delayMinutes": 0
+        }
+      ]
+    },
+    {
+      "routeId": "24",
+      "routeShortName": "2",
+      "routeLongName": "DEVINE",
+      "color": "#000000",
+      "textColor": "#FFFFFF",
+      "status": "On Time",
+      "totalActiveTrips": 2,
+      "delayedTrips": 0,
+      "percentDelayed": 0,
+      "sampleDelays": [
+        {
+          "tripId": "CUMBERLAND_WeekdayT2_4:1281824",
+          "delayMinutes": 0
+        },
+        {
+          "tripId": "2:24:1474990",
+          "delayMinutes": 0
+        }
+      ]
+    },
+    {
+      "routeId": "25",
+      "routeShortName": "3",
+      "routeLongName": "WELLINGTON",
+      "color": "#000000",
+      "textColor": "#FFFFFF",
+      "status": "On Time",
+      "totalActiveTrips": 4,
+      "delayedTrips": 0,
+      "percentDelayed": 0,
+      "sampleDelays": [
+        {
+          "tripId": "35125:1460742",
+          "delayMinutes": 0
+        },
+        {
+          "tripId": "35250:1461712",
+          "delayMinutes": 2
+        },
+        {
+          "tripId": "1043250:1283157",
+          "delayMinutes": 0
+        }
+      ]
+    },
+    {
+      "routeId": "26",
+      "routeShortName": "4",
+      "routeLongName": "MAXWELL",
+      "color": "#000000",
+      "textColor": "#FFFFFF",
+      "status": "On Time",
+      "totalActiveTrips": 3,
+      "delayedTrips": 0,
+      "percentDelayed": 0,
+      "sampleDelays": [
+        {
+          "tripId": "1006937:1282642",
+          "delayMinutes": 0
+        },
+        {
+          "tripId": "1006969:1282660",
+          "delayMinutes": 0
+        },
+        {
+          "tripId": "5143448:1442632",
+          "delayMinutes": -2
+        }
+      ]
+    },
+    {
+      "routeId": "27",
+      "routeShortName": "5",
+      "routeLongName": "ROSEDALE",
+      "color": "#000000",
+      "textColor": "#FFFFFF",
+      "status": "On Time",
+      "totalActiveTrips": 5,
+      "delayedTrips": 0,
+      "percentDelayed": 0,
+      "sampleDelays": [
+        {
+          "tripId": "35219:1461270",
+          "delayMinutes": 0
+        },
+        {
+          "tripId": "PITT_WeekdayT2_5:1279964",
+          "delayMinutes": 0
+        },
+        {
+          "tripId": "97963:1472703",
+          "delayMinutes": 0
+        }
+      ]
+    },
+    {
+      "routeId": "31",
+      "routeShortName": "7",
+      "routeLongName": "CATHCART",
+      "color": "#000000",
+      "textColor": "#FFFFFF",
+      "status": "On Time",
+      "totalActiveTrips": 4,
+      "delayedTrips": 0,
+      "percentDelayed": 0,
+      "sampleDelays": [
+        {
+          "tripId": "1043198:1280516",
+          "delayMinutes": -3
+        },
+        {
+          "tripId": "1132165:1319906",
+          "delayMinutes": 0
+        },
+        {
+          "tripId": "BUSINESSPARK9_IndustrialT7_1:1314669",
+          "delayMinutes": 0
+        }
+      ]
+    },
+    {
+      "routeId": "33",
+      "routeShortName": "9",
+      "routeLongName": "EXMOUTH",
+      "color": "#000000",
+      "textColor": "#FFFFFF",
+      "status": "On Time",
+      "totalActiveTrips": 14,
+      "delayedTrips": 0,
+      "percentDelayed": 0,
+      "sampleDelays": [
+        {
+          "tripId": "SUNRISE_WeekdayT2_5:1282933",
+          "delayMinutes": 0
+        },
+        {
+          "tripId": "1132133:1319989",
+          "delayMinutes": -1
+        },
+        {
+          "tripId": "1043200:1279833",
+          "delayMinutes": 0
+        }
+      ]
+    },
+    {
+      "routeId": "34",
+      "routeShortName": "10",
+      "routeLongName": "VIDAL",
+      "color": "#000000",
+      "textColor": "#FFFFFF",
+      "status": "On Time",
+      "totalActiveTrips": 14,
+      "delayedTrips": 0,
+      "percentDelayed": 0,
+      "sampleDelays": [
+        {
+          "tripId": "35498:1460534",
+          "delayMinutes": 0
+        },
+        {
+          "tripId": "34991:1460890",
+          "delayMinutes": 0
+        },
+        {
+          "tripId": "34993:1461176",
+          "delayMinutes": 0
+        }
+      ]
+    },
+    {
+      "routeId": "36",
+      "routeShortName": "12",
+      "routeLongName": "POINT EDWARD",
+      "color": "#000000",
+      "textColor": "#FFFFFF",
+      "status": "On Time",
+      "totalActiveTrips": 2,
+      "delayedTrips": 0,
+      "percentDelayed": 0,
+      "sampleDelays": [
+        {
+          "tripId": "BROOKDALE_WeekdayT2_5:1283658",
+          "delayMinutes": 0
+        },
+        {
+          "tripId": "1132136:1320223",
+          "delayMinutes": 0
+        }
+      ]
+    },
+    {
+      "routeId": "37",
+      "routeShortName": "14",
+      "routeLongName": "CARDIFF",
+      "color": "#000000",
+      "textColor": "#FFFFFF",
+      "status": "On Time",
+      "totalActiveTrips": 4,
+      "delayedTrips": 0,
+      "percentDelayed": 0,
+      "sampleDelays": [
+        {
+          "tripId": "1006907:1283707",
+          "delayMinutes": 0
+        },
+        {
+          "tripId": "1043237:1281809",
+          "delayMinutes": -2
+        },
+        {
+          "tripId": "98002:1473743",
+          "delayMinutes": -4
+        }
+      ]
+    },
+    {
+      "routeId": "38",
+      "routeShortName": "15",
+      "routeLongName": "BRIGHT'S GROVE",
+      "color": "#000000",
+      "textColor": "#FFFFFF",
+      "status": "No Active Trips",
+      "totalActiveTrips": 0,
+      "delayedTrips": 0,
+      "percentDelayed": 0,
+      "sampleDelays": []
+    },
+    {
+      "routeId": "49",
+      "routeShortName": "16",
+      "routeLongName": "INDIAN EAST",
+      "color": "#000000",
+      "textColor": "#FFFFFF",
+      "status": "No Active Trips",
+      "totalActiveTrips": 0,
+      "delayedTrips": 0,
+      "percentDelayed": 0,
+      "sampleDelays": []
+    },
+    {
+      "routeId": "45",
+      "routeShortName": "66",
+      "routeLongName": "LONDON ROAD EXPRESS",
+      "color": "#000000",
+      "textColor": "#FFFFFF",
+      "status": "On Time",
+      "totalActiveTrips": 5,
+      "delayedTrips": 0,
+      "percentDelayed": 0,
+      "sampleDelays": [
+        {
+          "tripId": "35119:1461452",
+          "delayMinutes": 0
+        },
+        {
+          "tripId": "97111:1472345",
+          "delayMinutes": 0
+        },
+        {
+          "tripId": "1:33:1457290",
+          "delayMinutes": 0
+        }
+      ]
+    },
+    {
+      "routeId": "54",
+      "routeShortName": "68",
+      "routeLongName": "NORTH END EXPRESS AM",
+      "color": "#000000",
+      "textColor": "#FFFFFF",
+      "status": "On Time",
+      "totalActiveTrips": 2,
+      "delayedTrips": 0,
+      "percentDelayed": 0,
+      "sampleDelays": [
+        {
+          "tripId": "35154:1461953",
+          "delayMinutes": 0
+        },
+        {
+          "tripId": "97218:1472354",
+          "delayMinutes": 0
+        }
+      ]
+    },
+    {
+      "routeId": "55",
+      "routeShortName": "68",
+      "routeLongName": "NORTH END EXPRESS PM",
+      "color": "#000000",
+      "textColor": "#FFFFFF",
+      "status": "On Time",
+      "totalActiveTrips": 1,
+      "delayedTrips": 0,
+      "percentDelayed": 0,
+      "sampleDelays": [
+        {
+          "tripId": "97219:1472355",
+          "delayMinutes": 0
+        }
+      ]
+    },
+    {
+      "routeId": "52",
+      "routeShortName": "Community",
+      "routeLongName": "COMMUNITY BUS",
+      "color": "#000000",
+      "textColor": "#FFFFFF",
+      "status": "On Time",
+      "totalActiveTrips": 1,
+      "delayedTrips": 0,
+      "percentDelayed": 0,
+      "sampleDelays": [
+        {
+          "tripId": "97214:1472352",
+          "delayMinutes": 4
+        }
+      ]
+    }
+  ]
+}

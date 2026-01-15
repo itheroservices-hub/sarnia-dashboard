@@ -1,0 +1,2210 @@
+[
+  {
+    "title": "Music Bingo",
+    "date": "2026-01-05T20:00:00",
+    "location": "Twisted Arm",
+    "description": " – Music Bingo at Twisted Arm"
+  },
+  {
+    "title": "Songwriters Social",
+    "date": "2026-01-05T18:30:00",
+    "location": "Coffee Culture",
+    "description": " – Songwriters Social at Coffee Culture"
+  },
+  {
+    "title": "Zumba with Madison",
+    "date": "2026-01-05T19:00:00",
+    "location": "Petrolia Legion",
+    "description": " – Zumba with Madison at Petrolia Legion"
+  },
+  {
+    "title": "Cards & Darts",
+    "date": "2026-01-06T19:00:00",
+    "location": "Moose Lodge",
+    "description": " – Cards & Darts at Moose Lodge"
+  },
+  {
+    "title": "Karaoke",
+    "date": "2026-01-06T23:00:00",
+    "location": "Two Amigo's",
+    "description": " – Karaoke at Two Amigo's"
+  },
+  {
+    "title": "Trivia Night",
+    "date": "2026-01-06T20:00:00",
+    "location": "Twisted Arm",
+    "description": " – Trivia Night at Twisted Arm"
+  },
+  {
+    "title": "Trivia Night",
+    "date": "2026-01-06T19:00:00",
+    "location": "Two Water Brewing",
+    "description": " – Trivia Night at Two Water Brewing"
+  },
+  {
+    "title": "TV Bingo",
+    "date": "2026-01-06T19:00:00",
+    "location": "Moose Lodge",
+    "description": " – TV Bingo at Moose Lodge"
+  },
+  {
+    "title": "Catch the Ace",
+    "date": "2026-01-07T19:00:00",
+    "location": "Moose Lodge",
+    "description": " – Catch the Ace at Moose Lodge"
+  },
+  {
+    "title": "Euchre",
+    "date": "2026-01-07T19:00:00",
+    "location": "Navy Club",
+    "description": " – Euchre at Navy Club"
+  },
+  {
+    "title": "Karaoke",
+    "date": "2026-01-07T22:00:00",
+    "location": "Two Amigo's",
+    "description": " – Karaoke at Two Amigo's"
+  },
+  {
+    "title": "Sports Trivia Night",
+    "date": "2026-01-07T19:00:00",
+    "location": "Refined Fool",
+    "description": " – Sports Trivia Night at Refined Fool"
+  },
+  {
+    "title": "Catch the Ace",
+    "date": "2026-01-08T19:00:00",
+    "location": "Sarnia Legion",
+    "description": " – Catch the Ace at Sarnia Legion"
+  },
+  {
+    "title": "Karaoke",
+    "date": "2026-01-08T22:00:00",
+    "location": "Two Amigo's",
+    "description": " – Karaoke at Two Amigo's"
+  },
+  {
+    "title": "Mark Moran",
+    "date": "2026-01-08T18:00:00",
+    "location": "19th Bar & Grill - Huron Oaks",
+    "description": " – Mark Moran at 19th Bar & Grill - Huron Oaks"
+  },
+  {
+    "title": "Ray Whaling",
+    "date": "2026-01-08T00:00:00",
+    "location": "",
+    "description": " – Ray Whaling at "
+  },
+  {
+    "title": "Trivia",
+    "date": "2026-01-08T19:00:00",
+    "location": "Two Amigo's",
+    "description": " – Trivia at Two Amigo's"
+  },
+  {
+    "title": "Alyson Fischer",
+    "date": "2026-01-09T18:00:00",
+    "location": "Sherwood Restaurant",
+    "description": " – Alyson Fischer at Sherwood Restaurant"
+  },
+  {
+    "title": "Girls Night Out",
+    "date": "2026-01-09T18:00:00",
+    "location": "Rondo's - Bright's Grove",
+    "description": " – Girls Night Out at Rondo's - Bright's Grove"
+  },
+  {
+    "title": "Karaoke",
+    "date": "2026-01-09T18:30:00",
+    "location": "Padre's Grill",
+    "description": " – Karaoke at Padre's Grill"
+  },
+  {
+    "title": "Martones",
+    "date": "2026-01-09T00:00:00",
+    "location": "",
+    "description": " – Martones at "
+  },
+  {
+    "title": "Meat Draw",
+    "date": "2026-01-09T17:00:00",
+    "location": "Moose Lodge",
+    "description": " – Meat Draw at Moose Lodge"
+  },
+  {
+    "title": "Meat Draw",
+    "date": "2026-01-09T17:00:00",
+    "location": "Two Amigo's",
+    "description": " – Meat Draw at Two Amigo's"
+  },
+  {
+    "title": "Puffs",
+    "date": "2026-01-09T19:00:00",
+    "location": "Sarnia Library Theatre",
+    "description": " – Puffs at Sarnia Library Theatre"
+  },
+  {
+    "title": "Stone's Throw",
+    "date": "2026-01-09T19:00:00",
+    "location": "Bad Dog - Corunna",
+    "description": " – Stone's Throw at Bad Dog - Corunna"
+  },
+  {
+    "title": "Blues Jam",
+    "date": "2026-01-10T14:00:00",
+    "location": "Maud's Variety",
+    "description": " – Blues Jam at Maud's Variety"
+  },
+  {
+    "title": "Euchre Night",
+    "date": "2026-01-10T19:00:00",
+    "location": "Dante Club",
+    "description": " – Euchre Night at Dante Club"
+  },
+  {
+    "title": "Kenny & Joel Acoustic Show",
+    "date": "2026-01-10T21:00:00",
+    "location": "Twisted Arm",
+    "description": " – Kenny & Joel Acoustic Show at Twisted Arm"
+  },
+  {
+    "title": "Meat Draw",
+    "date": "2026-01-10T16:00:00",
+    "location": "Corunna Legion",
+    "description": " – Meat Draw at Corunna Legion"
+  },
+  {
+    "title": "Meat Draw",
+    "date": "2026-01-10T15:00:00",
+    "location": "Sarnia Legion Branch 62",
+    "description": " – Meat Draw at Sarnia Legion Branch 62"
+  },
+  {
+    "title": "Puffs",
+    "date": "2026-01-10T19:00:00",
+    "location": "Sarnia Library Theatre",
+    "description": " – Puffs at Sarnia Library Theatre"
+  },
+  {
+    "title": "Sarah Stevens",
+    "date": "2026-01-10T18:00:00",
+    "location": "Rondo's - Bright's Grove",
+    "description": " – Sarah Stevens at Rondo's - Bright's Grove"
+  },
+  {
+    "title": "Sax, Lies & Audiotape",
+    "date": "2026-01-10T18:00:00",
+    "location": "Wyoming Legion",
+    "description": " – Sax, Lies & Audiotape at Wyoming Legion"
+  },
+  {
+    "title": "The Martones",
+    "date": "2026-01-10T17:00:00",
+    "location": "Two Amigos",
+    "description": " – The Martones at Two Amigos"
+  },
+  {
+    "title": "Tim Clarke",
+    "date": "2026-01-10T17:30:00",
+    "location": "Tang's Restaurant",
+    "description": " – Tim Clarke at Tang's Restaurant"
+  },
+  {
+    "title": "E-mail your event to michele@sarniarocks.com",
+    "date": "2026-01-11T00:00:00",
+    "location": "",
+    "description": " – E-mail your event to michele@sarniarocks.com at "
+  },
+  {
+    "title": "In the Spirit of Jazz",
+    "date": "2026-01-11T15:00:00",
+    "location": "Grace United Church",
+    "description": " – In the Spirit of Jazz at Grace United Church"
+  },
+  {
+    "title": "Meat Raffle",
+    "date": "2026-01-11T16:00:00",
+    "location": "Hakka Khazana",
+    "description": " – Meat Raffle at Hakka Khazana"
+  },
+  {
+    "title": "Open Mic w/ Rick Steeves",
+    "date": "2026-01-11T21:00:00",
+    "location": "Ups n' Downs",
+    "description": " – Open Mic w/ Rick Steeves at Ups n' Downs"
+  },
+  {
+    "title": "The Old Man Band",
+    "date": "2026-01-11T14:00:00",
+    "location": "Parkway Bar & Grill - Mooretown",
+    "description": " – The Old Man Band at Parkway Bar & Grill - Mooretown"
+  },
+  {
+    "title": "Euchre Night",
+    "date": "2026-01-12T19:00:00",
+    "location": "Refined Fool",
+    "description": " – Euchre Night at Refined Fool"
+  },
+  {
+    "title": "Music Bingo",
+    "date": "2026-01-12T20:00:00",
+    "location": "Twisted Arm",
+    "description": " – Music Bingo at Twisted Arm"
+  },
+  {
+    "title": "Zumba with Madison",
+    "date": "2026-01-12T19:00:00",
+    "location": "Petrolia Legion",
+    "description": " – Zumba with Madison at Petrolia Legion"
+  },
+  {
+    "title": "Cards & Darts",
+    "date": "2026-01-13T19:00:00",
+    "location": "Moose Lodge",
+    "description": " – Cards & Darts at Moose Lodge"
+  },
+  {
+    "title": "Karaoke",
+    "date": "2026-01-13T23:00:00",
+    "location": "Two Amigo's",
+    "description": " – Karaoke at Two Amigo's"
+  },
+  {
+    "title": "Trivia Night",
+    "date": "2026-01-13T19:00:00",
+    "location": "Refined Fool",
+    "description": " – Trivia Night at Refined Fool"
+  },
+  {
+    "title": "Trivia Night",
+    "date": "2026-01-13T20:00:00",
+    "location": "Twisted Arm",
+    "description": " – Trivia Night at Twisted Arm"
+  },
+  {
+    "title": "Trivia Night",
+    "date": "2026-01-13T19:00:00",
+    "location": "Two Water Brewing",
+    "description": " – Trivia Night at Two Water Brewing"
+  },
+  {
+    "title": "TV Bingo",
+    "date": "2026-01-13T19:00:00",
+    "location": "Moose Lodge",
+    "description": " – TV Bingo at Moose Lodge"
+  },
+  {
+    "title": "Euchre",
+    "date": "2026-01-14T19:00:00",
+    "location": "Navy Club",
+    "description": " – Euchre at Navy Club"
+  },
+  {
+    "title": "Karaoke",
+    "date": "2026-01-14T22:00:00",
+    "location": "Two Amigo's",
+    "description": " – Karaoke at Two Amigo's"
+  },
+  {
+    "title": "Blackmore Murphy Hynes",
+    "date": "2026-01-15T19:00:00",
+    "location": "Kineto Theatre - Forest",
+    "description": " – Blackmore Murphy Hynes at Kineto Theatre - Forest"
+  },
+  {
+    "title": "Comedy Night",
+    "date": "2026-01-15T20:00:00",
+    "location": "Refined Fool",
+    "description": " – Comedy Night at Refined Fool"
+  },
+  {
+    "title": "Karaoke",
+    "date": "2026-01-15T22:00:00",
+    "location": "Two Amigo's",
+    "description": " – Karaoke at Two Amigo's"
+  },
+  {
+    "title": "Mark Moran",
+    "date": "2026-01-15T18:00:00",
+    "location": "19th Bar & Grill - Huron Oaks",
+    "description": " – Mark Moran at 19th Bar & Grill - Huron Oaks"
+  },
+  {
+    "title": "Ray Whaling",
+    "date": "2026-01-15T00:00:00",
+    "location": "",
+    "description": " – Ray Whaling at "
+  },
+  {
+    "title": "Those Guys Comedy Club",
+    "date": "2026-01-15T20:00:00",
+    "location": "Refined Fool",
+    "description": " – Those Guys Comedy Club at Refined Fool"
+  },
+  {
+    "title": "Trivia",
+    "date": "2026-01-15T19:00:00",
+    "location": "Two Amigo's",
+    "description": " – Trivia at Two Amigo's"
+  },
+  {
+    "title": "402 West",
+    "date": "2026-01-16T19:30:00",
+    "location": "Sarnia Legion",
+    "description": " – 402 West at Sarnia Legion"
+  },
+  {
+    "title": "Kaz Deery",
+    "date": "2026-01-16T18:00:00",
+    "location": "Rondo's - Bright's Grove",
+    "description": " – Kaz Deery at Rondo's - Bright's Grove"
+  },
+  {
+    "title": "Lise Michaud",
+    "date": "2026-01-16T18:00:00",
+    "location": "Sherwood Restaurant",
+    "description": " – Lise Michaud at Sherwood Restaurant"
+  },
+  {
+    "title": "Meat Draw",
+    "date": "2026-01-16T17:00:00",
+    "location": "Moose Lodge",
+    "description": " – Meat Draw at Moose Lodge"
+  },
+  {
+    "title": "Meat Draw",
+    "date": "2026-01-16T17:00:00",
+    "location": "Two Amigo's",
+    "description": " – Meat Draw at Two Amigo's"
+  },
+  {
+    "title": "Stone's Throw",
+    "date": "2026-01-16T18:00:00",
+    "location": "Sherwood Restaurant",
+    "description": " – Stone's Throw at Sherwood Restaurant"
+  },
+  {
+    "title": "89 Next",
+    "date": "2026-01-17T21:00:00",
+    "location": "Twisted Arm",
+    "description": " – 89 Next at Twisted Arm"
+  },
+  {
+    "title": "Comedy Tour",
+    "date": "2026-01-17T00:00:00",
+    "location": "",
+    "description": " – Comedy Tour at "
+  },
+  {
+    "title": "Jammin' for Jamaica",
+    "date": "2026-01-17T20:00:00",
+    "location": "Multi Bands - Maud's",
+    "description": " – Jammin' for Jamaica at Multi Bands - Maud's"
+  },
+  {
+    "title": "Meat Draw",
+    "date": "2026-01-17T16:00:00",
+    "location": "Corunna Legion",
+    "description": " – Meat Draw at Corunna Legion"
+  },
+  {
+    "title": "Meat Draw",
+    "date": "2026-01-17T15:00:00",
+    "location": "Sarnia Legion Branch 62",
+    "description": " – Meat Draw at Sarnia Legion Branch 62"
+  },
+  {
+    "title": "Kenny & Joel Acoustic Show",
+    "date": "2026-01-17T20:00:00",
+    "location": "Paddy Flaherty's",
+    "description": " – Kenny & Joel Acoustic Show at Paddy Flaherty's"
+  },
+  {
+    "title": "Roads Travelled",
+    "date": "2026-01-17T17:00:00",
+    "location": "Two Amigo's",
+    "description": " – Roads Travelled at Two Amigo's"
+  },
+  {
+    "title": "Tam Lin Rd",
+    "date": "2026-01-17T17:00:00",
+    "location": "19th Bar & Grill - Huron Oaks",
+    "description": " – Tam Lin Rd at 19th Bar & Grill - Huron Oaks"
+  },
+  {
+    "title": "Tim Clarke",
+    "date": "2026-01-17T17:30:00",
+    "location": "Tang's Restaurant",
+    "description": " – Tim Clarke at Tang's Restaurant"
+  },
+  {
+    "title": "ZED",
+    "date": "2026-01-17T19:00:00",
+    "location": "Sarnia Library Theatre",
+    "description": " – ZED at Sarnia Library Theatre"
+  },
+  {
+    "title": "E-mail your event to michele@sarniarocks.com",
+    "date": "2026-01-18T00:00:00",
+    "location": "",
+    "description": " – E-mail your event to michele@sarniarocks.com at "
+  },
+  {
+    "title": "Meat Raffle",
+    "date": "2026-01-18T16:00:00",
+    "location": "Hakka Khazana",
+    "description": " – Meat Raffle at Hakka Khazana"
+  },
+  {
+    "title": "Open Mic w/ Rick Steeves",
+    "date": "2026-01-18T21:00:00",
+    "location": "Ups n' Downs",
+    "description": " – Open Mic w/ Rick Steeves at Ups n' Downs"
+  },
+  {
+    "title": "Music Bingo",
+    "date": "2026-01-19T20:00:00",
+    "location": "Twisted Arm",
+    "description": " – Music Bingo at Twisted Arm"
+  },
+  {
+    "title": "Zumba with Madison",
+    "date": "2026-01-19T19:00:00",
+    "location": "Petrolia Legion",
+    "description": " – Zumba with Madison at Petrolia Legion"
+  },
+  {
+    "title": "Cards & Darts",
+    "date": "2026-01-20T19:00:00",
+    "location": "Moose Lodge",
+    "description": " – Cards & Darts at Moose Lodge"
+  },
+  {
+    "title": "Karaoke",
+    "date": "2026-01-20T23:00:00",
+    "location": "Two Amigo's",
+    "description": " – Karaoke at Two Amigo's"
+  },
+  {
+    "title": "Trivia Night",
+    "date": "2026-01-20T20:00:00",
+    "location": "Twisted Arm",
+    "description": " – Trivia Night at Twisted Arm"
+  },
+  {
+    "title": "Trivia Night",
+    "date": "2026-01-20T19:00:00",
+    "location": "Two Water Brewing",
+    "description": " – Trivia Night at Two Water Brewing"
+  },
+  {
+    "title": "TV Bingo",
+    "date": "2026-01-20T19:00:00",
+    "location": "Moose Lodge",
+    "description": " – TV Bingo at Moose Lodge"
+  },
+  {
+    "title": "Euchre",
+    "date": "2026-01-21T19:00:00",
+    "location": "Navy Club",
+    "description": " – Euchre at Navy Club"
+  },
+  {
+    "title": "Karaoke",
+    "date": "2026-01-21T22:00:00",
+    "location": "Two Amigo's",
+    "description": " – Karaoke at Two Amigo's"
+  },
+  {
+    "title": "Sip n' Paint",
+    "date": "2026-01-21T18:00:00",
+    "location": "Imperial City Brew House",
+    "description": " – Sip n' Paint at Imperial City Brew House"
+  },
+  {
+    "title": "Sports Trivia Night",
+    "date": "2026-01-21T19:00:00",
+    "location": "Refined Fool",
+    "description": " – Sports Trivia Night at Refined Fool"
+  },
+  {
+    "title": "Karaoke",
+    "date": "2026-01-22T22:00:00",
+    "location": "Two Amigo's",
+    "description": " – Karaoke at Two Amigo's"
+  },
+  {
+    "title": "Mark Moran",
+    "date": "2026-01-22T18:00:00",
+    "location": "19th Bar & Grill - Huron Oaks",
+    "description": " – Mark Moran at 19th Bar & Grill - Huron Oaks"
+  },
+  {
+    "title": "Ray Whaling",
+    "date": "2026-01-22T00:00:00",
+    "location": "",
+    "description": " – Ray Whaling at "
+  },
+  {
+    "title": "Trivia",
+    "date": "2026-01-22T19:00:00",
+    "location": "Two Amigo's",
+    "description": " – Trivia at Two Amigo's"
+  },
+  {
+    "title": "Hayden Mellon",
+    "date": "2026-01-23T20:00:00",
+    "location": "Two Amigo's",
+    "description": " – Hayden Mellon at Two Amigo's"
+  },
+  {
+    "title": "Kenny & Joel Acoustic Show",
+    "date": "2026-01-23T19:00:00",
+    "location": "Two Water - Corunna",
+    "description": " – Kenny & Joel Acoustic Show at Two Water - Corunna"
+  },
+  {
+    "title": "Livewire",
+    "date": "2026-01-23T19:30:00",
+    "location": "Sarnia Legion",
+    "description": " – Livewire at Sarnia Legion"
+  },
+  {
+    "title": "Meat Draw",
+    "date": "2026-01-23T17:00:00",
+    "location": "Moose Lodge",
+    "description": " – Meat Draw at Moose Lodge"
+  },
+  {
+    "title": "Meat Draw",
+    "date": "2026-01-23T17:00:00",
+    "location": "Two Amigo's",
+    "description": " – Meat Draw at Two Amigo's"
+  },
+  {
+    "title": "Phil Jacobs",
+    "date": "2026-01-23T18:00:00",
+    "location": "Rondo's - Bright's Grove",
+    "description": " – Phil Jacobs at Rondo's - Bright's Grove"
+  },
+  {
+    "title": "Robb Sharp Band",
+    "date": "2026-01-23T20:00:00",
+    "location": "Refined Fool",
+    "description": " – Robb Sharp Band at Refined Fool"
+  },
+  {
+    "title": "Sue & Ben",
+    "date": "2026-01-23T18:00:00",
+    "location": "Sherwood Restaurant",
+    "description": " – Sue & Ben at Sherwood Restaurant"
+  },
+  {
+    "title": "Amateur Comedy Series",
+    "date": "2026-01-24T20:00:00",
+    "location": "Forest Golf Club",
+    "description": " – Amateur Comedy Series at Forest Golf Club"
+  },
+  {
+    "title": "Battle of the Badges",
+    "date": "2026-01-24T16:00:00",
+    "location": "PAS Arena",
+    "description": " – Battle of the Badges at PAS Arena"
+  },
+  {
+    "title": "Cornhole Tournament",
+    "date": "2026-01-24T14:00:00",
+    "location": "Moose Lodge",
+    "description": " – Cornhole Tournament at Moose Lodge"
+  },
+  {
+    "title": "Highland Night",
+    "date": "2026-01-24T17:00:00",
+    "location": "Fundraiser - Forest Legion",
+    "description": " – Highland Night at Fundraiser - Forest Legion"
+  },
+  {
+    "title": "Meat Draw",
+    "date": "2026-01-24T16:00:00",
+    "location": "Corunna Legion",
+    "description": " – Meat Draw at Corunna Legion"
+  },
+  {
+    "title": "Meat Draw",
+    "date": "2026-01-24T15:00:00",
+    "location": "Sarnia Legion Branch 62",
+    "description": " – Meat Draw at Sarnia Legion Branch 62"
+  },
+  {
+    "title": "Old Man Band",
+    "date": "2026-01-24T17:00:00",
+    "location": "Two Amigo's",
+    "description": " – Old Man Band at Two Amigo's"
+  },
+  {
+    "title": "Sarnia Sting vs Peterborough",
+    "date": "2026-01-24T19:00:00",
+    "location": "PAS Arena",
+    "description": " – Sarnia Sting vs Peterborough at PAS Arena"
+  },
+  {
+    "title": "Strange Times with The Dead Giants",
+    "date": "2026-01-24T20:00:00",
+    "location": "Refined Fool",
+    "description": " – Strange Times with The Dead Giants at Refined Fool"
+  },
+  {
+    "title": "Three of a Kind",
+    "date": "2026-01-24T00:00:00",
+    "location": "Kineto Theatre",
+    "description": " – Three of a Kind at Kineto Theatre"
+  },
+  {
+    "title": "Tim Clarke",
+    "date": "2026-01-24T17:30:00",
+    "location": "Tang's Restaurant",
+    "description": " – Tim Clarke at Tang's Restaurant"
+  },
+  {
+    "title": "Winter Warfare Wrestling",
+    "date": "2026-01-24T00:00:00",
+    "location": "",
+    "description": " – Winter Warfare Wrestling at "
+  },
+  {
+    "title": "E-mail your event to michele@sarniarocks.com",
+    "date": "2026-01-25T00:00:00",
+    "location": "",
+    "description": " – E-mail your event to michele@sarniarocks.com at "
+  },
+  {
+    "title": "Meat Raffle",
+    "date": "2026-01-25T16:00:00",
+    "location": "Hakka Khazana",
+    "description": " – Meat Raffle at Hakka Khazana"
+  },
+  {
+    "title": "Open Mic w/ Rick Steeves",
+    "date": "2026-01-25T21:00:00",
+    "location": "Ups n' Downs",
+    "description": " – Open Mic w/ Rick Steeves at Ups n' Downs"
+  },
+  {
+    "title": "Sunday Brunch",
+    "date": "2026-01-25T10:00:00",
+    "location": "Widder Flats - Thedford",
+    "description": " – Sunday Brunch at Widder Flats - Thedford"
+  },
+  {
+    "title": "Harmony for Youth Games Night",
+    "date": "2026-01-26T18:30:00",
+    "location": "Kiwanis Center",
+    "description": " – Harmony for Youth Games Night at Kiwanis Center"
+  },
+  {
+    "title": "Music Bingo",
+    "date": "2026-01-26T20:00:00",
+    "location": "Twisted Arm",
+    "description": " – Music Bingo at Twisted Arm"
+  },
+  {
+    "title": "Puzzle Night",
+    "date": "2026-01-26T19:00:00",
+    "location": "Refined Fool",
+    "description": " – Puzzle Night at Refined Fool"
+  },
+  {
+    "title": "Zumba with Madison",
+    "date": "2026-01-26T19:00:00",
+    "location": "Petrolia Legion",
+    "description": " – Zumba with Madison at Petrolia Legion"
+  },
+  {
+    "title": "Cards & Darts",
+    "date": "2026-01-27T19:00:00",
+    "location": "Moose Lodge",
+    "description": " – Cards & Darts at Moose Lodge"
+  },
+  {
+    "title": "Karaoke",
+    "date": "2026-01-27T23:00:00",
+    "location": "Two Amigo's",
+    "description": " – Karaoke at Two Amigo's"
+  },
+  {
+    "title": "Trivia Night",
+    "date": "2026-01-27T19:00:00",
+    "location": "Refined Fool",
+    "description": " – Trivia Night at Refined Fool"
+  },
+  {
+    "title": "Trivia Night",
+    "date": "2026-01-27T20:00:00",
+    "location": "Twisted Arm",
+    "description": " – Trivia Night at Twisted Arm"
+  },
+  {
+    "title": "Trivia Night",
+    "date": "2026-01-27T19:00:00",
+    "location": "Two Water Brewing",
+    "description": " – Trivia Night at Two Water Brewing"
+  },
+  {
+    "title": "TV Bingo",
+    "date": "2026-01-27T19:00:00",
+    "location": "Moose Lodge",
+    "description": " – TV Bingo at Moose Lodge"
+  },
+  {
+    "title": "Euchre",
+    "date": "2026-01-28T19:00:00",
+    "location": "Navy Club",
+    "description": " – Euchre at Navy Club"
+  },
+  {
+    "title": "Karaoke",
+    "date": "2026-01-28T23:00:00",
+    "location": "Two Amigo's",
+    "description": " – Karaoke at Two Amigo's"
+  },
+  {
+    "title": "Music Bingo",
+    "date": "2026-01-28T19:00:00",
+    "location": "Two Amigo's",
+    "description": " – Music Bingo at Two Amigo's"
+  },
+  {
+    "title": "Burger Bingo",
+    "date": "2026-01-29T19:00:00",
+    "location": "Refined Fool",
+    "description": " – Burger Bingo at Refined Fool"
+  },
+  {
+    "title": "Karaoke",
+    "date": "2026-01-29T22:00:00",
+    "location": "Two Amigo's",
+    "description": " – Karaoke at Two Amigo's"
+  },
+  {
+    "title": "Mark Moran",
+    "date": "2026-01-29T18:00:00",
+    "location": "19th Bar & Grill - Huron Oaks",
+    "description": " – Mark Moran at 19th Bar & Grill - Huron Oaks"
+  },
+  {
+    "title": "Ray Whaling",
+    "date": "2026-01-29T00:00:00",
+    "location": "",
+    "description": " – Ray Whaling at "
+  },
+  {
+    "title": "Trivia",
+    "date": "2026-01-29T19:00:00",
+    "location": "Two Amigo's",
+    "description": " – Trivia at Two Amigo's"
+  },
+  {
+    "title": "DAZL",
+    "date": "2026-01-30T00:00:00",
+    "location": "",
+    "description": " – DAZL at "
+  },
+  {
+    "title": "Stone's Throw",
+    "date": "2026-01-30T18:00:00",
+    "location": "Rondo's - Bright's Grove",
+    "description": " – Stone's Throw at Rondo's - Bright's Grove"
+  },
+  {
+    "title": "Meat Draw",
+    "date": "2026-01-30T17:00:00",
+    "location": "Moose Lodge",
+    "description": " – Meat Draw at Moose Lodge"
+  },
+  {
+    "title": "Meat Draw",
+    "date": "2026-01-30T17:00:00",
+    "location": "Two Amigo's",
+    "description": " – Meat Draw at Two Amigo's"
+  },
+  {
+    "title": "Peyton Huard",
+    "date": "2026-01-30T18:00:00",
+    "location": "Sherwood Restaurant",
+    "description": " – Peyton Huard at Sherwood Restaurant"
+  },
+  {
+    "title": "Travis Laur",
+    "date": "2026-01-30T20:00:00",
+    "location": "Two Amigo's",
+    "description": " – Travis Laur at Two Amigo's"
+  },
+  {
+    "title": "Meat Draw",
+    "date": "2026-01-31T16:00:00",
+    "location": "Corunna Legion",
+    "description": " – Meat Draw at Corunna Legion"
+  },
+  {
+    "title": "Meat Draw",
+    "date": "2026-01-31T15:00:00",
+    "location": "Sarnia Legion Branch 62",
+    "description": " – Meat Draw at Sarnia Legion Branch 62"
+  },
+  {
+    "title": "Murder Mystery Dinner",
+    "date": "2026-01-31T00:00:00",
+    "location": "",
+    "description": " – Murder Mystery Dinner at "
+  },
+  {
+    "title": "Taryn It Up",
+    "date": "2026-01-31T17:00:00",
+    "location": "Two Amigo's",
+    "description": " – Taryn It Up at Two Amigo's"
+  },
+  {
+    "title": "Tim Clarke",
+    "date": "2026-01-31T17:30:00",
+    "location": "Tang's Restaurant",
+    "description": " – Tim Clarke at Tang's Restaurant"
+  },
+  {
+    "title": "Yuk Yuk's On Tour",
+    "date": "2026-01-31T18:00:00",
+    "location": "Pt Ed Optimist Hall",
+    "description": " – Yuk Yuk's On Tour at Pt Ed Optimist Hall"
+  },
+  {
+    "title": "E-mail your event to michele@sarniarocks.com",
+    "date": "2026-02-01T00:00:00",
+    "location": "",
+    "description": " – E-mail your event to michele@sarniarocks.com at "
+  },
+  {
+    "title": "Meat Raffle",
+    "date": "2026-02-01T16:00:00",
+    "location": "Hakka Khazana",
+    "description": " – Meat Raffle at Hakka Khazana"
+  },
+  {
+    "title": "Open Mic w/ Rick Steeves",
+    "date": "2026-02-01T21:00:00",
+    "location": "Ups n' Downs",
+    "description": " – Open Mic w/ Rick Steeves at Ups n' Downs"
+  },
+  {
+    "title": "Harmony for Youth Games Night",
+    "date": "2026-02-02T18:30:00",
+    "location": "Kiwanis Center",
+    "description": " – Harmony for Youth Games Night at Kiwanis Center"
+  },
+  {
+    "title": "Music Bingo",
+    "date": "2026-02-02T20:00:00",
+    "location": "Twisted Arm",
+    "description": " – Music Bingo at Twisted Arm"
+  },
+  {
+    "title": "Zumba with Madison",
+    "date": "2026-02-02T19:00:00",
+    "location": "Petrolia Legion",
+    "description": " – Zumba with Madison at Petrolia Legion"
+  },
+  {
+    "title": "Trivia Night",
+    "date": "2026-02-03T20:00:00",
+    "location": "Twisted Arm",
+    "description": " – Trivia Night at Twisted Arm"
+  },
+  {
+    "title": "Trivia Night",
+    "date": "2026-02-03T19:00:00",
+    "location": "Two Water Brewing",
+    "description": " – Trivia Night at Two Water Brewing"
+  },
+  {
+    "title": "Euchre",
+    "date": "2026-02-04T19:00:00",
+    "location": "Navy Club",
+    "description": " – Euchre at Navy Club"
+  },
+  {
+    "title": "Mark Moran",
+    "date": "2026-02-05T18:00:00",
+    "location": "19th Bar & Grill - Huron Oaks",
+    "description": " – Mark Moran at 19th Bar & Grill - Huron Oaks"
+  },
+  {
+    "title": "Ray Whaling",
+    "date": "2026-02-05T00:00:00",
+    "location": "",
+    "description": " – Ray Whaling at "
+  },
+  {
+    "title": "Meat Draw",
+    "date": "2026-02-06T17:00:00",
+    "location": "Moose Lodge",
+    "description": " – Meat Draw at Moose Lodge"
+  },
+  {
+    "title": "Meat Draw",
+    "date": "2026-02-06T00:00:00",
+    "location": "",
+    "description": " – Meat Draw at "
+  },
+  {
+    "title": "Amateur Comedy Series",
+    "date": "2026-02-07T20:00:00",
+    "location": "Forest Golf Club",
+    "description": " – Amateur Comedy Series at Forest Golf Club"
+  },
+  {
+    "title": "Candle Making Workshop",
+    "date": "2026-02-07T14:00:00",
+    "location": "Coffee Lodge Finch",
+    "description": " – Candle Making Workshop at Coffee Lodge Finch"
+  },
+  {
+    "title": "Meat Draw",
+    "date": "2026-02-07T16:00:00",
+    "location": "Corunna Legion",
+    "description": " – Meat Draw at Corunna Legion"
+  },
+  {
+    "title": "Meat Draw",
+    "date": "2026-02-07T15:00:00",
+    "location": "Sarnia Legion Branch 62",
+    "description": " – Meat Draw at Sarnia Legion Branch 62"
+  },
+  {
+    "title": "Robb Sharp Band",
+    "date": "2026-02-07T14:00:00",
+    "location": "Kineto Theatre - Forest",
+    "description": " – Robb Sharp Band at Kineto Theatre - Forest"
+  },
+  {
+    "title": "Rod Stewart Tribute",
+    "date": "2026-02-07T19:30:00",
+    "location": "Imperial Theatre",
+    "description": " – Rod Stewart Tribute at Imperial Theatre"
+  },
+  {
+    "title": "Tim Clarke",
+    "date": "2026-02-07T17:30:00",
+    "location": "Tang's Restaurant",
+    "description": " – Tim Clarke at Tang's Restaurant"
+  },
+  {
+    "title": "E-mail your event to michele@sarniarocks.com",
+    "date": "2026-02-08T00:00:00",
+    "location": "",
+    "description": " – E-mail your event to michele@sarniarocks.com at "
+  },
+  {
+    "title": "Meat Raffle",
+    "date": "2026-02-08T16:00:00",
+    "location": "Hakka Khazana",
+    "description": " – Meat Raffle at Hakka Khazana"
+  },
+  {
+    "title": "Open Mic w/ Rick Steeves",
+    "date": "2026-02-08T21:00:00",
+    "location": "Ups n' Downs",
+    "description": " – Open Mic w/ Rick Steeves at Ups n' Downs"
+  },
+  {
+    "title": "Harmony for Youth Games Night",
+    "date": "2026-02-09T18:30:00",
+    "location": "Kiwanis Center",
+    "description": " – Harmony for Youth Games Night at Kiwanis Center"
+  },
+  {
+    "title": "Music Bingo",
+    "date": "2026-02-09T20:00:00",
+    "location": "Twisted Arm",
+    "description": " – Music Bingo at Twisted Arm"
+  },
+  {
+    "title": "Zumba with Madison",
+    "date": "2026-02-09T19:00:00",
+    "location": "Petrolia Legion",
+    "description": " – Zumba with Madison at Petrolia Legion"
+  },
+  {
+    "title": "Trivia Night",
+    "date": "2026-02-10T20:00:00",
+    "location": "Twisted Arm",
+    "description": " – Trivia Night at Twisted Arm"
+  },
+  {
+    "title": "Trivia Night",
+    "date": "2026-02-10T19:00:00",
+    "location": "Two Water Brewing",
+    "description": " – Trivia Night at Two Water Brewing"
+  },
+  {
+    "title": "Euchre",
+    "date": "2026-02-11T19:00:00",
+    "location": "Navy Club",
+    "description": " – Euchre at Navy Club"
+  },
+  {
+    "title": "Mark Moran",
+    "date": "2026-02-12T18:00:00",
+    "location": "19th Bar & Grill - Huron Oaks",
+    "description": " – Mark Moran at 19th Bar & Grill - Huron Oaks"
+  },
+  {
+    "title": "Ray Whaling",
+    "date": "2026-02-12T00:00:00",
+    "location": "",
+    "description": " – Ray Whaling at "
+  },
+  {
+    "title": "Duelling Pianos",
+    "date": "2026-02-13T19:00:00",
+    "location": "Imperial City Brew House",
+    "description": " – Duelling Pianos at Imperial City Brew House"
+  },
+  {
+    "title": "Meat Draw",
+    "date": "2026-02-13T17:00:00",
+    "location": "Moose Lodge",
+    "description": " – Meat Draw at Moose Lodge"
+  },
+  {
+    "title": "Meat Draw",
+    "date": "2026-02-13T00:00:00",
+    "location": "",
+    "description": " – Meat Draw at "
+  },
+  {
+    "title": "Meat Draw",
+    "date": "2026-02-14T16:00:00",
+    "location": "Corunna Legion",
+    "description": " – Meat Draw at Corunna Legion"
+  },
+  {
+    "title": "Meat Draw",
+    "date": "2026-02-14T15:00:00",
+    "location": "Sarnia Legion Branch 62",
+    "description": " – Meat Draw at Sarnia Legion Branch 62"
+  },
+  {
+    "title": "Tim Clarke",
+    "date": "2026-02-14T17:30:00",
+    "location": "Tang's Restaurant",
+    "description": " – Tim Clarke at Tang's Restaurant"
+  },
+  {
+    "title": "Valentine's Dinner",
+    "date": "2026-02-14T00:00:00",
+    "location": "",
+    "description": " – Valentine's Dinner at "
+  },
+  {
+    "title": "Yuk Yuk's",
+    "date": "2026-02-14T19:30:00",
+    "location": "Victoria Hall - Petrolia",
+    "description": " – Yuk Yuk's at Victoria Hall - Petrolia"
+  },
+  {
+    "title": "Harmony for Youth Games Night",
+    "date": "2026-02-16T18:30:00",
+    "location": "Kiwanis Center",
+    "description": " – Harmony for Youth Games Night at Kiwanis Center"
+  },
+  {
+    "title": "Music Bingo",
+    "date": "2026-02-16T20:00:00",
+    "location": "Twisted Arm",
+    "description": " – Music Bingo at Twisted Arm"
+  },
+  {
+    "title": "The Show with David Burrows",
+    "date": "2026-02-16T19:30:00",
+    "location": "",
+    "description": " – The Show with David Burrows at "
+  },
+  {
+    "title": "Trivia Night",
+    "date": "2026-02-17T20:00:00",
+    "location": "Twisted Arm",
+    "description": " – Trivia Night at Twisted Arm"
+  },
+  {
+    "title": "Trivia Night",
+    "date": "2026-02-17T19:00:00",
+    "location": "Two Water Brewing",
+    "description": " – Trivia Night at Two Water Brewing"
+  },
+  {
+    "title": "Euchre",
+    "date": "2026-02-18T19:00:00",
+    "location": "Navy Club",
+    "description": " – Euchre at Navy Club"
+  },
+  {
+    "title": "Mark Moran",
+    "date": "2026-02-19T18:00:00",
+    "location": "19th Bar & Grill - Huron Oaks",
+    "description": " – Mark Moran at 19th Bar & Grill - Huron Oaks"
+  },
+  {
+    "title": "Ray Whaling",
+    "date": "2026-02-19T00:00:00",
+    "location": "",
+    "description": " – Ray Whaling at "
+  },
+  {
+    "title": "Kenny & Joel Acoustic Show",
+    "date": "2026-02-20T20:00:00",
+    "location": "Two Amigo's",
+    "description": " – Kenny & Joel Acoustic Show at Two Amigo's"
+  },
+  {
+    "title": "Meat Draw",
+    "date": "2026-02-20T17:00:00",
+    "location": "Moose Lodge",
+    "description": " – Meat Draw at Moose Lodge"
+  },
+  {
+    "title": "Meat Draw",
+    "date": "2026-02-20T00:00:00",
+    "location": "",
+    "description": " – Meat Draw at "
+  },
+  {
+    "title": "Amateur Comedy Series",
+    "date": "2026-02-21T20:00:00",
+    "location": "Forest Golf Club",
+    "description": " – Amateur Comedy Series at Forest Golf Club"
+  },
+  {
+    "title": "Meat Draw",
+    "date": "2026-02-21T16:00:00",
+    "location": "Corunna Legion",
+    "description": " – Meat Draw at Corunna Legion"
+  },
+  {
+    "title": "Meat Draw",
+    "date": "2026-02-21T15:00:00",
+    "location": "Sarnia Legion Branch 62",
+    "description": " – Meat Draw at Sarnia Legion Branch 62"
+  },
+  {
+    "title": "Painkiller Jane",
+    "date": "2026-02-21T18:00:00",
+    "location": "Parkway Bar & Grill - Mooretown",
+    "description": " – Painkiller Jane at Parkway Bar & Grill - Mooretown"
+  },
+  {
+    "title": "Shane Cook && the Woodchippers",
+    "date": "2026-02-21T00:00:00",
+    "location": "Kineto Theatre",
+    "description": " – Shane Cook && the Woodchippers at Kineto Theatre"
+  },
+  {
+    "title": "Tim Clarke",
+    "date": "2026-02-21T17:30:00",
+    "location": "Tang's Restaurant",
+    "description": " – Tim Clarke at Tang's Restaurant"
+  },
+  {
+    "title": "E-mail your event to michele@sarniarocks.com",
+    "date": "2026-02-22T00:00:00",
+    "location": "",
+    "description": " – E-mail your event to michele@sarniarocks.com at "
+  },
+  {
+    "title": "Meat Raffle",
+    "date": "2026-02-22T16:00:00",
+    "location": "Hakka Khazana",
+    "description": " – Meat Raffle at Hakka Khazana"
+  },
+  {
+    "title": "Open Mic w/ Rick Steeves",
+    "date": "2026-02-22T21:00:00",
+    "location": "Ups n' Downs",
+    "description": " – Open Mic w/ Rick Steeves at Ups n' Downs"
+  },
+  {
+    "title": "Harmony for Youth Games Night",
+    "date": "2026-02-23T18:30:00",
+    "location": "Kiwanis Center",
+    "description": " – Harmony for Youth Games Night at Kiwanis Center"
+  },
+  {
+    "title": "Music Bingo",
+    "date": "2026-02-23T20:00:00",
+    "location": "Twisted Arm",
+    "description": " – Music Bingo at Twisted Arm"
+  },
+  {
+    "title": "The Show with David Burrows",
+    "date": "2026-02-23T19:30:00",
+    "location": "",
+    "description": " – The Show with David Burrows at "
+  },
+  {
+    "title": "Trivia Night",
+    "date": "2026-02-24T20:00:00",
+    "location": "Twisted Arm",
+    "description": " – Trivia Night at Twisted Arm"
+  },
+  {
+    "title": "Trivia Night",
+    "date": "2026-02-24T19:00:00",
+    "location": "Two Water Brewing",
+    "description": " – Trivia Night at Two Water Brewing"
+  },
+  {
+    "title": "Euchre",
+    "date": "2026-02-25T19:00:00",
+    "location": "Navy Club",
+    "description": " – Euchre at Navy Club"
+  },
+  {
+    "title": "Mark Moran",
+    "date": "2026-02-26T18:00:00",
+    "location": "19th Bar & Grill - Huron Oaks",
+    "description": " – Mark Moran at 19th Bar & Grill - Huron Oaks"
+  },
+  {
+    "title": "Ray Whaling",
+    "date": "2026-02-26T00:00:00",
+    "location": "",
+    "description": " – Ray Whaling at "
+  },
+  {
+    "title": "Meat Draw",
+    "date": "2026-02-27T17:00:00",
+    "location": "Moose Lodge",
+    "description": " – Meat Draw at Moose Lodge"
+  },
+  {
+    "title": "Meat Draw",
+    "date": "2026-02-27T00:00:00",
+    "location": "",
+    "description": " – Meat Draw at "
+  },
+  {
+    "title": "Kenny & Joel Acoustic Show",
+    "date": "2026-02-28T19:00:00",
+    "location": "",
+    "description": " – Kenny & Joel Acoustic Show at "
+  },
+  {
+    "title": "Meat Draw",
+    "date": "2026-02-28T16:00:00",
+    "location": "Corunna Legion",
+    "description": " – Meat Draw at Corunna Legion"
+  },
+  {
+    "title": "Meat Draw",
+    "date": "2026-02-28T15:00:00",
+    "location": "Sarnia Legion Branch 62",
+    "description": " – Meat Draw at Sarnia Legion Branch 62"
+  },
+  {
+    "title": "Tim Clarke",
+    "date": "2026-02-28T17:30:00",
+    "location": "Tang's Restaurant",
+    "description": " – Tim Clarke at Tang's Restaurant"
+  },
+  {
+    "title": "E-mail your event to michele@sarniarocks.com",
+    "date": "2026-03-01T00:00:00",
+    "location": "",
+    "description": " – E-mail your event to michele@sarniarocks.com at "
+  },
+  {
+    "title": "Meat Raffle",
+    "date": "2026-03-01T16:00:00",
+    "location": "Hakka Khazana",
+    "description": " – Meat Raffle at Hakka Khazana"
+  },
+  {
+    "title": "Open Mic w/ Rick Steeves",
+    "date": "2026-03-01T21:00:00",
+    "location": "Ups n' Downs",
+    "description": " – Open Mic w/ Rick Steeves at Ups n' Downs"
+  },
+  {
+    "title": "Harmony for Youth Games Night",
+    "date": "2026-03-02T18:30:00",
+    "location": "Kiwanis Center",
+    "description": " – Harmony for Youth Games Night at Kiwanis Center"
+  },
+  {
+    "title": "Music Bingo",
+    "date": "2026-03-02T20:00:00",
+    "location": "Twisted Arm",
+    "description": " – Music Bingo at Twisted Arm"
+  },
+  {
+    "title": "The Show with David Burrows",
+    "date": "2026-03-02T19:30:00",
+    "location": "",
+    "description": " – The Show with David Burrows at "
+  },
+  {
+    "title": "Trivia Night",
+    "date": "2026-03-03T20:00:00",
+    "location": "Twisted Arm",
+    "description": " – Trivia Night at Twisted Arm"
+  },
+  {
+    "title": "Trivia Night",
+    "date": "2026-03-03T19:00:00",
+    "location": "Two Water Brewing",
+    "description": " – Trivia Night at Two Water Brewing"
+  },
+  {
+    "title": "Euchre",
+    "date": "2026-03-04T19:00:00",
+    "location": "Navy Club",
+    "description": " – Euchre at Navy Club"
+  },
+  {
+    "title": "Mark Moran",
+    "date": "2026-03-05T18:00:00",
+    "location": "19th Bar & Grill - Huron Oaks",
+    "description": " – Mark Moran at 19th Bar & Grill - Huron Oaks"
+  },
+  {
+    "title": "Ray Whaling",
+    "date": "2026-03-05T00:00:00",
+    "location": "",
+    "description": " – Ray Whaling at "
+  },
+  {
+    "title": "Meat Draw",
+    "date": "2026-03-06T17:00:00",
+    "location": "Moose Lodge",
+    "description": " – Meat Draw at Moose Lodge"
+  },
+  {
+    "title": "Meat Draw",
+    "date": "2026-03-06T00:00:00",
+    "location": "",
+    "description": " – Meat Draw at "
+  },
+  {
+    "title": "Amateur Comedy Series",
+    "date": "2026-03-07T20:00:00",
+    "location": "Forest Golf Club",
+    "description": " – Amateur Comedy Series at Forest Golf Club"
+  },
+  {
+    "title": "Meat Draw",
+    "date": "2026-03-07T16:00:00",
+    "location": "Corunna Legion",
+    "description": " – Meat Draw at Corunna Legion"
+  },
+  {
+    "title": "Meat Draw",
+    "date": "2026-03-07T15:00:00",
+    "location": "Sarnia Legion Branch 62",
+    "description": " – Meat Draw at Sarnia Legion Branch 62"
+  },
+  {
+    "title": "Tim Clarke",
+    "date": "2026-03-07T17:30:00",
+    "location": "Tang's Restaurant",
+    "description": " – Tim Clarke at Tang's Restaurant"
+  },
+  {
+    "title": "E-mail your event to michele@sarniarocks.com",
+    "date": "2026-03-08T00:00:00",
+    "location": "",
+    "description": " – E-mail your event to michele@sarniarocks.com at "
+  },
+  {
+    "title": "Meat Raffle",
+    "date": "2026-03-08T16:00:00",
+    "location": "Hakka Khazana",
+    "description": " – Meat Raffle at Hakka Khazana"
+  },
+  {
+    "title": "Open Mic w/ Rick Steeves",
+    "date": "2026-03-08T21:00:00",
+    "location": "Ups n' Downs",
+    "description": " – Open Mic w/ Rick Steeves at Ups n' Downs"
+  },
+  {
+    "title": "Harmony for Youth Games Night",
+    "date": "2026-03-09T18:30:00",
+    "location": "Kiwanis Center",
+    "description": " – Harmony for Youth Games Night at Kiwanis Center"
+  },
+  {
+    "title": "Music Bingo",
+    "date": "2026-03-09T20:00:00",
+    "location": "Twisted Arm",
+    "description": " – Music Bingo at Twisted Arm"
+  },
+  {
+    "title": "The Show with David Burrows",
+    "date": "2026-03-09T19:30:00",
+    "location": "",
+    "description": " – The Show with David Burrows at "
+  },
+  {
+    "title": "Trivia Night",
+    "date": "2026-03-10T20:00:00",
+    "location": "Twisted Arm",
+    "description": " – Trivia Night at Twisted Arm"
+  },
+  {
+    "title": "Trivia Night",
+    "date": "2026-03-10T19:00:00",
+    "location": "Two Water Brewing",
+    "description": " – Trivia Night at Two Water Brewing"
+  },
+  {
+    "title": "Euchre",
+    "date": "2026-03-11T19:00:00",
+    "location": "Navy Club",
+    "description": " – Euchre at Navy Club"
+  },
+  {
+    "title": "Mark Moran",
+    "date": "2026-03-12T18:00:00",
+    "location": "19th Bar & Grill - Huron Oaks",
+    "description": " – Mark Moran at 19th Bar & Grill - Huron Oaks"
+  },
+  {
+    "title": "Ray Whaling",
+    "date": "2026-03-12T00:00:00",
+    "location": "",
+    "description": " – Ray Whaling at "
+  },
+  {
+    "title": "Meat Draw",
+    "date": "2026-03-13T17:00:00",
+    "location": "Moose Lodge",
+    "description": " – Meat Draw at Moose Lodge"
+  },
+  {
+    "title": "Meat Draw",
+    "date": "2026-03-13T00:00:00",
+    "location": "",
+    "description": " – Meat Draw at "
+  },
+  {
+    "title": "Meat Draw",
+    "date": "2026-03-14T16:00:00",
+    "location": "Corunna Legion",
+    "description": " – Meat Draw at Corunna Legion"
+  },
+  {
+    "title": "Meat Draw",
+    "date": "2026-03-14T15:00:00",
+    "location": "Sarnia Legion Branch 62",
+    "description": " – Meat Draw at Sarnia Legion Branch 62"
+  },
+  {
+    "title": "Tim Clarke",
+    "date": "2026-03-14T17:30:00",
+    "location": "Tang's Restaurant",
+    "description": " – Tim Clarke at Tang's Restaurant"
+  },
+  {
+    "title": "E-mail your event to michele@sarniarocks.com",
+    "date": "2026-03-15T00:00:00",
+    "location": "",
+    "description": " – E-mail your event to michele@sarniarocks.com at "
+  },
+  {
+    "title": "Meat Raffle",
+    "date": "2026-03-15T16:00:00",
+    "location": "Hakka Khazana",
+    "description": " – Meat Raffle at Hakka Khazana"
+  },
+  {
+    "title": "Open Mic w/ Rick Steeves",
+    "date": "2026-03-15T21:00:00",
+    "location": "Ups n' Downs",
+    "description": " – Open Mic w/ Rick Steeves at Ups n' Downs"
+  },
+  {
+    "title": "Harmony for Youth Games Night",
+    "date": "2026-03-16T18:30:00",
+    "location": "Kiwanis Center",
+    "description": " – Harmony for Youth Games Night at Kiwanis Center"
+  },
+  {
+    "title": "Music Bingo",
+    "date": "2026-03-16T20:00:00",
+    "location": "Twisted Arm",
+    "description": " – Music Bingo at Twisted Arm"
+  },
+  {
+    "title": "The Show with David Burrows",
+    "date": "2026-03-16T19:30:00",
+    "location": "",
+    "description": " – The Show with David Burrows at "
+  },
+  {
+    "title": "Kenny & Joel Acoustic Show",
+    "date": "2026-03-17T19:00:00",
+    "location": "Two Water - Corunna",
+    "description": " – Kenny & Joel Acoustic Show at Two Water - Corunna"
+  },
+  {
+    "title": "Trivia Night",
+    "date": "2026-03-17T20:00:00",
+    "location": "Twisted Arm",
+    "description": " – Trivia Night at Twisted Arm"
+  },
+  {
+    "title": "Trivia Night",
+    "date": "2026-03-17T19:00:00",
+    "location": "Two Water Brewing",
+    "description": " – Trivia Night at Two Water Brewing"
+  },
+  {
+    "title": "Euchre",
+    "date": "2026-03-18T19:00:00",
+    "location": "Navy Club",
+    "description": " – Euchre at Navy Club"
+  },
+  {
+    "title": "Mark Moran",
+    "date": "2026-03-19T18:00:00",
+    "location": "19th Bar & Grill - Huron Oaks",
+    "description": " – Mark Moran at 19th Bar & Grill - Huron Oaks"
+  },
+  {
+    "title": "Ray Whaling",
+    "date": "2026-03-19T00:00:00",
+    "location": "",
+    "description": " – Ray Whaling at "
+  },
+  {
+    "title": "Meat Draw",
+    "date": "2026-03-20T17:00:00",
+    "location": "Moose Lodge",
+    "description": " – Meat Draw at Moose Lodge"
+  },
+  {
+    "title": "Meat Draw",
+    "date": "2026-03-20T00:00:00",
+    "location": "",
+    "description": " – Meat Draw at "
+  },
+  {
+    "title": "Amateur Comedy Series",
+    "date": "2026-03-21T20:00:00",
+    "location": "Forest Golf Club",
+    "description": " – Amateur Comedy Series at Forest Golf Club"
+  },
+  {
+    "title": "Meat Draw",
+    "date": "2026-03-21T16:00:00",
+    "location": "Corunna Legion",
+    "description": " – Meat Draw at Corunna Legion"
+  },
+  {
+    "title": "Meat Draw",
+    "date": "2026-03-21T15:00:00",
+    "location": "Sarnia Legion Branch 62",
+    "description": " – Meat Draw at Sarnia Legion Branch 62"
+  },
+  {
+    "title": "Multi Bands",
+    "date": "2026-03-21T00:00:00",
+    "location": "B&G Club Fundraiser",
+    "description": " – Multi Bands at B&G Club Fundraiser"
+  },
+  {
+    "title": "The Seth McNall Sextet",
+    "date": "2026-03-21T00:00:00",
+    "location": "Kineto Theatre",
+    "description": " – The Seth McNall Sextet at Kineto Theatre"
+  },
+  {
+    "title": "Tim Clarke",
+    "date": "2026-03-21T17:30:00",
+    "location": "Tang's Restaurant",
+    "description": " – Tim Clarke at Tang's Restaurant"
+  },
+  {
+    "title": "E-mail your event to michele@sarniarocks.com",
+    "date": "2026-03-22T00:00:00",
+    "location": "",
+    "description": " – E-mail your event to michele@sarniarocks.com at "
+  },
+  {
+    "title": "Meat Raffle",
+    "date": "2026-03-22T16:00:00",
+    "location": "Hakka Khazana",
+    "description": " – Meat Raffle at Hakka Khazana"
+  },
+  {
+    "title": "Open Mic w/ Rick Steeves",
+    "date": "2026-03-22T21:00:00",
+    "location": "Ups n' Downs",
+    "description": " – Open Mic w/ Rick Steeves at Ups n' Downs"
+  },
+  {
+    "title": "Harmony for Youth Games Night",
+    "date": "2026-03-23T18:30:00",
+    "location": "Kiwanis Center",
+    "description": " – Harmony for Youth Games Night at Kiwanis Center"
+  },
+  {
+    "title": "Music Bingo",
+    "date": "2026-03-23T20:00:00",
+    "location": "Twisted Arm",
+    "description": " – Music Bingo at Twisted Arm"
+  },
+  {
+    "title": "The Show with David Burrows",
+    "date": "2026-03-23T19:30:00",
+    "location": "",
+    "description": " – The Show with David Burrows at "
+  },
+  {
+    "title": "Trivia Night",
+    "date": "2026-03-24T20:00:00",
+    "location": "Twisted Arm",
+    "description": " – Trivia Night at Twisted Arm"
+  },
+  {
+    "title": "Trivia Night",
+    "date": "2026-03-24T19:00:00",
+    "location": "Two Water Brewing",
+    "description": " – Trivia Night at Two Water Brewing"
+  },
+  {
+    "title": "Euchre",
+    "date": "2026-03-25T19:00:00",
+    "location": "Navy Club",
+    "description": " – Euchre at Navy Club"
+  },
+  {
+    "title": "Mark Moran",
+    "date": "2026-03-26T18:00:00",
+    "location": "19th Bar & Grill - Huron Oaks",
+    "description": " – Mark Moran at 19th Bar & Grill - Huron Oaks"
+  },
+  {
+    "title": "Ray Whaling",
+    "date": "2026-03-26T00:00:00",
+    "location": "",
+    "description": " – Ray Whaling at "
+  },
+  {
+    "title": "Meat Draw",
+    "date": "2026-03-27T17:00:00",
+    "location": "Moose Lodge",
+    "description": " – Meat Draw at Moose Lodge"
+  },
+  {
+    "title": "Meat Draw",
+    "date": "2026-03-27T00:00:00",
+    "location": "",
+    "description": " – Meat Draw at "
+  },
+  {
+    "title": "Meat Draw",
+    "date": "2026-03-28T16:00:00",
+    "location": "Corunna Legion",
+    "description": " – Meat Draw at Corunna Legion"
+  },
+  {
+    "title": "Meat Draw",
+    "date": "2026-03-28T15:00:00",
+    "location": "Sarnia Legion Branch 62",
+    "description": " – Meat Draw at Sarnia Legion Branch 62"
+  },
+  {
+    "title": "Tim Clarke",
+    "date": "2026-03-28T17:30:00",
+    "location": "Tang's Restaurant",
+    "description": " – Tim Clarke at Tang's Restaurant"
+  },
+  {
+    "title": "E-mail your event to michele@sarniarocks.com",
+    "date": "2026-03-29T00:00:00",
+    "location": "",
+    "description": " – E-mail your event to michele@sarniarocks.com at "
+  },
+  {
+    "title": "Meat Raffle",
+    "date": "2026-03-29T16:00:00",
+    "location": "Hakka Khazana",
+    "description": " – Meat Raffle at Hakka Khazana"
+  },
+  {
+    "title": "Open Mic w/ Rick Steeves",
+    "date": "2026-03-29T21:00:00",
+    "location": "Ups n' Downs",
+    "description": " – Open Mic w/ Rick Steeves at Ups n' Downs"
+  },
+  {
+    "title": "Harmony for Youth Games Night",
+    "date": "2026-03-30T18:30:00",
+    "location": "Kiwanis Center",
+    "description": " – Harmony for Youth Games Night at Kiwanis Center"
+  },
+  {
+    "title": "Music Bingo",
+    "date": "2026-03-30T20:00:00",
+    "location": "Twisted Arm",
+    "description": " – Music Bingo at Twisted Arm"
+  },
+  {
+    "title": "The Show with David Burrows",
+    "date": "2026-03-30T19:30:00",
+    "location": "",
+    "description": " – The Show with David Burrows at "
+  },
+  {
+    "title": "Trivia Night",
+    "date": "2026-03-31T20:00:00",
+    "location": "Twisted Arm",
+    "description": " – Trivia Night at Twisted Arm"
+  },
+  {
+    "title": "Trivia Night",
+    "date": "2026-03-31T19:00:00",
+    "location": "Two Water Brewing",
+    "description": " – Trivia Night at Two Water Brewing"
+  },
+  {
+    "title": "Euchre",
+    "date": "2026-04-01T19:00:00",
+    "location": "Navy Club",
+    "description": " – Euchre at Navy Club"
+  },
+  {
+    "title": "Mark Moran",
+    "date": "2026-04-02T18:00:00",
+    "location": "19th Bar & Grill - Huron Oaks",
+    "description": " – Mark Moran at 19th Bar & Grill - Huron Oaks"
+  },
+  {
+    "title": "Ray Whaling",
+    "date": "2026-04-02T00:00:00",
+    "location": "",
+    "description": " – Ray Whaling at "
+  },
+  {
+    "title": "Meat Draw",
+    "date": "2026-04-03T17:00:00",
+    "location": "Moose Lodge",
+    "description": " – Meat Draw at Moose Lodge"
+  },
+  {
+    "title": "Meat Draw",
+    "date": "2026-04-03T00:00:00",
+    "location": "",
+    "description": " – Meat Draw at "
+  },
+  {
+    "title": "Meat Draw",
+    "date": "2026-04-04T16:00:00",
+    "location": "Corunna Legion",
+    "description": " – Meat Draw at Corunna Legion"
+  },
+  {
+    "title": "Meat Draw",
+    "date": "2026-04-04T15:00:00",
+    "location": "Sarnia Legion Branch 62",
+    "description": " – Meat Draw at Sarnia Legion Branch 62"
+  },
+  {
+    "title": "Tim Clarke",
+    "date": "2026-04-04T17:30:00",
+    "location": "Tang's Restaurant",
+    "description": " – Tim Clarke at Tang's Restaurant"
+  },
+  {
+    "title": "E-mail your event to michele@sarniarocks.com",
+    "date": "2026-04-05T00:00:00",
+    "location": "",
+    "description": " – E-mail your event to michele@sarniarocks.com at "
+  },
+  {
+    "title": "Meat Raffle",
+    "date": "2026-04-05T16:00:00",
+    "location": "Hakka Khazana",
+    "description": " – Meat Raffle at Hakka Khazana"
+  },
+  {
+    "title": "Open Mic w/ Rick Steeves",
+    "date": "2026-04-05T21:00:00",
+    "location": "Ups n' Downs",
+    "description": " – Open Mic w/ Rick Steeves at Ups n' Downs"
+  },
+  {
+    "title": "Music Bingo",
+    "date": "2026-04-06T20:00:00",
+    "location": "Twisted Arm",
+    "description": " – Music Bingo at Twisted Arm"
+  },
+  {
+    "title": "The Show with David Burrows",
+    "date": "2026-04-06T19:30:00",
+    "location": "",
+    "description": " – The Show with David Burrows at "
+  },
+  {
+    "title": "Trivia Night",
+    "date": "2026-04-07T20:00:00",
+    "location": "Twisted Arm",
+    "description": " – Trivia Night at Twisted Arm"
+  },
+  {
+    "title": "Trivia Night",
+    "date": "2026-04-07T19:00:00",
+    "location": "Two Water Brewing",
+    "description": " – Trivia Night at Two Water Brewing"
+  },
+  {
+    "title": "Euchre",
+    "date": "2026-04-08T19:00:00",
+    "location": "Navy Club",
+    "description": " – Euchre at Navy Club"
+  },
+  {
+    "title": "Mark Moran",
+    "date": "2026-04-09T18:00:00",
+    "location": "19th Bar & Grill - Huron Oaks",
+    "description": " – Mark Moran at 19th Bar & Grill - Huron Oaks"
+  },
+  {
+    "title": "Ray Whaling",
+    "date": "2026-04-09T00:00:00",
+    "location": "",
+    "description": " – Ray Whaling at "
+  },
+  {
+    "title": "Meat Draw",
+    "date": "2026-04-10T17:00:00",
+    "location": "Moose Lodge",
+    "description": " – Meat Draw at Moose Lodge"
+  },
+  {
+    "title": "Meat Draw",
+    "date": "2026-04-10T00:00:00",
+    "location": "",
+    "description": " – Meat Draw at "
+  },
+  {
+    "title": "Meat Draw",
+    "date": "2026-04-11T16:00:00",
+    "location": "Corunna Legion",
+    "description": " – Meat Draw at Corunna Legion"
+  },
+  {
+    "title": "Meat Draw",
+    "date": "2026-04-11T15:00:00",
+    "location": "Sarnia Legion Branch 62",
+    "description": " – Meat Draw at Sarnia Legion Branch 62"
+  },
+  {
+    "title": "Tim Clarke",
+    "date": "2026-04-11T17:30:00",
+    "location": "Tang's Restaurant",
+    "description": " – Tim Clarke at Tang's Restaurant"
+  },
+  {
+    "title": "E-mail your event to michele@sarniarocks.com",
+    "date": "2026-04-12T00:00:00",
+    "location": "",
+    "description": " – E-mail your event to michele@sarniarocks.com at "
+  },
+  {
+    "title": "Meat Raffle",
+    "date": "2026-04-12T16:00:00",
+    "location": "Hakka Khazana",
+    "description": " – Meat Raffle at Hakka Khazana"
+  },
+  {
+    "title": "Open Mic w/ Rick Steeves",
+    "date": "2026-04-12T21:00:00",
+    "location": "Ups n' Downs",
+    "description": " – Open Mic w/ Rick Steeves at Ups n' Downs"
+  },
+  {
+    "title": "Music Bingo",
+    "date": "2026-04-13T20:00:00",
+    "location": "Twisted Arm",
+    "description": " – Music Bingo at Twisted Arm"
+  },
+  {
+    "title": "The Show with David Burrows",
+    "date": "2026-04-13T19:30:00",
+    "location": "",
+    "description": " – The Show with David Burrows at "
+  },
+  {
+    "title": "Trivia Night",
+    "date": "2026-04-14T20:00:00",
+    "location": "Twisted Arm",
+    "description": " – Trivia Night at Twisted Arm"
+  },
+  {
+    "title": "Trivia Night",
+    "date": "2026-04-14T19:00:00",
+    "location": "Two Water Brewing",
+    "description": " – Trivia Night at Two Water Brewing"
+  },
+  {
+    "title": "Euchre",
+    "date": "2026-04-15T19:00:00",
+    "location": "Navy Club",
+    "description": " – Euchre at Navy Club"
+  },
+  {
+    "title": "Mark Moran",
+    "date": "2026-04-16T18:00:00",
+    "location": "19th Bar & Grill - Huron Oaks",
+    "description": " – Mark Moran at 19th Bar & Grill - Huron Oaks"
+  },
+  {
+    "title": "Ray Whaling",
+    "date": "2026-04-16T00:00:00",
+    "location": "",
+    "description": " – Ray Whaling at "
+  },
+  {
+    "title": "Meat Draw",
+    "date": "2026-04-17T17:00:00",
+    "location": "Moose Lodge",
+    "description": " – Meat Draw at Moose Lodge"
+  },
+  {
+    "title": "Meat Draw",
+    "date": "2026-04-17T00:00:00",
+    "location": "",
+    "description": " – Meat Draw at "
+  },
+  {
+    "title": "Meat Draw",
+    "date": "2026-04-18T16:00:00",
+    "location": "Corunna Legion",
+    "description": " – Meat Draw at Corunna Legion"
+  },
+  {
+    "title": "Meat Draw",
+    "date": "2026-04-18T15:00:00",
+    "location": "Sarnia Legion Branch 62",
+    "description": " – Meat Draw at Sarnia Legion Branch 62"
+  },
+  {
+    "title": "Tim Clarke",
+    "date": "2026-04-18T17:30:00",
+    "location": "Tang's Restaurant",
+    "description": " – Tim Clarke at Tang's Restaurant"
+  },
+  {
+    "title": "E-mail your event to michele@sarniarocks.com",
+    "date": "2026-04-19T00:00:00",
+    "location": "",
+    "description": " – E-mail your event to michele@sarniarocks.com at "
+  },
+  {
+    "title": "Meat Raffle",
+    "date": "2026-04-19T16:00:00",
+    "location": "Hakka Khazana",
+    "description": " – Meat Raffle at Hakka Khazana"
+  },
+  {
+    "title": "Open Mic w/ Rick Steeves",
+    "date": "2026-04-19T21:00:00",
+    "location": "Ups n' Downs",
+    "description": " – Open Mic w/ Rick Steeves at Ups n' Downs"
+  },
+  {
+    "title": "Music Bingo",
+    "date": "2026-04-20T20:00:00",
+    "location": "Twisted Arm",
+    "description": " – Music Bingo at Twisted Arm"
+  },
+  {
+    "title": "The Show with David Burrows",
+    "date": "2026-04-20T19:30:00",
+    "location": "",
+    "description": " – The Show with David Burrows at "
+  },
+  {
+    "title": "Trivia Night",
+    "date": "2026-04-21T20:00:00",
+    "location": "Twisted Arm",
+    "description": " – Trivia Night at Twisted Arm"
+  },
+  {
+    "title": "Trivia Night",
+    "date": "2026-04-21T19:00:00",
+    "location": "Two Water Brewing",
+    "description": " – Trivia Night at Two Water Brewing"
+  },
+  {
+    "title": "Euchre",
+    "date": "2026-04-22T19:00:00",
+    "location": "Navy Club",
+    "description": " – Euchre at Navy Club"
+  },
+  {
+    "title": "Mark Moran",
+    "date": "2026-04-23T18:00:00",
+    "location": "19th Bar & Grill - Huron Oaks",
+    "description": " – Mark Moran at 19th Bar & Grill - Huron Oaks"
+  },
+  {
+    "title": "Ray Whaling",
+    "date": "2026-04-23T00:00:00",
+    "location": "",
+    "description": " – Ray Whaling at "
+  },
+  {
+    "title": "Meat Draw",
+    "date": "2026-04-24T17:00:00",
+    "location": "Moose Lodge",
+    "description": " – Meat Draw at Moose Lodge"
+  },
+  {
+    "title": "Meat Draw",
+    "date": "2026-04-24T00:00:00",
+    "location": "",
+    "description": " – Meat Draw at "
+  },
+  {
+    "title": "Meat Draw",
+    "date": "2026-04-25T16:00:00",
+    "location": "Corunna Legion",
+    "description": " – Meat Draw at Corunna Legion"
+  },
+  {
+    "title": "Meat Draw",
+    "date": "2026-04-25T15:00:00",
+    "location": "Sarnia Legion Branch 62",
+    "description": " – Meat Draw at Sarnia Legion Branch 62"
+  },
+  {
+    "title": "The Crew",
+    "date": "2026-04-25T00:00:00",
+    "location": "Kineto Theatre",
+    "description": " – The Crew at Kineto Theatre"
+  },
+  {
+    "title": "Tim Clarke",
+    "date": "2026-04-25T17:30:00",
+    "location": "Tang's Restaurant",
+    "description": " – Tim Clarke at Tang's Restaurant"
+  },
+  {
+    "title": "E-mail your event to michele@sarniarocks.com",
+    "date": "2026-04-26T00:00:00",
+    "location": "",
+    "description": " – E-mail your event to michele@sarniarocks.com at "
+  },
+  {
+    "title": "Meat Raffle",
+    "date": "2026-04-26T16:00:00",
+    "location": "Hakka Khazana",
+    "description": " – Meat Raffle at Hakka Khazana"
+  },
+  {
+    "title": "Open Mic w/ Rick Steeves",
+    "date": "2026-04-26T21:00:00",
+    "location": "Ups n' Downs",
+    "description": " – Open Mic w/ Rick Steeves at Ups n' Downs"
+  },
+  {
+    "title": "Music Bingo",
+    "date": "2026-04-27T20:00:00",
+    "location": "Twisted Arm",
+    "description": " – Music Bingo at Twisted Arm"
+  },
+  {
+    "title": "The Show with David Burrows",
+    "date": "2026-04-27T19:30:00",
+    "location": "",
+    "description": " – The Show with David Burrows at "
+  },
+  {
+    "title": "Trivia Night",
+    "date": "2026-04-28T20:00:00",
+    "location": "Twisted Arm",
+    "description": " – Trivia Night at Twisted Arm"
+  },
+  {
+    "title": "Trivia Night",
+    "date": "2026-04-28T19:00:00",
+    "location": "Two Water Brewing",
+    "description": " – Trivia Night at Two Water Brewing"
+  },
+  {
+    "title": "Euchre",
+    "date": "2026-04-29T19:00:00",
+    "location": "Navy Club",
+    "description": " – Euchre at Navy Club"
+  },
+  {
+    "title": "Mark Moran",
+    "date": "2026-04-30T18:00:00",
+    "location": "19th Bar & Grill - Huron Oaks",
+    "description": " – Mark Moran at 19th Bar & Grill - Huron Oaks"
+  },
+  {
+    "title": "Ray Whaling",
+    "date": "2026-04-30T00:00:00",
+    "location": "",
+    "description": " – Ray Whaling at "
+  },
+  {
+    "title": "Meat Draw",
+    "date": "2026-05-01T17:00:00",
+    "location": "Moose Lodge",
+    "description": " – Meat Draw at Moose Lodge"
+  },
+  {
+    "title": "Meat Draw",
+    "date": "2026-05-01T00:00:00",
+    "location": "",
+    "description": " – Meat Draw at "
+  },
+  {
+    "title": "Meat Draw",
+    "date": "2026-05-02T16:00:00",
+    "location": "Corunna Legion",
+    "description": " – Meat Draw at Corunna Legion"
+  },
+  {
+    "title": "Meat Draw",
+    "date": "2026-05-02T15:00:00",
+    "location": "Sarnia Legion Branch 62",
+    "description": " – Meat Draw at Sarnia Legion Branch 62"
+  },
+  {
+    "title": "Tim Clarke",
+    "date": "2026-05-02T17:30:00",
+    "location": "Tang's Restaurant",
+    "description": " – Tim Clarke at Tang's Restaurant"
+  },
+  {
+    "title": "E-mail your event to michele@sarniarocks.com",
+    "date": "2026-05-03T00:00:00",
+    "location": "",
+    "description": " – E-mail your event to michele@sarniarocks.com at "
+  },
+  {
+    "title": "Meat Raffle",
+    "date": "2026-05-03T16:00:00",
+    "location": "Hakka Khazana",
+    "description": " – Meat Raffle at Hakka Khazana"
+  },
+  {
+    "title": "Open Mic w/ Rick Steeves",
+    "date": "2026-05-03T21:00:00",
+    "location": "Ups n' Downs",
+    "description": " – Open Mic w/ Rick Steeves at Ups n' Downs"
+  }
+]

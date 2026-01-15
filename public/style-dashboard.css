@@ -1,0 +1,1086 @@
+/* ================================================================ */
+/* SARNIA DASHBOARD - PROFESSIONAL CIVIC-GRADE UI                   */
+/* TV-Optimized | Single-Screen | Municipal Aesthetic               */
+/* ================================================================ */
+
+/* ================================================================ */
+/* 1. DESIGN TOKENS (Root Variables)                               */
+/* ================================================================ */
+:root {
+  /* -------- Colors (Civic Palette) -------- */
+  --color-primary: #121b38;       /* Deep blue - government authority */
+  --color-primary-light: #1a2851; /* Lighter blue for hover states */
+  --color-accent: #d62828;        /* Red accent for alerts/delays */
+  --color-warning: #f77f00;       /* Orange for weather warnings */
+  --color-success: #06a77d;       /* Green for on-time status */
+  --color-text-dark: #1a1a1a;     /* Text on light backgrounds */
+  --color-text-light: #ffffff;    /* Text on dark backgrounds */
+  --color-bg-light: #f5f7fa;      /* Page background */
+  --color-bg-white: #ffffff;      /* Card backgrounds */
+  --color-border: #d0d0d0;        /* Borders and dividers */
+  --color-gray: #666666;          /* Secondary text */
+
+  /* -------- Spacing Scale -------- */
+  --spacing-xs: 2px;
+  --spacing-sm: 4px;
+  --spacing-md: 8px;
+  --spacing-lg: 12px;
+  --spacing-xl: 16px;
+  --spacing-2xl: 24px;
+  --spacing-3xl: 32px;
+
+  /* -------- Typography -------- */
+  --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  --font-size-h2: 1.3rem;         /* Main section titles */
+  --font-size-h3: 1.1rem;         /* Subsection titles */
+  --font-size-h4: 0.95rem;        /* Small titles */
+  --font-size-body: 0.95rem;      /* Normal text */
+  --font-size-small: 0.85rem;     /* Small text */
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.4;
+  --font-weight-bold: 600;
+
+  /* -------- Layout -------- */
+  --header-height: 65px;          /* Fixed header height */
+  --tile-border-radius: 6px;      /* Card corner radius */
+  --tile-border-width: 1px;
+  --transition-speed: 200ms;
+
+  /* -------- Shadows (Civic, subtle) -------- */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.12);
+  --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* ================================================================ */
+/* 2. GLOBAL RESET & BASE STYLES                                   */
+/* ================================================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  height: 100%;
+}
+
+body {
+  font-family: var(--font-family);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-dark);
+  background-color: var(--color-bg-light);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ================================================================ */
+/* 3. HEADER BAR (Fixed, Always Visible)                           */
+/* ================================================================ */
+.header-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--header-height);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+  color: var(--color-text-light);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 var(--spacing-2xl);
+  box-shadow: var(--shadow-md);
+  z-index: 1000;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Header Left: Clock & Date */
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xl);
+}
+
+.clock {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0px;
+}
+
+.clock .time {
+  font-size: 1.8rem;
+  font-weight: var(--font-weight-bold);
+  font-family: 'Monaco', 'Courier New', monospace;
+  letter-spacing: 2px;
+  line-height: 0.75;
+  margin-bottom: -8px;
+}
+
+.clock .date {
+  font-size: 0.8rem;
+  opacity: 0.95;
+  line-height: 0.9;
+  margin-top: 0;
+}
+
+/* Header Right: Weather Summary */
+.header-right {
+  display: flex;
+  align-items: center;
+}
+
+.weather-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-lg);
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-radius: 4px;
+}
+
+.weather-icon {
+  width: 32px;
+  height: 32px;
+  display: inline-block;
+}
+
+.weather-text {
+  font-size: 1rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* ================================================================ */
+/* 4. MAIN CONTENT AREA (Dashboard Grid)                           */
+/* ================================================================ */
+#main-content {
+  flex: 1;
+  margin-top: var(--header-height);
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr 1fr;
+  gap: var(--spacing-lg);
+  padding: var(--spacing-lg);
+}
+
+/* ================================================================ */
+/* 5. TILE SYSTEM (Cards / Content Boxes)                          */
+/* ================================================================ */
+
+/* Base Tile */
+.tile {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-bg-white);
+  border: var(--tile-border-width) solid var(--color-border);
+  border-radius: var(--tile-border-radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+/* Tile Header (Title + Optional Badge) */
+.tile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-md) var(--spacing-lg);
+  background: var(--color-primary);
+  color: var(--color-text-light);
+  border-bottom: none;
+}
+
+.tile-title {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-bold);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-lg);
+}
+
+.tile-title .logo-icon {
+  height: 28px;
+  width: auto;
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 4px 6px;
+  border-radius: 4px;
+}
+
+/* Tile Content Area */
+.tile-content {
+  flex: 1;
+  padding: var(--spacing-lg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.tile-scrollable {
+  overflow-y: auto;
+  min-height: 0;
+}
+
+/* Tile Sub-Section (for nested components) */
+.tile-subsection {
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-lg);
+  border-top: 2px solid var(--color-border);
+  background: rgba(0, 51, 102, 0.02);
+}
+
+.subsection-title {
+  font-size: var(--font-size-h4);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  margin: 0 0 var(--spacing-md) 0;
+}
+
+.subsection-title .logo-icon {
+  height: 20px;
+  width: auto;
+}
+
+.subsection-content {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-normal);
+}
+
+/* Primary vs Secondary Tiles (for sizing) */
+.tile-primary {
+  grid-row: span 2;
+}
+
+.tile-secondary {
+  grid-row: span 1;
+}
+
+/* ================================================================ */
+/* 6. BORDER WAIT TIMES CARDS                                      */
+/* ================================================================ */
+
+#border-data {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: var(--spacing-md);
+}
+
+/* Individual Border Card (injected by JS) */
+.border-section {
+  background: var(--color-bg-light);
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-radius: 4px;
+  border-left: 3px solid var(--color-primary);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.border-section.high-wait {
+  border-left-color: var(--color-accent);
+  background: rgba(214, 40, 40, 0.06);
+}
+
+.border-section h4 {
+  font-size: var(--font-size-h4);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+  margin: 0;
+}
+
+.border-section .wait-time {
+  font-size: 1.2rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-dark);
+}
+
+.border-section .wait-direction {
+  font-size: var(--font-size-small);
+  color: var(--color-gray);
+}
+
+/* Trend Indicators */
+.trend-indicator {
+  display: inline-block;
+  font-size: 0.7rem;
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-left: 8px;
+  font-weight: 600;
+}
+
+.trend-indicator.up {
+  background: rgba(214, 40, 40, 0.15);
+  color: var(--color-accent);
+}
+
+.trend-indicator.down {
+  background: rgba(6, 167, 125, 0.15);
+  color: var(--color-success);
+}
+
+.trend-indicator.stable {
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--color-gray);
+}
+
+/* ================================================================ */
+/* 7. TIMESTAMP BADGE                                              */
+/* ================================================================ */
+
+.timestamp-badge {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.9);
+  padding: var(--spacing-xs) var(--spacing-md);
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* ================================================================ */
+/* 8. WEATHER FORECAST SECTION                                     */
+/* ================================================================ */
+
+.weather-forecast {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  height: 100%;
+  overflow: hidden;
+}
+
+.forecast-block {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  flex: 1;
+  min-height: 0;
+}
+
+.forecast-title {
+  font-size: var(--font-size-h4);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+  margin: 0;
+  padding-bottom: var(--spacing-xs);
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* Forecast Container (holds multiple cards) */
+.forecast-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  overflow: visible;
+  min-height: 0;
+  flex: 1;
+}
+
+/* Individual Forecast Card (injected by JS) */
+.forecast-card {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: var(--color-bg-light);
+  border-radius: 4px;
+  border-left: 3px solid var(--color-accent);
+}
+
+.forecast-card.three-day {
+  gap: var(--spacing-xl);
+}
+
+.forecast-icon {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+}
+
+.forecast-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.forecast-info .time {
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+  font-size: var(--font-size-h4);
+}
+
+.forecast-info .temp {
+  font-size: 1rem;
+  color: var(--color-text-dark);
+}
+
+.forecast-info .condition {
+  font-size: var(--font-size-small);
+  color: var(--color-gray);
+}
+
+/* ================================================================ */
+/* 9. TRANSIT STATUS / ARRIVAL CARDS                               */
+/* ================================================================ */
+
+#transit-data {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.arrival-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-md) var(--spacing-lg);
+  background: var(--color-bg-light);
+  border-left: 3px solid var(--color-success);
+  border-radius: 4px;
+  font-size: var(--font-size-body);
+}
+
+.arrival-card.delayed {
+  border-left-color: var(--color-accent);
+  background: rgba(214, 40, 40, 0.08);
+}
+
+.arrival-card.cancelled {
+  border-left-color: #999;
+  background: rgba(0, 0, 0, 0.05);
+  opacity: 0.7;
+}
+
+.arrival-info {
+  flex: 1;
+}
+
+.arrival-route {
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-xs);
+}
+
+.arrival-destination {
+  font-size: var(--font-size-small);
+  color: var(--color-gray);
+}
+
+.arrival-status {
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border-radius: 4px;
+  font-weight: 500;
+  text-align: center;
+  min-width: 100px;
+  font-size: var(--font-size-small);
+}
+
+.arrival-status.on-time {
+  background: rgba(6, 167, 125, 0.15);
+  color: var(--color-success);
+}
+
+.arrival-status.delayed {
+  background: rgba(214, 40, 40, 0.15);
+  color: var(--color-accent);
+}
+
+.arrival-status.cancelled {
+  background: rgba(0, 0, 0, 0.1);
+  color: #666;
+}
+
+/* ================================================================ */
+/* 10. NEWS SECTION                                                */
+/* ================================================================ */
+
+.news-carousel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+  overflow-y: auto;
+  min-height: 0;
+}
+
+.news-content {
+  padding: var(--spacing-md) var(--spacing-lg);
+  background: var(--color-bg-light);
+  border-left: 3px solid var(--color-accent);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.news-headline {
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+  line-height: var(--line-height-tight);
+  margin: 0;
+}
+
+.news-metadata {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  font-size: var(--font-size-small);
+  color: var(--color-gray);
+}
+
+.news-source::before {
+  content: "📰 ";
+}
+
+.news-timestamp::before {
+  content: "🕐 ";
+}
+
+/* ================================================================ */
+/* 11. COPYRIGHT DISCLAIMER                                        */
+/* ================================================================ */
+
+.copyright-disclaimer {
+  background: rgba(0, 51, 102, 0.03);
+  padding: var(--spacing-md) var(--spacing-lg);
+  margin: var(--spacing-lg) var(--spacing-lg) var(--spacing-md) var(--spacing-lg);
+  border-radius: 4px;
+  border-left: 2px solid var(--color-primary);
+  font-size: 0.75rem;
+  color: var(--color-gray);
+  line-height: var(--line-height-normal);
+}
+
+.copyright-disclaimer p {
+  margin: 0;
+}
+
+/* ================================================================ */
+/* 12. COMMUNITY EVENTS CAROUSEL                                   */
+/* ================================================================ */
+
+#event-carousel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+  overflow-y: auto;
+  min-height: 0;
+}
+
+.event-card {
+  padding: var(--spacing-md) var(--spacing-lg);
+  background: var(--color-bg-light);
+  border: 1px solid var(--color-border);
+  border-left: 3px solid var(--color-primary);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  transition: all var(--transition-speed) ease;
+}
+
+
+
+.event-title {
+  font-size: var(--font-size-h4);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+  margin: 0;
+  line-height: var(--line-height-tight);
+}
+
+.event-date-time {
+  font-size: var(--font-size-small);
+  color: var(--color-gray);
+  display: flex;
+  gap: var(--spacing-md);
+}
+
+.event-description {
+  font-size: var(--font-size-small);
+  color: var(--color-text-dark);
+  line-height: var(--line-height-normal);
+  margin: 0;
+}
+
+/* ================================================================ */
+/* 13. LOADING & ERROR STATES                                      */
+/* ================================================================ */
+
+.loading-state,
+.error-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-3xl);
+  gap: var(--spacing-lg);
+}
+
+.spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid var(--color-border);
+  border-top-color: var(--color-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.error-state p {
+  color: var(--color-accent);
+  font-weight: 500;
+  text-align: center;
+}
+
+/* ================================================================ */
+/* 14. SCROLLBARS (Custom Styling)                                 */
+/* ================================================================ */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-light);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 4px;
+  transition: background var(--transition-speed) ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gray);
+}
+
+/* ================================================================ */
+/* 15. ACCESSIBILITY                                               */
+/* ================================================================ */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--color-primary);
+  color: var(--color-text-light);
+  padding: var(--spacing-lg);
+  z-index: 100;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* Focus States */
+button:focus,
+a:focus {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+
+/* ================================================================ */
+/* 17. RESPONSIVE DESIGN (TV & Desktop Breakpoints)                */
+/* ================================================================ */
+
+/* Tablets (768px) */
+@media (max-width: 1280px) {
+  #main-content {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto auto auto;
+  }
+
+  .tile-primary {
+    grid-row: span 1;
+  }
+
+  .header-bar {
+    height: 50px;
+    padding: 0 var(--spacing-lg);
+  }
+
+  #main-content {
+    margin-top: 50px;
+  }
+
+  :root {
+    --font-size-h2: 1.1rem;
+    --font-size-h3: 0.95rem;
+    --font-size-body: 0.85rem;
+  }
+}
+
+/* Small devices (768px and below) */
+@media (max-width: 768px) {
+  #main-content {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+    padding: var(--spacing-lg);
+  }
+
+  .tile-primary {
+    grid-row: span 1;
+  }
+
+  .header-bar {
+    height: 80px;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: var(--spacing-lg);
+  }
+
+  .header-left,
+  .header-right {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  #main-content {
+    margin-top: 80px;
+  }
+
+  :root {
+    --font-size-h2: 1rem;
+    --font-size-h3: 0.9rem;
+    --font-size-body: 0.8rem;
+  }
+}
+
+/* Ultra-wide 4K displays (1920px+) */
+@media (min-width: 2560px) {
+  :root {
+    --font-size-h2: 1.6rem;
+    --font-size-h3: 1.3rem;
+    --font-size-body: 1.1rem;
+    --font-size-small: 1rem;
+    --spacing-lg: 16px;
+    --spacing-xl: 20px;
+    --spacing-2xl: 32px;
+  }
+
+  .header-bar {
+    height: 80px;
+  }
+
+  #main-content {
+    margin-top: 80px;
+  }
+
+  .clock .time {
+    font-size: 2rem;
+  }
+
+  .tile-header {
+    padding: var(--spacing-xl) var(--spacing-2xl);
+  }
+
+  .tile-content {
+    padding: var(--spacing-xl);
+  }
+}
+
+/* ================================================================ */
+/* 18. UTILITY CLASSES                                             */
+/* ================================================================ */
+
+.carousel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  overflow-y: auto;
+  min-height: 0;
+}
+
+.logo-sm {
+  height: 20px;
+  width: auto;
+}
+
+.logo-md {
+  height: 28px;
+  width: auto;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-muted {
+  color: var(--color-gray);
+}
+
+.mt-sm {
+  margin-top: var(--spacing-sm);
+}
+
+.mt-md {
+  margin-top: var(--spacing-md);
+}
+
+.mb-sm {
+  margin-bottom: var(--spacing-sm);
+}
+
+.mb-md {
+  margin-bottom: var(--spacing-md);
+}
+
+/* ================================================================ */
+/* 19. VIA RAIL SPECIFIC STYLING                                   */
+/* ================================================================ */
+
+.via-rail {
+  background: linear-gradient(135deg, #f0f7ff 0%, #ffffff 100%);
+}
+
+#via-rail-data {
+  overflow-y: auto;
+  min-height: 0;
+  font-size: var(--font-size-body);
+}
+
+#via-rail-data table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--font-size-small);
+}
+
+#via-rail-data th {
+  background: var(--color-primary);
+  color: var(--color-text-light);
+  padding: var(--spacing-md);
+  text-align: left;
+  font-weight: var(--font-weight-bold);
+}
+
+#via-rail-data td {
+  padding: var(--spacing-md);
+  border-bottom: 1px solid var(--color-border);
+}
+
+#via-rail-data tr:hover {
+  background: rgba(0, 51, 102, 0.05);
+}
+
+/* ================================================================ */
+/* 20. QR CODE WIDGET (Fixed Bottom Right Corner)                  */
+/* ================================================================ */
+
+.qr-code-widget {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: linear-gradient(135deg, #1a2851 0%, #121b38 100%);
+  border: 2px solid var(--color-border);
+  border-radius: 12px;
+  padding: var(--spacing-xl);
+  box-shadow: var(--shadow-lg);
+  text-align: center;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.qr-logo {
+  height: 45px;
+  width: auto;
+  margin-bottom: var(--spacing-xs);
+}
+
+.qr-code-label {
+  font-size: 0.8rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-light);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.qr-code-image {
+  width: 140px;
+  height: 140px;
+  border-radius: 8px;
+  background: white;
+  padding: 8px;
+  box-shadow: var(--shadow-sm);
+  margin: var(--spacing-sm) 0;
+}
+
+.qr-code-url {
+  font-size: 0.75rem;
+  color: var(--color-text-light);
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+/* ================================================================ */
+/* 21. ADVERTISEMENT MODULE                                         */
+/* ================================================================ */
+
+.tile-ad {
+  position: fixed;
+  bottom: 20px;
+  right: 320px;
+  width: 360px;
+  height: 280px;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-bg-white);
+  border: var(--tile-border-width) solid var(--color-border);
+  border-radius: var(--tile-border-radius);
+  box-shadow: var(--shadow-lg);
+  z-index: 998;
+}
+
+.tile-header-ad {
+  background: linear-gradient(135deg, #f7a400 0%, #ff8c00 100%);
+  color: white;
+  padding: var(--spacing-sm) var(--spacing-md);
+}
+
+.ad-carousel {
+  position: relative;
+  flex: 1;
+  overflow: hidden;
+  background: var(--color-bg-white);
+}
+
+.ad-slot {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-lg);
+}
+
+.ad-slot.active {
+  opacity: 1;
+  z-index: 1;
+}
+
+.ad-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ad-placeholder {
+  text-align: center;
+  padding: var(--spacing-xl);
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border: 2px dashed #dee2e6;
+  border-radius: 8px;
+  width: 100%;
+}
+
+.ad-icon {
+  font-size: 3rem;
+  margin-bottom: var(--spacing-md);
+  filter: grayscale(30%);
+}
+
+.ad-placeholder h3 {
+  font-size: 1.2rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+  margin: 0 0 var(--spacing-sm) 0;
+}
+
+.ad-placeholder p {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  margin: 0 0 var(--spacing-md) 0;
+  line-height: 1.4;
+}
+
+.ad-contact {
+  font-size: 0.75rem;
+  color: #f7a400;
+  font-weight: 600;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  background: white;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.ad-indicators {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding: var(--spacing-sm);
+  background: var(--color-bg-white);
+  border-top: 1px solid var(--color-border);
+}
+
+.ad-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #dee2e6;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.ad-dot:hover {
+  background: #adb5bd;
+  transform: scale(1.2);
+}
+
+.ad-dot.active {
+  background: #f7a400;
+  width: 24px;
+  border-radius: 4px;
+}

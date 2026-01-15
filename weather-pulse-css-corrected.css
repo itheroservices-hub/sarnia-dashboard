@@ -1,0 +1,191 @@
+/* Weather Pulse Module - CORRECTED CSS */
+
+/* Weather Pulse container */
+.weather-forecast {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* Section title */
+.weather-forecast h2 {
+  margin: 0 0 6px 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #003366;
+  border-bottom: 2px solid #4a90e2;
+  padding-bottom: 2px;
+  flex-shrink: 0;
+}
+
+/* Main weather content container - HORIZONTAL layout for better space utilization */
+.weather-content {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* Forecast sections - side by side */
+.forecast-section {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  padding: 6px;
+}
+
+/* Forecast title */
+.forecast-title {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #003366;
+  text-align: center;
+  margin-bottom: 4px;
+  flex-shrink: 0;
+  border-bottom: 1px solid #d0d0d0;
+  padding-bottom: 2px;
+}
+
+/* Forecast container */
+.forecast-container {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Today's forecast blocks - horizontal layout */
+.today-forecast .forecast-container {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 2px;
+}
+
+/* Three-day forecast blocks - vertical layout */
+.three-day-forecast .forecast-container {
+  flex-direction: column;
+}
+
+/* Forecast block styling */
+.forecast-card {
+  background: #ffffff;
+  border: 1px solid #d0d0d0;
+  border-radius: 4px;
+  padding: 3px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  font-size: 0.55rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+}
+
+/* Today's forecast cards - smaller, side by side */
+.today-forecast .forecast-card {
+  flex: 1;
+  min-width: 60px;
+  max-width: 80px;
+}
+
+/* Three-day forecast cards - full width */
+.three-day-forecast .forecast-card {
+  width: 100%;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 6px;
+  padding: 4px;
+}
+
+/* Weather icons */
+.forecast-card img {
+  width: 16px;
+  height: 16px;
+  margin-bottom: 1px;
+  flex-shrink: 0;
+}
+
+.three-day-forecast .forecast-card img {
+  width: 20px;
+  height: 20px;
+  margin-bottom: 0;
+}
+
+/* Forecast details */
+.forecast-details {
+  font-size: 0.5rem;
+  line-height: 1.0;
+  text-align: center;
+  flex: 1;
+  min-width: 0;
+}
+
+.three-day-forecast .forecast-details {
+  text-align: left;
+  font-size: 0.55rem;
+}
+
+.forecast-details strong {
+  font-size: 0.55rem;
+  color: #003366;
+  display: block;
+  margin-bottom: 1px;
+}
+
+.three-day-forecast .forecast-details strong {
+  display: inline;
+  margin-bottom: 0;
+  margin-right: 4px;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+  .weather-content {
+    flex-direction: column;
+    gap: 6px;
+  }
+  
+  .today-forecast .forecast-container {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+  }
+  
+  .today-forecast .forecast-card {
+    min-width: 70px;
+    flex-shrink: 0;
+  }
+}
+
+/* Scrollbar styling for forecast containers */
+.forecast-container::-webkit-scrollbar {
+  width: 3px;
+  height: 3px;
+}
+
+.forecast-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 2px;
+}
+
+.forecast-container::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 2px;
+}
+
+.forecast-container::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
