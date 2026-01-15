@@ -193,8 +193,8 @@ async function runAllScrapers() {
 }
 
 // Run once immediately and schedule every 15 minutes
-runAllScrapers().catch(err => console.error('[ERROR] initial runAllScrapers failed:', err.stack || err));
-setInterval(runAllScrapers, 15 * 60 * 1000);
+// runAllScrapers().catch(err => console.error('[ERROR] initial runAllScrapers failed:', err.stack || err));
+// setInterval(runAllScrapers, 15 * 60 * 1000);
 
 // Initial run
 runScraper();
@@ -206,3 +206,4 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`🚀 Server running at http://192.168.2.38:${PORT}`);
 });
+
