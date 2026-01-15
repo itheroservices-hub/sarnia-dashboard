@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const getTodayForecast = require('./todayForecast');
+const getTodayForecast = require('./todayforecast');
 const getThreeDayForecast = require('./threedayforecast');
 
 // 🔹 Today Forecast Route
