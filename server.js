@@ -197,7 +197,7 @@ async function runAllScrapers() {
 // setInterval(runAllScrapers, 15 * 60 * 1000);
 
 // Initial run
-runScraper();
+// runScraper();
 
 // -----------------------------
 // Start Server
