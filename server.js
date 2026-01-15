@@ -31,8 +31,8 @@ app.use('/weather', weatherRouter);
 // -----------------------------
 // Scraper Imports
 // -----------------------------
-const { runScraper } = require('./CBSA Scraper/scraper');
-const { runEventsScraper } = require('./community events scraper/scraper');
+// const { runScraper } = require('./CBSA Scraper/scraper');
+// const { runEventsScraper } = require('./community events scraper/scraper');
 
 // -----------------------------
 // Transit Scraper Import
@@ -206,4 +206,5 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`🚀 Server running at http://192.168.2.38:${PORT}`);
 });
+
 
