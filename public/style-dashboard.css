@@ -916,6 +916,102 @@ a:focus {
     font-size: 0.85rem;
     margin-bottom: 4px;
   }
+
+  /* FIX: Weather forecast cards on mobile */
+  .weather-forecast {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    overflow: visible;
+  }
+
+  .forecast-block {
+    flex: none;
+  }
+
+  .forecast-container {
+    gap: 8px;
+  }
+
+  .forecast-card {
+    padding: 8px 10px;
+    gap: 10px;
+    flex-wrap: nowrap;
+  }
+
+  .forecast-icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .forecast-info {
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .forecast-info .time {
+    font-size: 0.8rem;
+    white-space: nowrap;
+  }
+
+  .forecast-info .temp {
+    font-size: 0.85rem;
+  }
+
+  .forecast-info .condition {
+    font-size: 0.7rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  /* FIX: News carousel readable on mobile */
+  .news-carousel {
+    padding: 12px;
+  }
+
+  .news-headline {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    overflow: visible;
+    white-space: normal;
+    word-wrap: break-word;
+  }
+
+  .news-metadata {
+    font-size: 0.7rem;
+    flex-wrap: wrap;
+  }
+
+  .copyright-disclaimer {
+    margin: 8px;
+    padding: 8px;
+    font-size: 0.65rem;
+  }
+
+  /* FIX: VIA Rail table on mobile */
+  #via-rail-data table {
+    font-size: 0.7rem;
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  #via-rail-data th,
+  #via-rail-data td {
+    padding: 6px 4px;
+    font-size: 0.7rem;
+  }
+
+  .subsection-title {
+    font-size: 0.85rem;
+    padding: 8px 12px;
+  }
+
+  .logo-icon {
+    height: 16px;
+    width: auto;
+  }
 }
 
 /* Ultra-wide 4K displays (1920px+) */
