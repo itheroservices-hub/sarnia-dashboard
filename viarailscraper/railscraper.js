@@ -140,7 +140,7 @@ async function fetchViaRailStatus() {
     }
 
     const outputPath = path.join(__dirname, '../public/via_rail.json');
-    const timestamp = new Date().toISOString();
+    const timestamp = new Date().toLocaleString('en-US', { timeZone: 'America/Toronto' });
     const enrichedData = { timestamp, trains: results };
 
     console.log(`📝 Writing to: ${outputPath}`);

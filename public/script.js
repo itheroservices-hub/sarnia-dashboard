@@ -459,7 +459,7 @@ function fetchViaRailData() {
         }
       });
 
-      container.innerHTML = `<p>Last updated: ${new Date(data.timestamp).toLocaleTimeString()}</p>`;
+      container.innerHTML = `<p>Last updated: ${new Date(data.timestamp).toLocaleTimeString('en-US', { timeZone: 'America/Toronto', hour: '2-digit', minute: '2-digit', second: '2-digit' })}</p>`;
       container.appendChild(table);
     })
     .catch(err => {
