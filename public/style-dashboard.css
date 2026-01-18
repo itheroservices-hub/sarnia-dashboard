@@ -784,10 +784,26 @@ a:focus {
     grid-template-columns: 1fr;
     gap: var(--spacing-lg);
     padding: var(--spacing-lg);
+    padding-bottom: 80px; /* Space for bottom elements */
   }
 
   .tile-primary {
     grid-row: span 1;
+    max-height: 400px; /* Limit height on mobile */
+  }
+
+  .tile-secondary {
+    max-height: 350px; /* Limit height on mobile */
+  }
+
+  /* Make tile content scrollable on mobile */
+  .tile-content {
+    overflow-y: auto;
+    max-height: 300px;
+  }
+
+  .tile-scrollable {
+    overflow-y: auto;
   }
 
   .header-bar {
@@ -833,6 +849,27 @@ a:focus {
 
   #main-content {
     margin-top: 110px;
+  }
+
+  /* HIDE QR code on mobile - it blocks content */
+  .qr-code-widget {
+    display: none !important;
+  }
+
+  /* HIDE ad section on mobile - it blocks content */
+  .tile-ad {
+    display: none !important;
+  }
+
+  /* Make VIA Rail subsection visible and scrollable */
+  .via-rail {
+    display: block;
+    max-height: none;
+  }
+
+  .subsection-content {
+    overflow-y: auto;
+    max-height: 150px;
   }
 
   :root {
