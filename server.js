@@ -192,10 +192,13 @@ exec(`node "${newsPath}"`, (error, stdout, stderr) => {
     console.log("📰 Initial news scrape complete");
     if (stdout) console.log("stdout:", stdout);
   }
-}, 20 * 60 * 1000);
+});
 
-// Run copyright-compliant news scraper immediately on startup
-exec('node "sarnia new🔄 runAllScrapers starting', new Date().toISOString());
+// -----------------------------
+// Safe runner for scheduled scrapes
+// -----------------------------
+async function runAllScrapers() {
+  console.log('[INFO] 🔄 runAllScrapers starting', new Date().toISOString());
 
   // Community events
   try {
@@ -217,16 +220,7 @@ exec('node "sarnia new🔄 runAllScrapers starting', new Date().toISOString());
       console.log('[INFO] ✅ transit pulse written to transit.json');
     }
   } catch (err) {
-    console.error('[ERROR] ❌
-  // Transit
-  try {
-    if (typeof buildTransitPulse === 'function') {
-      console.log('[DEBUG] Running transit pulse builder...');
-      await buildTransitPulse();
-      console.log('[INFO] transit pulse builder finished');
-    }
-  } catch (err) {
-    console.error('[ERROR] transit pulse builder failed:', err.stack || err);
+    console.error('[ERROR] ❌ transit pulse builder failed:', err.stack || err);
   }
 
   console.log('[INFO] ✅ runAllScrapers finished', new Date().toISOString());
