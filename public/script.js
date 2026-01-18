@@ -475,9 +475,11 @@ function formatTime(isoString) {
 }
 
 function getDelayClass(delay) {
-  if (delay === 0) return "on-time";
-  if (delay <= 5) return "minor";
-  return "major";
+  const delayNum = parseInt(delay);
+  if (isNaN(delayNum) || delayNum === 0) return "on-time";
+  if (delayNum <= 5) return "minor-delay";
+  if (delayNum <= 15) return "moderate-delay";
+  return "major-delay";
 }
 
 // INSIDE your existing DOMContentLoaded block:
@@ -556,7 +558,11 @@ function renderTransitTilesPage() {
     let statusClass = "on-time";
     if (a.status.toLowerCase().includes("cancelled")) {
       statusClass = "cancelled";
-    } else if (displayDelay > 0) {
+    } else if (displayDelay === null || displayDelay === 0) {
+      statusClass = "on-time";
+    } else if (displayDelay > 0 && displayDelay <= 5) {
+      statusClass = "minor-delay";
+    } else if (displayDelay > 5) {
       statusClass = "delayed";
     }
 

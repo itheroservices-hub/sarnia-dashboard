@@ -180,9 +180,17 @@ function fetchViaRailDataTailwind() {
             tbody.appendChild(row);
           } else {
             train.stations.forEach(station => {
-              const delayClass = station.delay.includes('On time') || station.delay === '0'
-                ? 'text-green-600'
-                : 'text-red-600';
+              const delayNum = parseInt(station.delay);
+              let delayClass = 'text-gray-500';
+              
+              if (!isNaN(delayNum)) {
+                if (delayNum === 0) delayClass = 'text-green-600';
+                else if (delayNum <= 5) delayClass = 'text-yellow-500';
+                else if (delayNum <= 15) delayClass = 'text-orange-500';
+                else delayClass = 'text-red-600';
+              } else if (station.delay.toLowerCase().includes('on time')) {
+                delayClass = 'text-green-600';
+              }
               
               const row = document.createElement('tr');
               row.className = 'border-b border-gray-200 hover:bg-gray-50';
