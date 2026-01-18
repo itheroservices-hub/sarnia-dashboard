@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="description" content="Real-time community information dashboard for Sarnia, Ontario - border wait times, transit, weather, news, and events.">
+  <meta name="theme-color" content="#1e3a8a">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Sarnia Dashboard">
+  <title>Sarnia Community Dashboard</title>
+  <link rel="stylesheet" href="style-dashboard.css">
+  <link rel="icon" href="assets/logo/IThero logo with red.png" type="image/png">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="assets/SarniaCommunityDashboardlogo.png">
+</head>
+
+<body>
+  <!-- Fixed Top Navigation Bar -->
+  <header id="top-bar" class="header-bar" role="banner">
+    <div class="header-left">
+      <div id="clock" class="clock" aria-label="Current time and date" aria-live="polite">
+        <span class="time">--:--</span>
+        <span class="date">--/--</span>
+      </div>
+    </div>
+    
+    <div class="header-center">
+      <img src="assets/SarniaCommunityDashboardlogo.png" alt="Sarnia Community Dashboard" class="header-logo">
+    </div>
+    
+    <div class="header-right">
+      <div id="weather" class="weather-bar" aria-label="Current weather conditions" aria-live="polite">
+        <img src="" alt="" class="weather-icon" style="display: none;">
+        <span class="weather-text">Loading weather...</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main dashboard content -->
+  <main id="main-content" class="dashboard-grid" role="main">
+
+    <!-- ===== LEFT COLUMN: BORDER WAIT TIMES + VIA RAIL ===== -->
+    <section id="border-wait" class="tile tile-primary">
+      <div class="tile-header">
+        <h2 class="tile-title">Border Wait Times</h2>
+        <span id="border-time" class="timestamp-badge" aria-label="Last updated">Updating...</span>
+      </div>
+      <div id="border-data" class="tile-content tile-scrollable">
+        <!-- JS injects border cards here -->
+      </div>
+      <div class="tile-subsection via-rail">
+        <h3 class="subsection-title">
+          <img src="/assets/ViaRail.png" alt="Via Rail" class="logo-icon" />
+          Via Rail Schedule
+        </h3>
+        <div id="via-rail-data" class="subsection-content">Loading train info...</div>
+      </div>
+    </section>
+
+    <!-- ===== CENTER COLUMN: TRANSIT DELAYS ===== -->
+    <section id="transit-section" class="tile tile-primary">
+      <div class="tile-header">
+        <h2 class="tile-title">
+          <img src="/assets/SarniaTransit.png" alt="Sarnia Transit" class="logo-icon" />
+          Transit Status
+        </h2>
+      </div>
+      <div id="transit-data" class="tile-content tile-scrollable">Loading transit info...</div>
+    </section>
+
+    <!-- ===== RIGHT COLUMN: WEATHER PULSE ===== -->
+    <section id="weather-section" class="tile tile-primary">
+      <div class="tile-header">
+        <h2 class="tile-title">Weather Pulse</h2>
+      </div>
+      <div class="tile-content weather-forecast">
+        <!-- Today's Forecast -->
+        <div class="forecast-block">
+          <h3 class="forecast-title">Today</h3>
+          <div class="forecast-container" id="today-container">
+            <!-- JS injects morning/afternoon/evening -->
+          </div>
+        </div>
+
+        <!-- Three-Day Forecast -->
+        <div class="forecast-block">
+          <h3 class="forecast-title">Forecast</h3>
+          <div class="forecast-container" id="three-day-container">
+            <!-- JS injects 3-day cards -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== BOTTOM LEFT: LOCAL NEWS ===== -->
+    <section id="news-carousel-container" class="tile tile-secondary">
+      <div class="tile-header">
+        <h2 class="tile-title">Local News</h2>
+      </div>
+      <div class="copyright-disclaimer">
+        <p><small>📰 News headlines displayed under Canadian fair dealing provisions for news reporting and commentary. Summaries are original content and do not reproduce copyrighted material. Full stories available at source.</small></p>
+      </div>
+      <div id="news-carousel" class="tile-content news-carousel">
+        <div class="news-content">
+          <p id="headline" class="news-headline">Loading news...</p>
+          <div class="news-metadata">
+            <span id="news-source" class="news-source"></span>
+            <span id="news-timestamp" class="news-timestamp"></span>
+          </div>
+        </div>
+      </div>
+      <div id="news-loading" class="loading-state" style="display: none;">
+        <div class="spinner"></div>
+      </div>
+      <div id="news-error" class="error-state" style="display: none;">
+        <p>⚠️ News unavailable</p>
+      </div>
+    </section>
+
+    <!-- ===== BOTTOM RIGHT: COMMUNITY EVENTS ===== -->
+    <section id="events" class="tile tile-secondary">
+      <div class="tile-header">
+        <h2 class="tile-title">Community Events</h2>
+      </div>
+      <div id="event-carousel" class="tile-content carousel"></div>
+    </section>
+
+    <!-- ===== ADVERTISEMENT MODULE ===== -->
+    <section id="advertisement" class="tile tile-ad">
+      <div class="tile-header tile-header-ad">
+        <h2 class="tile-title">Your Ad Here</h2>
+      </div>
+      <div class="ad-carousel">
+        <div class="ad-slot active" data-ad="1">
+          <div class="ad-content">
+            <div class="ad-placeholder">
+              <div class="ad-icon">📢</div>
+              <h3>Advertise Here</h3>
+              <p>Reach thousands of local residents daily</p>
+              <div class="ad-contact">Contact: ads@itherosolutions.ca</div>
+            </div>
+          </div>
+        </div>
+        <div class="ad-slot" data-ad="2">
+          <div class="ad-content">
+            <div class="ad-placeholder">
+              <div class="ad-icon">🎯</div>
+              <h3>Premium Placement</h3>
+              <p>Showcase your business to the community</p>
+              <div class="ad-contact">Contact: ads@itherosolutions.ca</div>
+            </div>
+          </div>
+        </div>
+        <div class="ad-slot" data-ad="3">
+          <div class="ad-content">
+            <div class="ad-placeholder">
+              <div class="ad-icon">💼</div>
+              <h3>Local Business Spotlight</h3>
+              <p>Connect with your neighbors</p>
+              <div class="ad-contact">Contact: ads@itherosolutions.ca</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ad-indicators">
+        <span class="ad-dot active" data-slide="1"></span>
+        <span class="ad-dot" data-slide="2"></span>
+        <span class="ad-dot" data-slide="3"></span>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- QR Code Widget - Bottom Right Corner -->
+  <div class="qr-code-widget">
+    <img src="assets/ithero-logo-light.png" alt="IThero Solutions" class="qr-logo">
+    <div class="qr-code-label">Scan to Visit</div>
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://itherosolutions.ca&color=c62828&bgcolor=f7a400" 
+         alt="QR Code for itherosolutions.ca" 
+         class="qr-code-image">
+    <div class="qr-code-url">itherosolutions.ca</div>
+  </div>
+
+  <script src="script.js"></script>
+  <script src="events.js"></script>
+</body>
+</html>
