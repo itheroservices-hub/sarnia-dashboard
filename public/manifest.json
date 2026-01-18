@@ -1,0 +1,23 @@
+{
+  "name": "Sarnia Community Dashboard",
+  "short_name": "Sarnia Dashboard",
+  "description": "Real-time community information for Sarnia, Ontario",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1e3a8a",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/assets/logo/IThero logo with red.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/SarniaCommunityDashboardlogo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

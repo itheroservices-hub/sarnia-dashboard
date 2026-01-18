@@ -780,39 +780,49 @@ a:focus {
 
 /* Small devices (768px and below) */
 @media (max-width: 768px) {
+  body {
+    overflow-x: hidden;
+  }
+
   #main-content {
     grid-template-columns: 1fr;
-    gap: var(--spacing-lg);
-    padding: var(--spacing-lg);
-    padding-bottom: 80px; /* Space for bottom elements */
+    gap: 12px;
+    padding: 12px;
+    padding-bottom: 20px;
+    margin-top: 140px;
   }
 
-  .tile-primary {
-    grid-row: span 1;
-    max-height: 400px; /* Limit height on mobile */
-  }
-
+  .tile-primary,
   .tile-secondary {
-    max-height: 350px; /* Limit height on mobile */
+    grid-row: span 1;
+    max-height: none;
+    min-height: auto;
   }
 
-  /* Make tile content scrollable on mobile */
+  /* Compact tile styling */
   .tile-content {
-    overflow-y: auto;
-    max-height: 300px;
+    padding: 12px;
   }
 
   .tile-scrollable {
+    max-height: 300px;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   .header-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
     height: auto;
-    min-height: 100px;
+    min-height: 120px;
     flex-direction: column;
     justify-content: center;
-    padding: var(--spacing-md);
-    gap: var(--spacing-md);
+    padding: 10px;
+    gap: 8px;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   }
 
   .header-left,
@@ -836,19 +846,21 @@ a:focus {
   }
 
   .header-logo {
-    height: 40px;
+    height: 50px;
+    max-width: 90%;
+    object-fit: contain;
   }
 
   .clock .time {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
   }
 
   .clock .date {
-    font-size: 0.7rem;
+    font-size: 0.65rem;
   }
 
-  #main-content {
-    margin-top: 110px;
+  .weather-text {
+    font-size: 0.85rem;
   }
 
   /* HIDE QR code on mobile - it blocks content */
@@ -870,12 +882,39 @@ a:focus {
   .subsection-content {
     overflow-y: auto;
     max-height: 150px;
+    -webkit-overflow-scrolling: touch;
   }
 
+  /* Compact fonts */
   :root {
-    --font-size-h2: 1rem;
-    --font-size-h3: 0.9rem;
-    --font-size-body: 0.8rem;
+    --font-size-h2: 0.95rem;
+    --font-size-h3: 0.85rem;
+    --font-size-body: 0.75rem;
+    --font-size-small: 0.7rem;
+  }
+
+  /* Tighter tile spacing */
+  .tile-header {
+    padding: 10px 12px;
+  }
+
+  /* Reduce border-wait table size */
+  .border-wait-item {
+    padding: 8px 0;
+    font-size: 0.8rem;
+  }
+
+  /* Compact news and events */
+  .news-item,
+  .event-item {
+    padding: 10px;
+    margin-bottom: 8px;
+  }
+
+  .news-item h3,
+  .event-item h3 {
+    font-size: 0.85rem;
+    margin-bottom: 4px;
   }
 }
 
