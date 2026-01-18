@@ -32,7 +32,15 @@ app.use('/weather', weatherRouter);
 // Scraper Imports
 // -----------------------------
 const { runScraper } = require('./CBSA Scraper/scraper');
-const { runEventsScraper } = require('./community events scraper/scraper');
+
+// Events scraper runs on import - catch any errors
+let runEventsScraper;
+try {
+  ({ runEventsScraper } = require('./community events scraper/scraper'));
+} catch (err) {
+  console.error('⚠️  Events scraper import failed (Puppeteer issue):', err.message);
+  runEventsScraper = async () => console.log('⚠️  Events scraper skipped (Puppeteer not available)');
+}
 
 // -----------------------------
 // Transit Scraper Import
@@ -128,19 +136,30 @@ app.get("/test", (req, res) => {
 // Scheduled Scraper Jobs
 // -----------------------------
 
-// VIA Rail scraper every 5 minutes
+// VIA Rail scraper every 5 minutes (may fail if Puppeteer unavailable)
 setInterval(() => {
   exec(`node "${path.join(__dirname, 'viarailscraper', 'railscraper.js')}"`, (error, stdout, stderr) => {
     if (error) {
-      console.error(`❌ VIA Rail scraper error: ${error.message}`);
+      console.error(`⚠️  VIA Rail scraper failed (Puppeteer issue):`, error.message);
       return;
     }
-    console.log(`🚆 VIA Rail scraper ran at startup`);
+    console.log(`🚆 VIA Rail scraper completed successfully`);
   });
 }, 5 * 60 * 1000);
 
+// Run VIA Rail scraper on startup (non-blocking)
+exec(`node "${path.join(__dirname, 'viarailscraper', 'railscraper.js')}"`, (error) => {
+  if (error) console.error("⚠️  Initial VIA Rail scraper failed (Puppeteer issue)");
+  else console.log("🚆 Initial VIA Rail scrape complete");
+});
+
 // CBSA scraper every 5 minutes
-setInterval(runScraper, 5 * 60 * 1000);
+setInterval(() => {
+  runScraper().catch(err => console.error("❌ CBSA scraper failed:", err.message));
+}, 5 * 60 * 1000);
+
+// Run CBSA scraper on startup (non-blocking)
+runScraper().catch(err => console.error("❌ Initial CBSA scraper failed:", err.message));
 
 // -----------------------------
 // NEW: Copyright-Compliant Sarnia News Scraper
