@@ -1,0 +1,99 @@
+/* ================================================================ */
+/* CUSTOM COMPONENTS - Only what Tailwind doesn't cover            */
+/* ================================================================ */
+
+/* Ad Carousel Animation */
+.ad-carousel {
+  position: relative;
+}
+
+.ad-slot {
+  display: none;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.ad-slot.active {
+  display: flex !important;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.ad-dot.active {
+  background: #1e3a8a !important;
+  transform: scale(1.2);
+}
+
+/* Loading Spinner */
+.spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid #e5e7eb;
+  border-top-color: #1e3a8a;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-state,
+.error-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem;
+  gap: 1rem;
+}
+
+/* News metadata icons */
+.news-source::before {
+  content: "📰 ";
+}
+
+.news-timestamp::before {
+  content: "🕐 ";
+}
+
+/* Smooth scrolling for touch devices */
+.overflow-y-auto {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Custom scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f3f4f6;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 4px;
+  transition: background 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+
+/* Ensure fixed elements don't interfere on mobile */
+@media (max-width: 768px) {
+  .qr-code-widget,
+  #advertisement {
+    display: none !important;
+  }
+}
