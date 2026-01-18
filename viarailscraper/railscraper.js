@@ -91,7 +91,7 @@ async function fetchViaRailStatus() {
       stations.push({
         station: 'Sarnia',
         scheduled,
-        expected: expectedRaw || '-',
+        expected: expectedRaw ? convertUTCtoEastern(expectedRaw) : '-',
         delay: ''
       });
     } else {
