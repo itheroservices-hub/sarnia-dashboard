@@ -164,6 +164,12 @@ setInterval(() => {
 console.log('🔄 Running initial CBSA scraper...');
 runScraper()
   .then(() => console.log('✅ Initial CBSA scraper completed'))
+  .catch(err => console.error("❌ Initial CBSA scraper failed:", err.message, err.stack));
+
+// -----------------------------
+// NEW: Copyright-Compliant Sarnia News Scraper
+// -----------------------------
+setInterval(() => {
   const newsScraperPath = path.join(__dirname, 'sarnia news scraper', 'copyright_compliant_scraper.js');
   exec(`node "${newsScraperPath}"`, (error, stdout, stderr) => {
     if (error) {
