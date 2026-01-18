@@ -77,7 +77,10 @@ async function scrapeUSCBP_Puppeteer() {
   const commercialURL = 'https://bwt.cbp.gov/details/03380201/COV';
 
   const extractFromPage = async (url, type) => {
-    const browser = await puppeteer.launch({ headless: true });
+    const browser = await puppeteer.launch({ 
+      headless: true,
+      args: ['--no-sandbox', '--disable-setuid-sandbox']
+    });
     const page = await browser.newPage();
 
     try {

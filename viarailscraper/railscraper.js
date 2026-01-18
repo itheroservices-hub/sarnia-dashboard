@@ -7,7 +7,10 @@ const VIA_URL = 'https://tsimobile.viarail.ca/';
 const TARGET_TRAINS = ['84', '87'];
 
 async function fetchViaRailStatus() {
-  const browser = await puppeteer.launch({ headless: true });
+  const browser = await puppeteer.launch({ 
+    headless: true,
+    args: ['--no-sandbox', '--disable-setuid-sandbox']
+  });
   const page = await browser.newPage();
   const results = [];
 

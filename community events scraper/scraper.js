@@ -46,7 +46,10 @@ function parseTimeToISO(dateStr, timeStr) {
 
 async function scrapeEvents() {
   console.log('🛠 Starting scrapeEvents()...');
-  const browser = await puppeteer.launch({ headless: 'new' });
+  const browser = await puppeteer.launch({ 
+    headless: 'new',
+    args: ['--no-sandbox', '--disable-setuid-sandbox']
+  });
   const page = await browser.newPage();
 
   await page.goto('https://www.sarniarocks.com/', { waitUntil: 'networkidle2' });
