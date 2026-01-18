@@ -78,7 +78,7 @@
           <h2 class="text-base md:text-lg font-bold">Border Wait Times</h2>
           <span id="border-time" class="text-xs bg-white/20 px-2 py-1 rounded">Updating...</span>
         </div>
-        <div id="border-data" class="p-4 flex-1 overflow-y-auto max-h-96 space-y-3">
+        <div id="border-data" class="p-4 flex-1 overflow-y-auto lg:overflow-visible lg:max-h-none max-h-80 space-y-3">
           <!-- JS injects border cards here -->
         </div>
         
@@ -98,7 +98,7 @@
           <img src="assets/SarniaTransit.png" alt="Sarnia Transit" class="h-6 w-auto" />
           <h2 class="text-base md:text-lg font-bold">Transit Status</h2>
         </div>
-        <div id="transit-data" class="p-4 flex-1 overflow-y-auto max-h-96 space-y-3">Loading transit info...</div>
+        <div id="transit-data" class="p-4 flex-1 overflow-y-auto lg:overflow-visible lg:max-h-none max-h-80 space-y-3">Loading transit info...</div>
       </section>
 
       <!-- Weather Pulse -->
@@ -106,20 +106,20 @@
         <div class="bg-gradient-to-r from-primary to-secondary text-white px-4 py-3">
           <h2 class="text-base md:text-lg font-bold">Weather Pulse</h2>
         </div>
-        <div class="p-4 flex-1 overflow-y-auto space-y-4">
+        <div class="p-4 flex-1 space-y-3">
           
           <!-- Today's Forecast -->
           <div>
-            <h3 class="text-sm md:text-base font-semibold text-primary border-b border-border-gray pb-2 mb-3">Today</h3>
-            <div id="today-container" class="space-y-2">
+            <h3 class="text-sm md:text-base font-semibold text-primary border-b border-border-gray pb-2 mb-2">Today</h3>
+            <div id="today-container" class="grid grid-cols-1 md:grid-cols-3 gap-2">
               <!-- JS injects morning/afternoon/evening -->
             </div>
           </div>
 
           <!-- Three-Day Forecast -->
           <div>
-            <h3 class="text-sm md:text-base font-semibold text-primary border-b border-border-gray pb-2 mb-3">Forecast</h3>
-            <div id="three-day-container" class="space-y-2">
+            <h3 class="text-sm md:text-base font-semibold text-primary border-b border-border-gray pb-2 mb-2">Forecast</h3>
+            <div id="three-day-container" class="grid grid-cols-1 md:grid-cols-3 gap-2">
               <!-- JS injects 3-day cards -->
             </div>
           </div>
@@ -160,7 +160,7 @@
         <div class="bg-gradient-to-r from-primary to-secondary text-white px-4 py-3">
           <h2 class="text-base md:text-lg font-bold">Community Events</h2>
         </div>
-        <div id="event-carousel" class="p-4 flex-1 overflow-y-auto max-h-96 space-y-3"></div>
+        <div id="event-carousel" class="p-4 flex-1 overflow-y-auto lg:overflow-visible lg:max-h-none max-h-80 space-y-3"></div>
       </section>
 
     </div>
@@ -178,11 +178,11 @@
   </div>
 
   <!-- Advertisement Module - Above QR Code -->
-  <section id="advertisement" class="fixed bottom-32 right-5 w-72 bg-white rounded-lg shadow-xl border-2 border-primary overflow-hidden z-30 hidden lg:block">
+  <section id="advertisement" class="fixed bottom-36 right-5 w-64 bg-white rounded-lg shadow-xl border-2 border-primary overflow-hidden z-50 hidden lg:block">
     <div class="bg-gradient-to-r from-primary to-secondary text-white px-3 py-2">
       <h2 class="text-sm font-bold">Your Ad Here</h2>
     </div>
-    <div class="ad-carousel relative h-56">
+    <div class="ad-carousel relative h-44">
       <div class="ad-slot active p-6 text-center flex flex-col items-center justify-center h-full" data-ad="1">
         <div class="text-4xl mb-3">📢</div>
         <h3 class="text-base font-bold text-gray-800 mb-2">Advertise Here</h3>

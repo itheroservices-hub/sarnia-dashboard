@@ -105,17 +105,14 @@ const renderTodayTailwind = (data) => {
   ['morning', 'afternoon', 'evening'].forEach(time => {
     const icon = data[time].icon;
     const block = document.createElement('div');
-    block.className = 'flex items-center gap-3 p-3 bg-gray-50 rounded-lg border border-gray-200';
+    block.className = 'flex flex-col items-center gap-1 p-2 bg-gray-50 rounded border border-gray-200 text-center';
     block.innerHTML = `
+      <div class="font-semibold text-xs text-primary capitalize">${time}</div>
       <img src="https://openweathermap.org/img/wn/${typeof icon === 'string' ? icon : '03d'}@2x.png" 
            alt="${data[time].condition}" 
-           class="w-12 h-12 flex-shrink-0" />
-      <div class="flex-1 text-sm">
-        <div class="font-semibold text-primary capitalize">${time}</div>
-        <div class="text-gray-700">${data[time].condition}</div>
-        <div class="text-gray-600">${data[time].temp}</div>
-        <div class="text-xs text-gray-500">Wind: ${data[time].wind}</div>
-      </div>
+           class="w-10 h-10" />
+      <div class="text-xs text-gray-700">${data[time].temp}</div>
+      <div class="text-xs text-gray-500">${data[time].condition}</div>
     `;
     container.appendChild(block);
   });
@@ -128,16 +125,14 @@ const renderThreeDayTailwind = (data) => {
   Object.entries(data).forEach(([day, info]) => {
     const icon = info.icon;
     const card = document.createElement('div');
-    card.className = 'flex items-center gap-3 p-3 bg-gray-50 rounded-lg border border-gray-200';
+    card.className = 'flex flex-col items-center gap-1 p-2 bg-gray-50 rounded border border-gray-200 text-center';
     card.innerHTML = `
+      <div class="font-semibold text-xs text-primary">${day}</div>
       <img src="https://openweathermap.org/img/wn/${typeof icon === 'string' ? icon : '03d'}@2x.png" 
            alt="${info.condition}" 
-           class="w-12 h-12 flex-shrink-0" />
-      <div class="flex-1 text-sm">
-        <div class="font-semibold text-primary">${day}</div>
-        <div class="text-gray-700">${info.condition}</div>
-        <div class="text-gray-600">High: ${info.high} | Low: ${info.low}</div>
-      </div>
+           class="w-10 h-10" />
+      <div class="text-xs text-gray-700">${info.high} / ${info.low}</div>
+      <div class="text-xs text-gray-500">${info.condition}</div>
     `;
     container.appendChild(card);
   });
