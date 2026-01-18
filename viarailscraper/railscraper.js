@@ -63,7 +63,8 @@ async function fetchViaRailStatus() {
   console.log(`🧾 Row ${i} raw: "${rowText}"`);
 
   const stationName = $(el).find('th').first().text().trim().toLowerCase();
-  const scheduled = $(el).find('td').eq(0).text().trim();
+  const scheduledRaw = $(el).find('td').eq(0).text().trim();
+  const scheduled = convertUTCtoEastern(scheduledRaw);
   const expectedRaw = $(el).find('td').eq(1).text().trim();
   const countdown = $(el).find('td').eq(2).text().trim();
 
@@ -73,9 +74,10 @@ async function fetchViaRailStatus() {
   if (countdown && countdown.includes('h')) {
     const expectedDate = reconstructExpectedTime(countdown, new Date());
     expected = formatToHTime(expectedDate);
+    expected = convertUTCtoEastern(expected);
     delay = calculateDelay(scheduled, expected);
   } else if (expectedRaw && expectedRaw.includes('h')) {
-    expected = expectedRaw;
+    expected = convertUTCtoEastern(expectedRaw);
     delay = calculateDelay(scheduled, expected);
   }
 
@@ -190,6 +192,20 @@ function formatToHTime(date) {
   if (!date) return '-';
   const h = date.getHours();
   const m = String(date.getMinutes()).padStart(2, '0');
+  return `${h}h${m}`;
+}
+
+// Convert UTC time string to Eastern Time (subtract 5 hours)
+function convertUTCtoEastern(timeStr) {
+  if (!timeStr || timeStr === '-' || !timeStr.includes('h')) return timeStr;
+  const [hour, min] = timeStr.replace('h', ':').split(':').map(Number);
+  const utcDate = new Date();
+  utcDate.setUTCHours(hour, min, 0, 0);
+  
+  // Convert to Eastern Time
+  const easternTime = new Date(utcDate.toLocaleString('en-US', { timeZone: 'America/Toronto' }));
+  const h = easternTime.getHours();
+  const m = String(easternTime.getMinutes()).padStart(2, '0');
   return `${h}h${m}`;
 }
 
