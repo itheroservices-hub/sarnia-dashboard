@@ -103,6 +103,29 @@ body {
   display: flex;
   align-items: center;
   gap: var(--spacing-xl);
+  flex: 1;
+}
+
+/* Header Center: Logo */
+.header-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+}
+
+.header-logo {
+  height: 50px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* Header Right: Weather */
+.header-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex: 1;
 }
 
 .clock {
