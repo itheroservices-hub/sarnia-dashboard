@@ -130,65 +130,88 @@ app.get("/test", (req, res) => {
 
 // VIA Rail scraper every 5 minutes
 setInterval(() => {
-  exec(`node "${path.join(__dirname, 'viarailscraper', 'railscraper.js')}"`, (error, stdout, stderr) => {
+  const scraperPath = path.join(__dirname, 'viarailscraper', 'railscraper.js');
+  exec(`node "${scraperPath}"`, (error, stdout, stderr) => {
     if (error) {
       console.error(`❌ VIA Rail scraper error: ${error.message}`);
+      console.error(`stderr: ${stderr}`);
       return;
     }
-    console.log(`🚆 VIA Rail scraper completed successfully`);
+    console.log(`🚆 VIA Rail scraper completed: ${stdout}`);
   });
 }, 5 * 60 * 1000);
 
 // Run VIA Rail scraper on startup
-exec(`node "${path.join(__dirname, 'viarailscraper', 'railscraper.js')}"`, (error) => {
-  if (error) console.error("❌ Initial VIA Rail scraper failed:", error.message);
-  else console.log("🚆 Initial VIA Rail scrape complete");
+const viaPath = path.join(__dirname, 'viarailscraper', 'railscraper.js');
+exec(`node "${viaPath}"`, (error, stdout, stderr) => {
+  if (error) {
+    console.error("❌ Initial VIA Rail scraper failed:", error.message);
+    console.error("stderr:", stderr);
+  } else {
+    console.log("🚆 Initial VIA Rail scrape complete:", stdout);
+  }
 });
 
 // CBSA scraper every 5 minutes
 setInterval(() => {
-  runScraper().catch(err => console.error("❌ CBSA scraper failed:", err.message));
+  console.log('🔄 Running CBSA scraper...');
+  runScraper()
+    .then(() => console.log('✅ CBSA scraper completed'))
+    .catch(err => console.error("❌ CBSA scraper failed:", err.message, err.stack));
 }, 5 * 60 * 1000);
 
 // Run CBSA scraper on startup (non-blocking)
-runScraper().catch(err => console.error("❌ Initial CBSA scraper failed:", err.message));
-
-// -----------------------------
-// NEW: Copyright-Compliant Sarnia News Scraper
-// -----------------------------
-setInterval(() => {
-  exec('node "sarnia news scraper/copyright_compliant_scraper.js"', (error, stdout, stderr) => {
+console.log('🔄 Running initial CBSA scraper...');
+runScraper()
+  .then(() => console.log('✅ Initial CBSA scraper completed'))
+  const newsScraperPath = path.join(__dirname, 'sarnia news scraper', 'copyright_compliant_scraper.js');
+  exec(`node "${newsScraperPath}"`, (error, stdout, stderr) => {
     if (error) {
-      console.error(`❌ Copyright-compliant news scraper error: ${error.message}`);
+      console.error(`❌ News scraper error: ${error.message}`);
+      console.error(`stderr: ${stderr}`);
       return;
     }
-    console.log(`📰 Copyright-compliant news scraper ran at ${new Date().toLocaleString()}`);
+    console.log(`📰 News scraper ran at ${new Date().toLocaleString()}`);
+    if (stdout) console.log(`stdout: ${stdout}`);
   });
 }, 20 * 60 * 1000);
 
 // Run copyright-compliant news scraper immediately on startup
-exec('node "sarnia news scraper/copyright_compliant_scraper.js"', (error) => {
-  if (error) console.error("❌ Initial copyright-compliant news scraper failed:", error.message);
-  else console.log("📰 Initial copyright-compliant news scrape complete");
-});
+const newsPath = path.join(__dirname, 'sarnia news scraper', 'copyright_compliant_scraper.js');
+exec(`node "${newsPath}"`, (error, stdout, stderr) => {
+  if (error) {
+    console.error("❌ Initial news scraper failed:", error.message);
+    console.error("stderr:", stderr);
+  } else {
+    console.log("📰 Initial news scrape complete");
+    if (stdout) console.log("stdout:", stdout);
+  }
+}, 20 * 60 * 1000);
 
-// -----------------------------
-// Safe runner for scheduled scrapes
-// -----------------------------
-async function runAllScrapers() {
-  console.log('[INFO] runAllScrapers starting', new Date().toISOString());
+// Run copyright-compliant news scraper immediately on startup
+exec('node "sarnia new🔄 runAllScrapers starting', new Date().toISOString());
 
   // Community events
   try {
     if (typeof runEventsScraper === 'function') {
       console.log('[DEBUG] Running community events scraper...');
       await runEventsScraper();
-      console.log('[INFO] community events scraper finished');
+      console.log('[INFO] ✅ community events scraper finished');
     }
   } catch (err) {
-    console.error('[ERROR] community events scraper failed:', err.stack || err);
+    console.error('[ERROR] ❌ community events scraper failed:', err.stack || err);
   }
 
+  // Transit - write to file immediately
+  try {
+    if (typeof buildTransitPulse === 'function') {
+      console.log('[DEBUG] Running transit pulse builder...');
+      const transitData = await buildTransitPulse();
+      fs.writeFileSync(path.join(__dirname, 'public', 'transit.json'), JSON.stringify(transitData, null, 2));
+      console.log('[INFO] ✅ transit pulse written to transit.json');
+    }
+  } catch (err) {
+    console.error('[ERROR] ❌
   // Transit
   try {
     if (typeof buildTransitPulse === 'function') {
@@ -200,15 +223,19 @@ async function runAllScrapers() {
     console.error('[ERROR] transit pulse builder failed:', err.stack || err);
   }
 
-  console.log('[INFO] runAllScrapers finished', new Date().toISOString());
+  console.log('[INFO] ✅ runAllScrapers finished', new Date().toISOString());
 }
 
-// Run once immediately and schedule every 15 minutes
-// runAllScrapers().catch(err => console.error('[ERROR] initial runAllScrapers failed:', err.stack || err));
-// setInterval(runAllScrapers, 15 * 60 * 1000);
+// Run all scrapers on startup and every 15 minutes
+console.log('🔄 Running all scrapers on startup...');
+runAllScrapers()
+  .then(() => console.log('✅ Initial runAllScrapers complete'))
+  .catch(err => console.error('[ERROR] ❌ initial runAllScrapers failed:', err.stack || err));
 
-// Initial run
-// runScraper();
+setInterval(() => {
+  console.log('🔄 Running scheduled scrapers...');
+  runAllScrapers().catch(err => console.error('[ERROR] ❌ scheduled runAllScrapers failed:', err.stack || err));
+}, 15 * 60 * 1000);
 
 // -----------------------------
 // Start Server
@@ -216,6 +243,8 @@ async function runAllScrapers() {
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`🚀 Server running on port ${PORT}`);
+  console.log(`📡 Scrapers initialized and running every 5-20 minutes`);
+  console.log(`🌐 Dashboard accessible at http://localhost:${PORT}`);
 });
 
 
