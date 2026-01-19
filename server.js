@@ -128,7 +128,7 @@ app.get("/test", (req, res) => {
 // Scheduled Scraper Jobs
 // -----------------------------
 
-// VIA Rail scraper every 5 minutes
+// VIA Rail scraper every 10 minutes
 setInterval(() => {
   const scraperPath = path.join(__dirname, 'viarailscraper', 'railscraper.js');
   exec(`node "${scraperPath}"`, (error, stdout, stderr) => {
@@ -139,7 +139,7 @@ setInterval(() => {
     }
     console.log(`🚆 VIA Rail scraper completed: ${stdout}`);
   });
-}, 5 * 60 * 1000);
+}, 10 * 60 * 1000);
 
 // Run VIA Rail scraper on startup
 const viaPath = path.join(__dirname, 'viarailscraper', 'railscraper.js');
@@ -152,13 +152,13 @@ exec(`node "${viaPath}"`, (error, stdout, stderr) => {
   }
 });
 
-// CBSA scraper every 5 minutes
+// CBSA scraper every 10 minutes
 setInterval(() => {
   console.log('🔄 Running CBSA scraper...');
   runScraper()
     .then(() => console.log('✅ CBSA scraper completed'))
     .catch(err => console.error("❌ CBSA scraper failed:", err.message, err.stack));
-}, 5 * 60 * 1000);
+}, 10 * 60 * 1000);
 
 // Run CBSA scraper on startup (non-blocking)
 console.log('🔄 Running initial CBSA scraper...');
@@ -167,7 +167,7 @@ runScraper()
   .catch(err => console.error("❌ Initial CBSA scraper failed:", err.message, err.stack));
 
 // -----------------------------
-// NEW: Copyright-Compliant Sarnia News Scraper
+// Copyright-Compliant Sarnia News Scraper (every 20 minutes)
 // -----------------------------
 setInterval(() => {
   const newsScraperPath = path.join(__dirname, 'sarnia news scraper', 'copyright_compliant_scraper.js');
@@ -197,7 +197,15 @@ exec(`node "${newsPath}"`, (error, stdout, stderr) => {
 // -----------------------------
 // Safe runner for scheduled scrapes
 // -----------------------------
+let isScraperRunning = false; // Mutex to prevent concurrent runs
+
 async function runAllScrapers() {
+  if (isScraperRunning) {
+    console.log('[WARN] ⏭️ Skipping scraper run - already in progress');
+    return;
+  }
+  
+  isScraperRunning = true;
   console.log('[INFO] 🔄 runAllScrapers starting', new Date().toISOString());
 
   // Community events
@@ -224,6 +232,7 @@ async function runAllScrapers() {
   }
 
   console.log('[INFO] ✅ runAllScrapers finished', new Date().toISOString());
+  isScraperRunning = false;
 }
 
 // Run all scrapers on startup and every 15 minutes
@@ -241,6 +250,20 @@ setInterval(() => {
 // Start Server
 // -----------------------------
 const PORT = process.env.PORT || 3000;
+
+// Add global error handlers to prevent crashes
+process.on('uncaughtException', (error) => {
+  console.error('[CRITICAL] Uncaught Exception:', error);
+  console.error(error.stack);
+  // Don't exit - keep server running
+});
+
+process.on('unhandledRejection', (reason, promise) => {
+  console.error('[CRITICAL] Unhandled Rejection at:', promise);
+  console.error('[CRITICAL] Reason:', reason);
+  // Don't exit - keep server running
+});
+
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`🚀 Server running on port ${PORT}`);
   console.log(`📡 Scrapers initialized and running every 5-20 minutes`);

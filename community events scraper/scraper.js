@@ -46,20 +46,26 @@ function parseTimeToISO(dateStr, timeStr) {
 
 async function scrapeEvents() {
   console.log('🛠 Starting scrapeEvents()...');
-  const browser = await puppeteer.launch({ 
-    headless: 'new',
-    args: [
-      '--no-sandbox',
-      '--disable-setuid-sandbox',
-      '--disable-dev-shm-usage',
-      '--disable-accelerated-2d-canvas',
-      '--no-first-run',
-      '--no-zygote',
-      '--single-process',
-      '--disable-gpu'
-    ]
-  });
-  const page = await browser.newPage();
+  let browser;
+  try {
+    browser = await puppeteer.launch({ 
+      headless: 'new',
+      args: [
+        '--no-sandbox',
+        '--disable-setuid-sandbox',
+        '--disable-dev-shm-usage',
+        '--disable-accelerated-2d-canvas',
+        '--no-first-run',
+        '--no-zygote',
+        '--single-process',
+        '--disable-gpu'
+      ]
+    });
+    const page = await browser.newPage();
+    
+    // Set timeout to prevent hanging
+    await page.setDefaultNavigationTimeout(30000);
+    await page.setDefaultTimeout(30000);
 
   await page.goto('https://www.sarniarocks.com/', { waitUntil: 'networkidle2' });
 
@@ -99,10 +105,6 @@ fonts.forEach(fontEl => {
 return results;
 });
 
-  
-
-  await browser.close();
-
   // Normalize date/time
   const normalized = events.map(ev => {
     const dateISO = parseDateFromHeader(ev.rawDate);
@@ -124,6 +126,14 @@ return results;
 
   console.log(`✅ Scraped ${upcoming.length} upcoming events`);
   return upcoming;
+  } catch (err) {
+    console.error('❌ Event scrape failed:', err);
+    throw err;
+  } finally {
+    if (browser) {
+      await browser.close();
+    }
+  }
 }
 
 async function runEventsScraper() {

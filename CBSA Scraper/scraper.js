@@ -77,20 +77,26 @@ async function scrapeUSCBP_Puppeteer() {
   const commercialURL = 'https://bwt.cbp.gov/details/03380201/COV';
 
   const extractFromPage = async (url, type) => {
-    const browser = await puppeteer.launch({ 
-      headless: true,
-      args: [
-        '--no-sandbox',
-        '--disable-setuid-sandbox',
-        '--disable-dev-shm-usage',
-        '--disable-accelerated-2d-canvas',
-        '--no-first-run',
-        '--no-zygote',
-        '--single-process',
-        '--disable-gpu'
-      ]
-    });
-    const page = await browser.newPage();
+    let browser;
+    try {
+      browser = await puppeteer.launch({ 
+        headless: true,
+        args: [
+          '--no-sandbox',
+          '--disable-setuid-sandbox',
+          '--disable-dev-shm-usage',
+          '--disable-accelerated-2d-canvas',
+          '--no-first-run',
+          '--no-zygote',
+          '--single-process',
+          '--disable-gpu'
+        ]
+      });
+      const page = await browser.newPage();
+      
+      // Set timeout to prevent hanging
+      await page.setDefaultNavigationTimeout(30000);
+      await page.setDefaultTimeout(30000);
 
     try {
       await page.goto(url, { waitUntil: 'networkidle2' });
@@ -110,12 +116,14 @@ async function scrapeUSCBP_Puppeteer() {
         };
       });
 
-      await browser.close();
       return { delay, lanes, timestamp: new Date().toISOString() };
     } catch (err) {
-      await browser.close();
       console.error(`❌ Error scraping ${type} page with Puppeteer:`, err.message);
       return { delay: 'N/A', lanes: 'N/A', timestamp: new Date().toISOString() };
+    } finally {
+      if (browser) {
+        await browser.close();
+      }
     }
   };
 
