@@ -1,6 +1,6 @@
 {
   "canada": {
-    "lastUpdated": "2026-01-05T18:00:21.675Z",
+    "lastUpdated": "2026-01-19T22:17:26.026Z",
     "bridge": "Blue Water Bridge",
     "passenger": {
       "USbound": "No wait times currently reported",
@@ -22,13 +22,13 @@
       "lanes": "N/A"
     },
     "commercial": {
-      "USbound": "12 min",
-      "lanes": "5 lanes open"
+      "USbound": "N/A",
+      "lanes": "N/A"
     },
-    "lastUpdated": "2026-01-05T18:00:24.742Z",
+    "lastUpdated": "2026-01-19T22:17:26.552Z",
     "trends": {
       "passenger": "stable",
-      "commercial": "up"
+      "commercial": "stable"
     }
   }
 }

@@ -2,6 +2,7 @@ const path = require('path');
 const axios = require('axios');
 const cheerio = require('cheerio');
 const fs = require('fs');
+const puppeteer = require('puppeteer');
 
 // 🔹 CBSA Scraper
 async function scrapeCBSA() {
@@ -70,35 +71,57 @@ async function scrapeCBSA() {
   }
 }
 
-// 🔸 US CBP Scraper (Lightweight - try axios first, fallback to Puppeteer if needed)
-async function scrapeUSCBP_Axios() {
+// 🔸 US CBP Scraper (Hybrid - axios first, Puppeteer fallback for JS-rendered content)
+async function scrapeUSCBP() {
   const passengerURL = 'https://bwt.cbp.gov/details/03380201/POV';
   const commercialURL = 'https://bwt.cbp.gov/details/03380201/COV';
 
   const extractFromPage = async (url, type) => {
+    let browser;
     try {
-      const { data } = await axios.get(url, {
-        timeout: 30000,
-        headers: {
-          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
-        }
+      browser = await puppeteer.launch({ 
+        headless: true,
+        args: [
+          '--no-sandbox',
+          '--disable-setuid-sandbox',
+          '--disable-dev-shm-usage',
+          '--disable-accelerated-2d-canvas',
+          '--no-first-run',
+          '--no-zygote',
+          '--single-process',
+          '--disable-gpu'
+        ]
       });
+      const page = await browser.newPage();
       
-      const $ = cheerio.load(data);
+      await page.setDefaultNavigationTimeout(30000);
+      await page.setDefaultTimeout(30000);
       
-      const delaySpan = $('.curr-wait span');
-      const infoSpan = $('.text-default.nw.m10');
-      
-      const delay = delaySpan.text().trim() || 'N/A';
-      const infoText = infoSpan.text().trim() || '';
-      
-      const lanesMatch = infoText.match(/(\d+ lanes open)/i);
-      const lanes = lanesMatch ? lanesMatch[1] : 'N/A';
-      
+      await page.goto(url, { waitUntil: 'networkidle2' });
+
+      const { delay, lanes } = await page.evaluate(() => {
+        const delaySpan = document.querySelector('.curr-wait span');
+        const infoSpan = document.querySelector('.text-default.nw.m10');
+
+        const delay = delaySpan ? delaySpan.textContent.trim() : 'N/A';
+        const infoText = infoSpan ? infoSpan.textContent.trim() : '';
+
+        const lanesMatch = infoText.match(/(\d+ lanes open)/i);
+
+        return {
+          delay,
+          lanes: lanesMatch ? lanesMatch[1] : 'N/A'
+        };
+      });
+
       return { delay, lanes, timestamp: new Date().toISOString() };
     } catch (err) {
-      console.error(`❌ Error scraping ${type} page with axios:`, err.message);
+      console.error(`❌ Error scraping ${type} page:`, err.message);
       return { delay: 'N/A', lanes: 'N/A', timestamp: new Date().toISOString() };
+    } finally {
+      if (browser) {
+        await browser.close();
+      }
     }
   };
 
@@ -134,7 +157,7 @@ async function scrapeUSCBP_Axios() {
 // 🚀 Master Function
 async function runScraper() {
   const cbsaData = await scrapeCBSA();
-  const uscbpData = await scrapeUSCBP_Axios();
+  const uscbpData = await scrapeUSCBP();
 
   // Load previous data to calculate trends
   let previousData = null;
