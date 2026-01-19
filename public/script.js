@@ -585,6 +585,13 @@ async function fetchTransitData() {
     arrivalsCache = data.routes;
     currentPage = 0;
     renderTransitTilesPage();
+    
+    // Update timestamp
+    if (data.updatedAt) {
+      const timestamp = new Date(data.updatedAt);
+      const timeStr = timestamp.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+      document.getElementById('transit-updated').textContent = `Updated ${timeStr}`;
+    }
   } catch (err) {
     console.error("Transit fetch failed:", err);
     showTransitUnavailableBadge();
