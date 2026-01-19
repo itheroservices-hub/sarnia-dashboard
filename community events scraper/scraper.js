@@ -1,4 +1,5 @@
-const puppeteer = require('puppeteer');
+const axios = require('axios');
+const cheerio = require('cheerio');
 const fs = require('fs');
 const path = require('path');
 
@@ -46,67 +47,46 @@ function parseTimeToISO(dateStr, timeStr) {
 
 async function scrapeEvents() {
   console.log('🛠 Starting scrapeEvents()...');
-  let browser;
   try {
-    browser = await puppeteer.launch({ 
-      headless: 'new',
-      args: [
-        '--no-sandbox',
-        '--disable-setuid-sandbox',
-        '--disable-dev-shm-usage',
-        '--disable-accelerated-2d-canvas',
-        '--no-first-run',
-        '--no-zygote',
-        '--single-process',
-        '--disable-gpu'
-      ]
+    const { data } = await axios.get('https://www.sarniarocks.com/', {
+      timeout: 30000,
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+      }
     });
-    const page = await browser.newPage();
     
-    // Set timeout to prevent hanging
-    await page.setDefaultNavigationTimeout(30000);
-    await page.setDefaultTimeout(30000);
+    const $ = cheerio.load(data);
+    const results = [];
+    
+    $('font').each((i, fontEl) => {
+      const headerText = $(fontEl).text().trim();
+      if (!headerText.match(/\d{1,2}\/\d{4}/)) return;
 
-  await page.goto('https://www.sarniarocks.com/', { waitUntil: 'networkidle2' });
+      const datePart = headerText.split(' - ')[0];
+      const theme = headerText.split(' - ')[1] || '';
 
-  const events = await page.evaluate(() => {
-  const results = [];
-const fonts = Array.from(document.querySelectorAll('font'));
+      let ul = $(fontEl).closest('p').next('ul');
+      if (!ul.length) return;
 
-fonts.forEach(fontEl => {
-  const headerText = fontEl.innerText.trim();
-  if (!headerText.match(/\d{1,2}\/\d{4}/)) return; // only date-like headers
+      ul.find('li').each((j, item) => {
+        const text = $(item).text().trim();
+        const parts = text.split(' - ');
+        const title = parts[0] || '';
+        const location = parts.length >= 2 ? parts.slice(1, parts.length - 1).join(' - ') : '';
+        const time = parts[parts.length - 1] || '';
 
-  const datePart = headerText.split(' - ')[0];
-  const theme = headerText.split(' - ')[1] || '';
-
-  // Find the next <ul> after this header
-  let ul = fontEl.closest('p')?.nextElementSibling;
-  if (!ul || ul.tagName !== 'UL') return;
-
-  const items = Array.from(ul.querySelectorAll('li'));
-  items.forEach(item => {
-    const text = item.innerText.trim();
-    const parts = text.split(' - ');
-    const title = parts[0] || '';
-    const location = parts.length >= 2 ? parts.slice(1, parts.length - 1).join(' - ') : '';
-    const time = parts[parts.length - 1] || '';
-
-    results.push({
-      title,
-      rawDate: datePart,
-      rawTime: time,
-      location,
-      description: `${theme} – ${title} at ${location}`
+        results.push({
+          title,
+          rawDate: datePart,
+          rawTime: time,
+          location,
+          description: `${theme} – ${title} at ${location}`
+        });
+      });
     });
-  });
-});
-
-return results;
-});
 
   // Normalize date/time
-  const normalized = events.map(ev => {
+  const normalized = results.map(ev => {
     const dateISO = parseDateFromHeader(ev.rawDate);
     const start_date = dateISO ? parseTimeToISO(dateISO, ev.rawTime) : '';
     return {
@@ -129,10 +109,6 @@ return results;
   } catch (err) {
     console.error('❌ Event scrape failed:', err);
     throw err;
-  } finally {
-    if (browser) {
-      await browser.close();
-    }
   }
 }
 
