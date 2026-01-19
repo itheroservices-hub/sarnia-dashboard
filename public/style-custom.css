@@ -151,3 +151,243 @@
     display: none !important;
   }
 }
+
+/* ================================================================ */
+/* COMPREHENSIVE BORDER WAIT TIMES UI                              */
+/* ================================================================ */
+
+.border-wait-card {
+  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 12px;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.direction-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.flag-icon {
+  width: 24px;
+  height: 16px;
+  object-fit: cover;
+  border-radius: 2px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+.wait-times-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.wait-item {
+  background: white;
+  border-radius: 6px;
+  padding: 10px;
+  border: 2px solid #e0e0e0;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.wait-item[data-status=no-delay] {
+  border-color: #06a77d;
+  background: linear-gradient(135deg, #f0fdf8 0%, #ffffff 100%);
+}
+
+.wait-item[data-status=minor-delay] {
+  border-color: #f77f00;
+  background: linear-gradient(135deg, #fff7ed 0%, #ffffff 100%);
+}
+
+.wait-item[data-status=moderate-delay],
+.wait-item[data-status=major-delay] {
+  border-color: #d62828;
+  background: linear-gradient(135deg, #fef2f2 0%, #ffffff 100%);
+}
+
+.wait-item[data-status=no-data] {
+  border-color: #9ca3af;
+  background: #f9fafb;
+  opacity: 0.7;
+}
+
+.wait-label {
+  font-size: 0.75rem;
+  color: #666;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.wait-value {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 4px;
+}
+
+.trend-arrow {
+  font-size: 1rem;
+  font-weight: bold;
+  display: inline-block;
+  margin-left: 4px;
+}
+
+.trend-arrow.up {
+  color: #d62828;
+}
+
+.trend-arrow.down {
+  color: #06a77d;
+}
+
+.trend-arrow.stable {
+  color: #9ca3af;
+}
+
+/* ================================================================ */
+/* VIA RAIL BRAND STYLING                                          */
+/* ================================================================ */
+
+.via-rail-section {
+  border-top: 3px solid #00205B;
+  background: linear-gradient(180deg, #00205B 0%, #003d82 100%);
+}
+
+.via-rail-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+}
+
+.via-rail-content {
+  background: #f8f9fa;
+  padding: 12px;
+  min-height: 120px;
+}
+
+.via-rail-trains {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.via-train-card {
+  background: white;
+  border-radius: 8px;
+  padding: 12px;
+  border-left: 4px solid #00205B;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+  transition: all 0.2s ease;
+}
+
+.via-train-card:hover {
+  box-shadow: 0 4px 8px rgba(0,0,0,0.12);
+  transform: translateY(-1px);
+}
+
+.via-train-card.on-time {
+  border-left-color: #06a77d;
+  background: linear-gradient(90deg, #f0fdf8 0%, #ffffff 100%);
+}
+
+.via-train-card.minor-delay {
+  border-left-color: #f77f00;
+  background: linear-gradient(90deg, #fff7ed 0%, #ffffff 100%);
+}
+
+.via-train-card.moderate-delay,
+.via-train-card.major-delay {
+  border-left-color: #d62828;
+  background: linear-gradient(90deg, #fef2f2 0%, #ffffff 100%);
+}
+
+.via-train-card.inactive {
+  border-left-color: #9ca3af;
+  background: #f9fafb;
+  opacity: 0.7;
+}
+
+.train-number {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #00205B;
+  margin-bottom: 8px;
+}
+
+.train-times {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 12px;
+  align-items: center;
+}
+
+.time-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.time-label {
+  font-size: 0.7rem;
+  color: #666;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin-bottom: 2px;
+}
+
+.time-value {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.delay-badge {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.delay-badge.on-time {
+  background: #06a77d;
+  color: white;
+}
+
+.delay-badge.minor-delay {
+  background: #f77f00;
+  color: white;
+}
+
+.delay-badge.moderate-delay,
+.delay-badge.major-delay {
+  background: #d62828;
+  color: white;
+}
+
+.train-status {
+  font-size: 0.85rem;
+  color: #666;
+  font-style: italic;
+}
+
+.via-updated {
+  font-size: 0.75rem;
+  color: #666;
+  text-align: center;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #e0e0e0;
+}
