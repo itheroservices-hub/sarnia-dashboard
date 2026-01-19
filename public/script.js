@@ -253,9 +253,9 @@ function updateBorderWaits() {
 
       // Helper to render trend arrow
       const trendArrow = (trend) => {
-        if (trend === 'up') return '<span class="trend-indicator up">Trend: ↑</span>';
-        if (trend === 'down') return '<span class="trend-indicator down">Trend: ↓</span>';
-        return '<span class="trend-indicator stable">Trend: →</span>';
+        if (trend === 'up') return '<span class="trend-arrow up" title="Increasing">↑</span>';
+        if (trend === 'down') return '<span class="trend-arrow down" title="Decreasing">↓</span>';
+        return '<span class="trend-arrow stable" title="Stable">→</span>';
       };
 
       // Extract trends
@@ -264,26 +264,48 @@ function updateBorderWaits() {
       const caPassengerTrend = data.canada.trends?.passenger || 'stable';
       const caCommercialTrend = data.canada.trends?.commercial || 'stable';
 
-      // Build HTML cards
+      // Build comprehensive wait time cards
       const html = `
-  <div class="border-section us-bound">
-    <p>Blue Water Bridge → US Bound ${trendArrow(usPassengerTrend)}</p>
-    <p data-status="${statusClass(usPassenger)}">
-      <span class="icon">🚗</span> Passenger: ${usPassenger}
-    </p>
-    <p data-status="${statusClass(usCommercial)}">
-      <span class="icon">🚛</span> Commercial: ${usCommercial}
-    </p>
+  <div class="border-wait-card">
+    <div class="border-direction">
+      <div class="direction-header">
+        <img src="assets/us-flag.jpg" alt="USA" class="flag-icon" />
+        <span class="font-semibold">To USA</span>
+      </div>
+    </div>
+    <div class="wait-times-grid">
+      <div class="wait-item" data-status="${statusClass(usPassenger)}">
+        <div class="wait-label">Passenger</div>
+        <div class="wait-value">${usPassenger}</div>
+        ${trendArrow(usPassengerTrend)}
+      </div>
+      <div class="wait-item" data-status="${statusClass(usCommercial)}">
+        <div class="wait-label">Commercial</div>
+        <div class="wait-value">${usCommercial}</div>
+        ${trendArrow(usCommercialTrend)}
+      </div>
+    </div>
   </div>
 
-  <div class="border-section ca-bound">
-    <p>Blue Water Bridge → Canada Bound ${trendArrow(caPassengerTrend)}</p>
-    <p data-status="${statusClass(caPassenger)}">
-      <span class="icon">🚗</span> Passenger: ${caPassenger}
-    </p>
-    <p data-status="${statusClass(caCommercial)}">
-      <span class="icon">🚛</span> Commercial: ${caCommercial}
-    </p>
+  <div class="border-wait-card">
+    <div class="border-direction">
+      <div class="direction-header">
+        <img src="assets/ca-flag.webp" alt="Canada" class="flag-icon" />
+        <span class="font-semibold">To Canada</span>
+      </div>
+    </div>
+    <div class="wait-times-grid">
+      <div class="wait-item" data-status="${statusClass(caPassenger)}">
+        <div class="wait-label">Passenger</div>
+        <div class="wait-value">${caPassenger}</div>
+        ${trendArrow(caPassengerTrend)}
+      </div>
+      <div class="wait-item" data-status="${statusClass(caCommercial)}">
+        <div class="wait-label">Commercial</div>
+        <div class="wait-value">${caCommercial}</div>
+        ${trendArrow(caCommercialTrend)}
+      </div>
+    </div>
   </div>
 `;
 
@@ -415,52 +437,47 @@ function fetchViaRailData() {
         return;
       }
 
-      const table = document.createElement('table');
-      table.classList.add('via-rail-table');
-
-      table.innerHTML = `
-        <tr>
-          <th>Train</th>
-          <th>Scheduled</th>
-          <th>Estimated</th>
-          <th>Delay (min)</th>
-        </tr>`;
-
+      let html = '<div class="via-rail-trains">';
+      
       data.trains.forEach(train => {
-        if (train.status === 'active') {
-          if (train.stations.length === 0) {
-            const row = document.createElement('tr');
-            row.innerHTML = `
-              <td>${train.train}</td>
-              <td colspan="3">No station data available</td>`;
-            table.appendChild(row);
-          } else {
-            train.stations.forEach(station => {
-              const row = document.createElement('tr');
-              row.innerHTML = `
-                <td>${train.train}</td>
-                <td>${station.scheduled}</td>
-                <td>${station.expected}</td>
-                <td class="delay ${getDelayClass(station.delay)}">${station.delay}</td>`;
-              table.appendChild(row);
-            });
-          }
+        if (train.status === 'active' && train.stations.length > 0) {
+          train.stations.forEach(station => {
+            const delayClass = getDelayClass(station.delay);
+            html += `
+              <div class="via-train-card ${delayClass}">
+                <div class="train-number">Train ${train.train}</div>
+                <div class="train-times">
+                  <div class="time-item">
+                    <span class="time-label">Scheduled</span>
+                    <span class="time-value">${station.scheduled}</span>
+                  </div>
+                  <div class="time-item">
+                    <span class="time-label">Expected</span>
+                    <span class="time-value">${station.expected}</span>
+                  </div>
+                  <div class="delay-badge ${delayClass}">
+                    ${station.delay}
+                  </div>
+                </div>
+              </div>
+            `;
+          });
         } else {
-          const row = document.createElement('tr');
-          const statusMsg =
-            train.status === 'not_found'
-              ? 'Train currently not running'
-              : `Disabled — last seen at ${formatTime(train.last_seen) || 'unknown'}`;
-
-          row.innerHTML = `
-            <td>${train.train}</td>
-            <td colspan="3">${statusMsg}</td>`;
-          table.appendChild(row);
+          const statusMsg = train.status === 'not_found' 
+            ? 'Not running today' 
+            : `Last seen: ${formatTime(train.last_seen) || 'Unknown'}`;
+          html += `
+            <div class="via-train-card inactive">
+              <div class="train-number">Train ${train.train}</div>
+              <div class="train-status">${statusMsg}</div>
+            </div>
+          `;
         }
       });
-
-      container.innerHTML = `<p>Last updated: ${new Date(data.timestamp).toLocaleTimeString('en-US', { timeZone: 'America/Toronto', hour: '2-digit', minute: '2-digit', second: '2-digit' })}</p>`;
-      container.appendChild(table);
+      
+      html += '</div>';
+      html += `<div class="via-updated">Updated: ${new Date(data.timestamp).toLocaleTimeString('en-US', { timeZone: 'America/Toronto', hour: 'numeric', minute: '2-digit' })}</div>`;
+      container.innerHTML = html;
     })
     .catch(err => {
       console.error('❌ VIA Rail fetch error:', err);
