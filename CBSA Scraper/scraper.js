@@ -172,6 +172,9 @@ async function scrapeUSCBP() {
       }
     }
   }
+}
+
+// 🚀 Master Function
 async function runScraper() {
   const cbsaData = await scrapeCBSA();
   const uscbpData = await scrapeUSCBP();
