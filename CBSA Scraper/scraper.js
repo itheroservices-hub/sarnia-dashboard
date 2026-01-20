@@ -76,85 +76,102 @@ async function scrapeUSCBP() {
   const passengerURL = 'https://bwt.cbp.gov/details/03380201/POV';
   const commercialURL = 'https://bwt.cbp.gov/details/03380201/COV';
 
-  const extractFromPage = async (url, type) => {
-    let browser;
-    try {
-      browser = await puppeteer.launch({ 
-        headless: true,
-        args: [
-          '--no-sandbox',
-          '--disable-setuid-sandbox',
-          '--disable-dev-shm-usage',
-          '--disable-accelerated-2d-canvas',
-          '--no-first-run',
-          '--no-zygote',
-          '--single-process',
-          '--disable-gpu'
-        ]
-      });
-      const page = await browser.newPage();
+  let browser;
+  try {
+    // Launch browser once and reuse for both pages
+    browser = await puppeteer.launch({ 
+      headless: true,
+      args: [
+        '--no-sandbox',
+        '--disable-setuid-sandbox',
+        '--disable-dev-shm-usage',
+        '--disable-accelerated-2d-canvas',
+        '--no-first-run',
+        '--no-zygote',
+        '--single-process',
+        '--disable-gpu',
+        '--disable-software-rasterizer',
+        '--disable-extensions'
+      ],
+      executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || undefined
+    });
+
+    // Helper to extract data from a single page
+    const extractFromPage = async (url, type) => {
+      try {
+        const page = await browser.newPage();
+        await page.setDefaultNavigationTimeout(30000);
+        await page.setDefaultTimeout(30000);
+        
+        await page.goto(url, { waitUntil: 'networkidle2' });
+
+        const { delay, lanes } = await page.evaluate(() => {
+          const delaySpan = document.querySelector('.curr-wait span');
+          const infoSpan = document.querySelector('.text-default.nw.m10');
+
+          const delay = delaySpan ? delaySpan.textContent.trim() : 'N/A';
+          const infoText = infoSpan ? infoSpan.textContent.trim() : '';
+
+          const lanesMatch = infoText.match(/(\d+ lanes open)/i);
+
+          return {
+            delay,
+            lanes: lanesMatch ? lanesMatch[1] : 'N/A'
+          };
+        });
+
+        await page.close();
+        return { delay, lanes, timestamp: new Date().toISOString() };
+      } catch (err) {
+        console.error(`❌ Error scraping ${type} page:`, err.message, 'Code:', err.code);
+        return { delay: 'N/A', lanes: 'N/A', timestamp: new Date().toISOString() };
+      }
+    };
+
+    const passenger = await extractFromPage(passengerURL, 'passenger');
+    const commercial = await extractFromPage(commercialURL, 'commercial');
+
+    // Helper function to normalize US delay values
+    const normalizeUSDelay = (value) => {
+      if (!value || value === 'N/A') return 'N/A';
       
-      await page.setDefaultNavigationTimeout(30000);
-      await page.setDefaultTimeout(30000);
+      // Check for "0 minutes" or "0 min" pattern
+      const zeroMinMatch = value.match(/^0\s*(min|minutes?)$/i);
+      if (zeroMinMatch) return 'No Delay';
       
-      await page.goto(url, { waitUntil: 'networkidle2' });
+      // For any other value, keep as is
+      return value;
+    };
 
-      const { delay, lanes } = await page.evaluate(() => {
-        const delaySpan = document.querySelector('.curr-wait span');
-        const infoSpan = document.querySelector('.text-default.nw.m10');
-
-        const delay = delaySpan ? delaySpan.textContent.trim() : 'N/A';
-        const infoText = infoSpan ? infoSpan.textContent.trim() : '';
-
-        const lanesMatch = infoText.match(/(\d+ lanes open)/i);
-
-        return {
-          delay,
-          lanes: lanesMatch ? lanesMatch[1] : 'N/A'
-        };
-      });
-
-      return { delay, lanes, timestamp: new Date().toISOString() };
-    } catch (err) {
-      console.error(`❌ Error scraping ${type} page:`, err.message);
-      return { delay: 'N/A', lanes: 'N/A', timestamp: new Date().toISOString() };
-    } finally {
-      if (browser) {
+    return {
+      bridge: 'Blue Water Bridge',
+      passenger: {
+        USbound: normalizeUSDelay(passenger.delay),
+        lanes: passenger.lanes
+      },
+      commercial: {
+        USbound: normalizeUSDelay(commercial.delay),
+        lanes: commercial.lanes
+      },
+      lastUpdated: passenger.timestamp
+    };
+  } catch (err) {
+    console.error('❌ Error in scrapeUSCBP:', err.message);
+    return {
+      bridge: 'Blue Water Bridge',
+      passenger: { USbound: 'N/A', lanes: 'N/A' },
+      commercial: { USbound: 'N/A', lanes: 'N/A' },
+      lastUpdated: new Date().toISOString()
+    };
+  } finally {
+    if (browser) {
+      try {
         await browser.close();
+      } catch (e) {
+        console.error('Error closing browser:', e.message);
       }
     }
-  };
-
-  const passenger = await extractFromPage(passengerURL, 'passenger');
-  const commercial = await extractFromPage(commercialURL, 'commercial');
-
-  // Helper function to normalize US delay values
-  const normalizeUSDelay = (value) => {
-    if (!value || value === 'N/A') return 'N/A';
-    
-    // Check for "0 minutes" or "0 min" pattern
-    const zeroMinMatch = value.match(/^0\s*(min|minutes?)$/i);
-    if (zeroMinMatch) return 'No Delay';
-    
-    // For any other value, keep as is
-    return value;
-  };
-
-  return {
-    bridge: 'Blue Water Bridge',
-    passenger: {
-      USbound: normalizeUSDelay(passenger.delay),
-      lanes: passenger.lanes
-    },
-    commercial: {
-      USbound: normalizeUSDelay(commercial.delay),
-      lanes: commercial.lanes
-    },
-    lastUpdated: passenger.timestamp
-  };
-}
-
-// 🚀 Master Function
+  }
 async function runScraper() {
   const cbsaData = await scrapeCBSA();
   const uscbpData = await scrapeUSCBP();
