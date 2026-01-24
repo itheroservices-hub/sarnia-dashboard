@@ -33,6 +33,7 @@ app.use('/weather', weatherRouter);
 // -----------------------------
 const { runScraper } = require('./CBSA Scraper/scraper');
 const { runEventsScraper } = require('./community events scraper/scraper');
+const { runViaScraper } = require('./viarailscraper/railscraper');
 
 // -----------------------------
 // Transit Scraper Import
@@ -128,43 +129,21 @@ app.get("/test", (req, res) => {
 // Scheduled Scraper Jobs
 // -----------------------------
 
-// VIA Rail scraper every 10 minutes
-setInterval(() => {
-  const scraperPath = path.join(__dirname, 'viarailscraper', 'railscraper.js');
-  exec(`node "${scraperPath}"`, (error, stdout, stderr) => {
-    if (error) {
-      console.error(`❌ VIA Rail scraper error: ${error.message}`);
-      console.error(`stderr: ${stderr}`);
-      return;
-    }
-    console.log(`🚆 VIA Rail scraper completed: ${stdout}`);
-  });
-}, 10 * 60 * 1000);
-
-// Run VIA Rail scraper on startup
-const viaPath = path.join(__dirname, 'viarailscraper', 'railscraper.js');
-exec(`node "${viaPath}"`, (error, stdout, stderr) => {
-  if (error) {
-    console.error("❌ Initial VIA Rail scraper failed:", error.message);
-    console.error("stderr:", stderr);
-  } else {
-    console.log("🚆 Initial VIA Rail scrape complete:", stdout);
-  }
-});
-
-// CBSA scraper every 10 minutes
-setInterval(() => {
-  console.log('🔄 Running CBSA scraper...');
-  runScraper()
-    .then(() => console.log('✅ CBSA scraper completed'))
-    .catch(err => console.error("❌ CBSA scraper failed:", err.message, err.stack));
-}, 10 * 60 * 1000);
-
-// Run CBSA scraper on startup (non-blocking)
-console.log('🔄 Running initial CBSA scraper...');
-runScraper()
-  .then(() => console.log('✅ Initial CBSA scraper completed'))
-  .catch(err => console.error("❌ Initial CBSA scraper failed:", err.message, err.stack));
+// Shared puppeteer queue to avoid overlapping headless Chrome launches
+let puppeteerQueue = Promise.resolve();
+function enqueuePuppeteerTask(label, fn) {
+  puppeteerQueue = puppeteerQueue
+    .then(async () => {
+      const start = Date.now();
+      console.log(`[DEBUG] ▶ ${label} (queued)`);
+      await fn();
+      console.log(`[DEBUG] ✅ ${label} finished in ${Date.now() - start}ms`);
+    })
+    .catch(err => {
+      console.error(`[ERROR] ${label} failed:`, err.stack || err);
+    });
+  return puppeteerQueue;
+}
 
 // -----------------------------
 // Copyright-Compliant Sarnia News Scraper (every 20 minutes)
@@ -219,6 +198,24 @@ async function runAllScrapers() {
     console.error('[ERROR] ❌ community events scraper failed:', err.stack || err);
   }
 
+  // VIA Rail (queued to avoid overlapping Chrome)
+  try {
+    if (typeof runViaScraper === 'function') {
+      await enqueuePuppeteerTask('VIA Rail scraper', () => runViaScraper());
+    }
+  } catch (err) {
+    console.error('[ERROR] ❌ VIA Rail scraper failed:', err.stack || err);
+  }
+
+  // CBSA + US CBP (queued)
+  try {
+    if (typeof runScraper === 'function') {
+      await enqueuePuppeteerTask('Border wait scraper', () => runScraper());
+    }
+  } catch (err) {
+    console.error('[ERROR] ❌ border wait scraper failed:', err.stack || err);
+  }
+
   // Transit - write to file immediately
   try {
     if (typeof buildTransitPulse === 'function') {
@@ -244,7 +241,7 @@ runAllScrapers()
 setInterval(() => {
   console.log('🔄 Running scheduled scrapers...');
   runAllScrapers().catch(err => console.error('[ERROR] ❌ scheduled runAllScrapers failed:', err.stack || err));
-}, 15 * 60 * 1000);
+}, 10 * 60 * 1000);
 
 // -----------------------------
 // Start Server

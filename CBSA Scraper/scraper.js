@@ -77,35 +77,33 @@ async function scrapeUSCBP() {
   const commercialURL = 'https://bwt.cbp.gov/details/03380201/COV';
 
   let browser;
+  let sharedPage;
   try {
-    // Launch browser once and reuse for both pages
-    browser = await puppeteer.launch({ 
+    // Launch browser once and reuse a single page for both requests
+    browser = await puppeteer.launch({
       headless: true,
       args: [
         '--no-sandbox',
         '--disable-setuid-sandbox',
         '--disable-dev-shm-usage',
-        '--disable-accelerated-2d-canvas',
-        '--no-first-run',
-        '--no-zygote',
-        '--single-process',
         '--disable-gpu',
-        '--disable-software-rasterizer',
+        '--single-process',
+        '--no-zygote',
         '--disable-extensions'
       ],
       executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || undefined
     });
 
-    // Helper to extract data from a single page
+    sharedPage = await browser.newPage();
+    await sharedPage.setDefaultNavigationTimeout(30000);
+    await sharedPage.setDefaultTimeout(30000);
+
+    // Helper to extract data from a single page using the shared page
     const extractFromPage = async (url, type) => {
       try {
-        const page = await browser.newPage();
-        await page.setDefaultNavigationTimeout(30000);
-        await page.setDefaultTimeout(30000);
-        
-        await page.goto(url, { waitUntil: 'networkidle2' });
+        await sharedPage.goto(url, { waitUntil: 'networkidle2' });
 
-        const { delay, lanes } = await page.evaluate(() => {
+        const { delay, lanes } = await sharedPage.evaluate(() => {
           const delaySpan = document.querySelector('.curr-wait span');
           const infoSpan = document.querySelector('.text-default.nw.m10');
 
@@ -120,7 +118,6 @@ async function scrapeUSCBP() {
           };
         });
 
-        await page.close();
         return { delay, lanes, timestamp: new Date().toISOString() };
       } catch (err) {
         console.error(`❌ Error scraping ${type} page:`, err.message, 'Code:', err.code);
@@ -164,6 +161,13 @@ async function scrapeUSCBP() {
       lastUpdated: new Date().toISOString()
     };
   } finally {
+    if (sharedPage) {
+      try {
+        await sharedPage.close();
+      } catch (e) {
+        console.error('Error closing page:', e.message);
+      }
+    }
     if (browser) {
       try {
         await browser.close();

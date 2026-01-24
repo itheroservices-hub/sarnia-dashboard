@@ -3,6 +3,19 @@ const cheerio = require('cheerio');
 const fs = require('fs');
 const path = require('path');
 
+async function fetchWithRetry(url, options, retries = 2, backoffMs = 2000) {
+  for (let attempt = 0; attempt <= retries; attempt++) {
+    try {
+      return await axios.get(url, options);
+    } catch (err) {
+      if (attempt === retries) throw err;
+      const wait = backoffMs * Math.pow(2, attempt);
+      console.warn(`⚠️ Event fetch retry ${attempt + 1}/${retries} after ${wait}ms:`, err.message);
+      await new Promise(res => setTimeout(res, wait));
+    }
+  }
+}
+
 function quickDisplay(iso) {
   if (!iso) return '';
   return iso.replace('T', ' - ').replace(':00:00', '');
@@ -48,8 +61,8 @@ function parseTimeToISO(dateStr, timeStr) {
 async function scrapeEvents() {
   console.log('🛠 Starting scrapeEvents()...');
   try {
-    const { data } = await axios.get('https://www.sarniarocks.com/', {
-      timeout: 30000,
+    const { data } = await fetchWithRetry('https://www.sarniarocks.com/', {
+      timeout: 35000,
       headers: {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
       }
@@ -119,7 +132,17 @@ async function runEventsScraper() {
     fs.writeFileSync(filePath, JSON.stringify(events, null, 2));
     console.log(`✅ Saved ${events.length} events to sarnia_events.json`);
   } catch (err) {
-    console.error('❌ Event scrape failed:', err);
+    console.error('❌ Event scrape failed, serving stale data if available:', err.message || err);
+    const filePath = path.join(__dirname, '..', 'public', 'sarnia_events.json');
+    if (fs.existsSync(filePath)) {
+      try {
+        const data = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+        console.log(`ℹ️ Using stale events data (${data.length} records)`);
+        return data;
+      } catch (readErr) {
+        console.error('❌ Failed to read stale events data:', readErr.message || readErr);
+      }
+    }
   }
 }
 

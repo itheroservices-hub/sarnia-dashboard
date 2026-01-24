@@ -6,10 +6,20 @@ const path = require('path');
 const VIA_URL = 'https://tsimobile.viarail.ca/';
 const TARGET_TRAINS = ['84', '87'];
 
-async function fetchViaRailStatus() {
-  const browser = await puppeteer.launch({ 
+// Single-shot VIA Rail scrape (no internal loop). Caller schedules as needed.
+async function runViaScraper() {
+  const browser = await puppeteer.launch({
     headless: true,
-    args: ['--no-sandbox', '--disable-setuid-sandbox']
+    args: [
+      '--no-sandbox',
+      '--disable-setuid-sandbox',
+      '--disable-dev-shm-usage',
+      '--disable-gpu',
+      '--single-process',
+      '--no-zygote',
+      '--disable-extensions'
+    ],
+    executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || undefined
   });
   const page = await browser.newPage();
   const results = [];
@@ -209,10 +219,5 @@ function convertUTCtoEastern(timeStr) {
   return `${h}h${m}`;
 }
 
-function startScrapingLoop() {
-  fetchViaRailStatus();
-  setInterval(fetchViaRailStatus, 5 * 60 * 1000);
-}
-
-startScrapingLoop();
+module.exports = { runViaScraper };
 
