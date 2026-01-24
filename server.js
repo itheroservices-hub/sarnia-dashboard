@@ -145,6 +145,38 @@ function enqueuePuppeteerTask(label, fn) {
   return puppeteerQueue;
 }
 
+// Scraper status tracking for health reporting
+const scraperStatus = {
+  events: { lastSuccess: null, lastError: null, lastDurationMs: null },
+  via: { lastSuccess: null, lastError: null, lastDurationMs: null },
+  border: { lastSuccess: null, lastError: null, lastDurationMs: null },
+  transit: { lastSuccess: null, lastError: null, lastDurationMs: null }
+};
+
+const delay = (ms) => new Promise(res => setTimeout(res, ms));
+
+async function withRetries(label, key, fn, retries = 1, backoffMs = 2000) {
+  const start = Date.now();
+  for (let attempt = 0; attempt <= retries; attempt++) {
+    try {
+      await fn();
+      scraperStatus[key].lastSuccess = new Date().toISOString();
+      scraperStatus[key].lastError = null;
+      scraperStatus[key].lastDurationMs = Date.now() - start;
+      return;
+    } catch (err) {
+      scraperStatus[key].lastError = err.message || String(err);
+      if (attempt === retries) {
+        console.error(`[ERROR] ${label} failed after ${attempt + 1} attempts:`, err.stack || err);
+        return;
+      }
+      const wait = backoffMs * (attempt + 1);
+      console.warn(`[WARN] ${label} attempt ${attempt + 1} failed, retrying in ${wait}ms:`, err.message || err);
+      await delay(wait);
+    }
+  }
+}
+
 // -----------------------------
 // Copyright-Compliant Sarnia News Scraper (every 20 minutes)
 // -----------------------------
@@ -191,7 +223,7 @@ async function runAllScrapers() {
   try {
     if (typeof runEventsScraper === 'function') {
       console.log('[DEBUG] Running community events scraper...');
-      await runEventsScraper();
+      await withRetries('community events scraper', 'events', () => runEventsScraper(), 2, 2000);
       console.log('[INFO] ✅ community events scraper finished');
     }
   } catch (err) {
@@ -201,7 +233,7 @@ async function runAllScrapers() {
   // VIA Rail (queued to avoid overlapping Chrome)
   try {
     if (typeof runViaScraper === 'function') {
-      await enqueuePuppeteerTask('VIA Rail scraper', () => runViaScraper());
+      await withRetries('VIA Rail scraper', 'via', () => enqueuePuppeteerTask('VIA Rail scraper', () => runViaScraper()), 1, 3000);
     }
   } catch (err) {
     console.error('[ERROR] ❌ VIA Rail scraper failed:', err.stack || err);
@@ -210,7 +242,7 @@ async function runAllScrapers() {
   // CBSA + US CBP (queued)
   try {
     if (typeof runScraper === 'function') {
-      await enqueuePuppeteerTask('Border wait scraper', () => runScraper());
+      await withRetries('border wait scraper', 'border', () => enqueuePuppeteerTask('Border wait scraper', () => runScraper()), 1, 3000);
     }
   } catch (err) {
     console.error('[ERROR] ❌ border wait scraper failed:', err.stack || err);
@@ -220,12 +252,17 @@ async function runAllScrapers() {
   try {
     if (typeof buildTransitPulse === 'function') {
       console.log('[DEBUG] Running transit pulse builder...');
+      const start = Date.now();
       const transitData = await buildTransitPulse();
       fs.writeFileSync(path.join(__dirname, 'public', 'transit.json'), JSON.stringify(transitData, null, 2));
+      scraperStatus.transit.lastSuccess = new Date().toISOString();
+      scraperStatus.transit.lastError = null;
+      scraperStatus.transit.lastDurationMs = Date.now() - start;
       console.log('[INFO] ✅ transit pulse written to transit.json');
     }
   } catch (err) {
     console.error('[ERROR] ❌ transit pulse builder failed:', err.stack || err);
+    scraperStatus.transit.lastError = err.message || String(err);
   }
 
   console.log('[INFO] ✅ runAllScrapers finished', new Date().toISOString());
@@ -242,6 +279,14 @@ setInterval(() => {
   console.log('🔄 Running scheduled scrapers...');
   runAllScrapers().catch(err => console.error('[ERROR] ❌ scheduled runAllScrapers failed:', err.stack || err));
 }, 10 * 60 * 1000);
+
+// Health endpoint for scraper freshness
+app.get('/health', (req, res) => {
+  res.json({
+    uptimeSeconds: Math.round(process.uptime()),
+    scraperStatus
+  });
+});
 
 // -----------------------------
 // Start Server
