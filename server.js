@@ -308,12 +308,14 @@ async function runAllScrapers() {
   isScraperRunning = false;
 }
 
-// Run all scrapers on startup and every 15 minutes
+// Run all scrapers on startup and every 10 minutes
 console.log('🔄 Running all scrapers on startup...');
 runAllScrapers()
   .then(() => console.log('✅ Initial runAllScrapers complete'))
   .catch(err => console.error('[ERROR] ❌ initial runAllScrapers failed:', err.stack || err));
-// Stagger scraper jobs: every 10 minutes, starting at different offsets to avoid simultaneous Chrome launchessetInterval(() => {
+
+// Stagger scraper jobs: every 10 minutes, starting at different offsets to avoid simultaneous Chrome launches
+setInterval(() => {
   console.log('🔄 Running scheduled scrapers...');
   runAllScrapers().catch(err => console.error('[ERROR] ❌ scheduled runAllScrapers failed:', err.stack || err));
 }, 10 * 60 * 1000);
