@@ -137,6 +137,11 @@ function enqueuePuppeteerTask(label, fn) {
       const start = Date.now();
       console.log(`[DEBUG] ▶ ${label} (queued)`);
       await fn();
+      // Force garbage collection after heavy Puppeteer task
+      if (global.gc) {
+        global.gc();
+        console.log(`[DEBUG] 🗑️ Garbage collection triggered after ${label}`);
+      }
       console.log(`[DEBUG] ✅ ${label} finished in ${Date.now() - start}ms`);
     })
     .catch(err => {
@@ -224,7 +229,7 @@ async function runAllScrapers() {
   isScraperRunning = true;
   console.log('[INFO] 🔄 runAllScrapers starting', new Date().toISOString());
 
-  // Community events
+  // Community events (fast, no Puppeteer)
   try {
     if (typeof runEventsScraper === 'function') {
       console.log('[DEBUG] Running community events scraper...');
@@ -235,10 +240,10 @@ async function runAllScrapers() {
     console.error('[ERROR] ❌ community events scraper failed:', err.stack || err);
   }
 
-  // VIA Rail (queued to avoid overlapping Chrome)
+  // VIA Rail (Puppeteer #1)
   try {
     if (typeof runViaScraper === 'function') {
-      await withRetries('VIA Rail scraper', 'via', () => enqueuePuppeteerTask('VIA Rail scraper', () => runViaScraper()), 2, 5000);
+      await withRetries('VIA Rail scraper', 'via', () => runViaScraper(), 2, 5000);
       // If still failing, try to serve cached data
       if (scraperStatus.via.lastError) {
         const cachedPath = path.join(__dirname, 'public', 'via_rail.json');
@@ -257,10 +262,13 @@ async function runAllScrapers() {
     console.error('[ERROR] ❌ VIA Rail scraper failed:', err.stack || err);
   }
 
-  // CBSA + US CBP (queued)
+  // Wait 2 seconds between Chrome launches to let memory settle
+  await delay(2000);
+
+  // CBSA + US CBP (Puppeteer #2)
   try {
     if (typeof runScraper === 'function') {
-      await withRetries('border wait scraper', 'border', () => enqueuePuppeteerTask('Border wait scraper', () => runScraper()), 2, 5000);
+      await withRetries('border wait scraper', 'border', () => runScraper(), 2, 5000);
       // If still failing, try to serve cached data
       if (scraperStatus.border.lastError) {
         const cachedPath = path.join(__dirname, 'border_waits.json');
@@ -279,7 +287,7 @@ async function runAllScrapers() {
     console.error('[ERROR] ❌ border wait scraper failed:', err.stack || err);
   }
 
-  // Transit - write to file immediately
+  // Transit - write to file immediately (no Puppeteer)
   try {
     if (typeof buildTransitPulse === 'function') {
       console.log('[DEBUG] Running transit pulse builder...');
@@ -305,8 +313,7 @@ console.log('🔄 Running all scrapers on startup...');
 runAllScrapers()
   .then(() => console.log('✅ Initial runAllScrapers complete'))
   .catch(err => console.error('[ERROR] ❌ initial runAllScrapers failed:', err.stack || err));
-
-setInterval(() => {
+// Stagger scraper jobs: every 10 minutes, starting at different offsets to avoid simultaneous Chrome launchessetInterval(() => {
   console.log('🔄 Running scheduled scrapers...');
   runAllScrapers().catch(err => console.error('[ERROR] ❌ scheduled runAllScrapers failed:', err.stack || err));
 }, 10 * 60 * 1000);
