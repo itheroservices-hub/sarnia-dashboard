@@ -3,6 +3,21 @@ const axios = require('axios');
 const cheerio = require('cheerio');
 const fs = require('fs');
 const puppeteer = require('puppeteer');
+const os = require('os');
+
+function getMemoryUsageMB() {
+  const used = process.memoryUsage();
+  return Math.round(used.heapUsed / 1024 / 1024);
+}
+
+function isMemoryAvailable(thresholdMB = 256) {
+  const totalMem = os.totalmem();
+  const freeMem = os.freemem();
+  const freePercent = (freeMem / totalMem) * 100;
+  const heapUsed = getMemoryUsageMB();
+  console.log(`[DEBUG] Memory - Free: ${Math.round(freeMem / 1024 / 1024)}MB / ${Math.round(totalMem / 1024 / 1024)}MB (${freePercent.toFixed(1)}%), Heap: ${heapUsed}MB`);
+  return freeMem > thresholdMB * 1024 * 1024;
+}
 
 // 🔹 CBSA Scraper
 async function scrapeCBSA() {
@@ -79,6 +94,11 @@ async function scrapeUSCBP() {
   let browser;
   let sharedPage;
   try {
+    if (!isMemoryAvailable(256)) {
+      console.warn('⚠️ CBP: Insufficient memory available, skipping launch');
+      throw new Error('EAGAIN: Insufficient memory');
+    }
+
     // Launch browser once and reuse a single page for both requests
     browser = await puppeteer.launch({
       headless: true,
@@ -87,9 +107,14 @@ async function scrapeUSCBP() {
         '--disable-setuid-sandbox',
         '--disable-dev-shm-usage',
         '--disable-gpu',
-        '--single-process',
+        '--disable-extensions',
+        '--no-first-run',
         '--no-zygote',
-        '--disable-extensions'
+        '--disable-default-apps',
+        '--disable-sync',
+        '--disable-plugins',
+        '--disable-component-extensions-with-background-pages',
+        '--disable-background-networking'
       ],
       executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || undefined
     });

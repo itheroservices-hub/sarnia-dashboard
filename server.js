@@ -165,14 +165,19 @@ async function withRetries(label, key, fn, retries = 1, backoffMs = 2000) {
       scraperStatus[key].lastDurationMs = Date.now() - start;
       return;
     } catch (err) {
-      scraperStatus[key].lastError = err.message || String(err);
+      const errMsg = err.message || String(err);
+      scraperStatus[key].lastError = errMsg;
+      
+      // EAGAIN = resource exhaustion; use longer backoff
+      const isEAGAIN = errMsg.includes('EAGAIN') || errMsg.includes('Resource temporarily unavailable');
+      const waitMs = isEAGAIN ? backoffMs * Math.pow(3, attempt) : backoffMs * (attempt + 1);
+      
       if (attempt === retries) {
         console.error(`[ERROR] ${label} failed after ${attempt + 1} attempts:`, err.stack || err);
         return;
       }
-      const wait = backoffMs * (attempt + 1);
-      console.warn(`[WARN] ${label} attempt ${attempt + 1} failed, retrying in ${wait}ms:`, err.message || err);
-      await delay(wait);
+      console.warn(`[WARN] ${label} attempt ${attempt + 1} failed${isEAGAIN ? ' (EAGAIN)' : ''}, retrying in ${waitMs}ms:`, errMsg);
+      await delay(waitMs);
     }
   }
 }
@@ -233,7 +238,20 @@ async function runAllScrapers() {
   // VIA Rail (queued to avoid overlapping Chrome)
   try {
     if (typeof runViaScraper === 'function') {
-      await withRetries('VIA Rail scraper', 'via', () => enqueuePuppeteerTask('VIA Rail scraper', () => runViaScraper()), 1, 3000);
+      await withRetries('VIA Rail scraper', 'via', () => enqueuePuppeteerTask('VIA Rail scraper', () => runViaScraper()), 2, 5000);
+      // If still failing, try to serve cached data
+      if (scraperStatus.via.lastError) {
+        const cachedPath = path.join(__dirname, 'public', 'via_rail.json');
+        if (fs.existsSync(cachedPath)) {
+          try {
+            const cached = JSON.parse(fs.readFileSync(cachedPath, 'utf8'));
+            console.log(`ℹ️ VIA: Serving stale cached data (trains: ${cached.trains?.length || 0})`);
+            scraperStatus.via.lastError = `Served from cache (last update: ${cached.timestamp})`;
+          } catch (e) {
+            console.error('❌ Failed to read cached VIA data:', e.message);
+          }
+        }
+      }
     }
   } catch (err) {
     console.error('[ERROR] ❌ VIA Rail scraper failed:', err.stack || err);
@@ -242,7 +260,20 @@ async function runAllScrapers() {
   // CBSA + US CBP (queued)
   try {
     if (typeof runScraper === 'function') {
-      await withRetries('border wait scraper', 'border', () => enqueuePuppeteerTask('Border wait scraper', () => runScraper()), 1, 3000);
+      await withRetries('border wait scraper', 'border', () => enqueuePuppeteerTask('Border wait scraper', () => runScraper()), 2, 5000);
+      // If still failing, try to serve cached data
+      if (scraperStatus.border.lastError) {
+        const cachedPath = path.join(__dirname, 'border_waits.json');
+        if (fs.existsSync(cachedPath)) {
+          try {
+            const cached = JSON.parse(fs.readFileSync(cachedPath, 'utf8'));
+            console.log(`ℹ️ Border: Serving stale cached data (updated: ${cached.canada?.lastUpdated || 'unknown'})`);
+            scraperStatus.border.lastError = `Served from cache (last update: ${cached.canada?.lastUpdated})`;
+          } catch (e) {
+            console.error('❌ Failed to read cached border data:', e.message);
+          }
+        }
+      }
     }
   } catch (err) {
     console.error('[ERROR] ❌ border wait scraper failed:', err.stack || err);

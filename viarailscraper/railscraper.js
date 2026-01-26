@@ -2,12 +2,32 @@ const puppeteer = require('puppeteer');
 const cheerio = require('cheerio');
 const fs = require('fs');
 const path = require('path');
+const os = require('os');
 
 const VIA_URL = 'https://tsimobile.viarail.ca/';
 const TARGET_TRAINS = ['84', '87'];
 
+function getMemoryUsageMB() {
+  const used = process.memoryUsage();
+  return Math.round(used.heapUsed / 1024 / 1024);
+}
+
+function isMemoryAvailable(thresholdMB = 256) {
+  const totalMem = os.totalmem();
+  const freeMem = os.freemem();
+  const freePercent = (freeMem / totalMem) * 100;
+  const heapUsed = getMemoryUsageMB();
+  console.log(`[DEBUG] Memory - Free: ${Math.round(freeMem / 1024 / 1024)}MB / ${Math.round(totalMem / 1024 / 1024)}MB (${freePercent.toFixed(1)}%), Heap: ${heapUsed}MB`);
+  return freeMem > thresholdMB * 1024 * 1024;
+}
+
 // Single-shot VIA Rail scrape (no internal loop). Caller schedules as needed.
 async function runViaScraper() {
+  if (!isMemoryAvailable(256)) {
+    console.warn('⚠️ VIA: Insufficient memory available, skipping launch');
+    throw new Error('EAGAIN: Insufficient memory');
+  }
+
   const browser = await puppeteer.launch({
     headless: true,
     args: [
@@ -15,9 +35,14 @@ async function runViaScraper() {
       '--disable-setuid-sandbox',
       '--disable-dev-shm-usage',
       '--disable-gpu',
-      '--single-process',
+      '--disable-extensions',
+      '--no-first-run',
       '--no-zygote',
-      '--disable-extensions'
+      '--disable-default-apps',
+      '--disable-sync',
+      '--disable-plugins',
+      '--disable-component-extensions-with-background-pages',
+      '--disable-background-networking'
     ],
     executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || undefined
   });
