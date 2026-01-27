@@ -160,7 +160,7 @@ const scraperStatus = {
 
 const delay = (ms) => new Promise(res => setTimeout(res, ms));
 
-async function withRetries(label, key, fn, retries = 1, backoffMs = 2000) {
+async function withRetries(label, key, fn, retries = 0, backoffMs = 5000) {
   const start = Date.now();
   for (let attempt = 0; attempt <= retries; attempt++) {
     try {
@@ -174,8 +174,8 @@ async function withRetries(label, key, fn, retries = 1, backoffMs = 2000) {
       scraperStatus[key].lastError = errMsg;
       
       // EAGAIN = resource exhaustion; use longer backoff
-      const isEAGAIN = errMsg.includes('EAGAIN') || errMsg.includes('Resource temporarily unavailable');
-      const waitMs = isEAGAIN ? backoffMs * Math.pow(3, attempt) : backoffMs * (attempt + 1);
+      const isEAGAIN = errMsg.includes('EAGAIN') || errMsg.includes('Resource temporarily unavailable') || errMsg.includes('fork');
+      const waitMs = isEAGAIN ? backoffMs * Math.pow(4, attempt) : backoffMs * (attempt + 1);
       
       if (attempt === retries) {
         console.error(`[ERROR] ${label} failed after ${attempt + 1} attempts:`, err.stack || err);
@@ -190,29 +190,39 @@ async function withRetries(label, key, fn, retries = 1, backoffMs = 2000) {
 // -----------------------------
 // Copyright-Compliant Sarnia News Scraper (every 20 minutes)
 // -----------------------------
+async function runNewsScraper() {
+  return new Promise((resolve, reject) => {
+    const newsScraperPath = path.join(__dirname, 'sarnia news scraper', 'copyright_compliant_scraper.js');
+    exec(`node "${newsScraperPath}"`, { timeout: 60000 }, (error, stdout, stderr) => {
+      if (error) {
+        // Check if it's a fork error
+        if (stderr && (stderr.includes('Cannot fork') || stderr.includes('fork: Resource temporarily unavailable'))) {
+          console.error(`❌ News scraper error (fork failure - system resource exhaustion): ${error.message}`);
+          reject(new Error('EAGAIN: Cannot fork'));
+        } else {
+          console.error(`❌ News scraper error: ${error.message}`);
+          if (stderr) console.error(`stderr: ${stderr}`);
+          reject(error);
+        }
+        return;
+      }
+      console.log(`📰 News scraper ran at ${new Date().toLocaleString()}`);
+      if (stdout) console.log(`stdout: ${stdout}`);
+      resolve();
+    });
+  });
+}
+
 setInterval(() => {
-  const newsScraperPath = path.join(__dirname, 'sarnia news scraper', 'copyright_compliant_scraper.js');
-  exec(`node "${newsScraperPath}"`, (error, stdout, stderr) => {
-    if (error) {
-      console.error(`❌ News scraper error: ${error.message}`);
-      console.error(`stderr: ${stderr}`);
-      return;
-    }
-    console.log(`📰 News scraper ran at ${new Date().toLocaleString()}`);
-    if (stdout) console.log(`stdout: ${stdout}`);
+  runNewsScraper().catch(err => {
+    console.error('[WARN] News scraper failed:', err.message);
   });
 }, 20 * 60 * 1000);
 
 // Run copyright-compliant news scraper immediately on startup
-const newsPath = path.join(__dirname, 'sarnia news scraper', 'copyright_compliant_scraper.js');
-exec(`node "${newsPath}"`, (error, stdout, stderr) => {
-  if (error) {
-    console.error("❌ Initial news scraper failed:", error.message);
-    console.error("stderr:", stderr);
-  } else {
-    console.log("📰 Initial news scrape complete");
-    if (stdout) console.log("stdout:", stdout);
-  }
+console.log('📰 Running initial news scraper...');
+runNewsScraper().catch(err => {
+  console.error('❌ Initial news scraper failed:', err.message);
 });
 
 // -----------------------------
@@ -233,17 +243,20 @@ async function runAllScrapers() {
   try {
     if (typeof runEventsScraper === 'function') {
       console.log('[DEBUG] Running community events scraper...');
-      await withRetries('community events scraper', 'events', () => runEventsScraper(), 2, 2000);
+      await withRetries('community events scraper', 'events', () => runEventsScraper(), 0, 5000);
       console.log('[INFO] ✅ community events scraper finished');
     }
   } catch (err) {
     console.error('[ERROR] ❌ community events scraper failed:', err.stack || err);
   }
 
+  // Wait to ensure no processes are lingering
+  await delay(3000);
+
   // VIA Rail (Puppeteer #1)
   try {
     if (typeof runViaScraper === 'function') {
-      await withRetries('VIA Rail scraper', 'via', () => runViaScraper(), 2, 5000);
+      await withRetries('VIA Rail scraper', 'via', () => runViaScraper(), 0, 10000);
       // If still failing, try to serve cached data
       if (scraperStatus.via.lastError) {
         const cachedPath = path.join(__dirname, 'public', 'via_rail.json');
@@ -262,13 +275,14 @@ async function runAllScrapers() {
     console.error('[ERROR] ❌ VIA Rail scraper failed:', err.stack || err);
   }
 
-  // Wait 2 seconds between Chrome launches to let memory settle
-  await delay(2000);
+  // Wait 10 seconds between Chrome launches to let memory settle and processes cleanup
+  console.log('[DEBUG] Waiting 10s before next Puppeteer scraper...');
+  await delay(10000);
 
   // CBSA + US CBP (Puppeteer #2)
   try {
     if (typeof runScraper === 'function') {
-      await withRetries('border wait scraper', 'border', () => runScraper(), 2, 5000);
+      await withRetries('border wait scraper', 'border', () => runScraper(), 0, 10000);
       // If still failing, try to serve cached data
       if (scraperStatus.border.lastError) {
         const cachedPath = path.join(__dirname, 'border_waits.json');
@@ -308,17 +322,20 @@ async function runAllScrapers() {
   isScraperRunning = false;
 }
 
-// Run all scrapers on startup and every 10 minutes
-console.log('🔄 Running all scrapers on startup...');
-runAllScrapers()
-  .then(() => console.log('✅ Initial runAllScrapers complete'))
-  .catch(err => console.error('[ERROR] ❌ initial runAllScrapers failed:', err.stack || err));
+// Run all scrapers on startup (delayed by 30 seconds to let server stabilize)
+console.log('🔄 Scheduling initial scraper run in 30 seconds...');
+setTimeout(() => {
+  console.log('🔄 Running all scrapers (delayed startup)...');
+  runAllScrapers()
+    .then(() => console.log('✅ Initial runAllScrapers complete'))
+    .catch(err => console.error('[ERROR] ❌ initial runAllScrapers failed:', err.stack || err));
+}, 30000);
 
-// Stagger scraper jobs: every 10 minutes, starting at different offsets to avoid simultaneous Chrome launches
+// Stagger scraper jobs: every 15 minutes to reduce resource pressure
 setInterval(() => {
   console.log('🔄 Running scheduled scrapers...');
   runAllScrapers().catch(err => console.error('[ERROR] ❌ scheduled runAllScrapers failed:', err.stack || err));
-}, 10 * 60 * 1000);
+}, 15 * 60 * 1000);
 
 // Health endpoint for scraper freshness
 app.get('/health', (req, res) => {
@@ -348,7 +365,7 @@ process.on('unhandledRejection', (reason, promise) => {
 
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`🚀 Server running on port ${PORT}`);
-  console.log(`📡 Scrapers initialized and running every 5-20 minutes`);
+  console.log(`📡 Scrapers will start in 30s, then run every 15-20 minutes`);
   console.log(`🌐 Dashboard accessible at http://localhost:${PORT}`);
 });
 

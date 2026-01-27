@@ -12,7 +12,7 @@ function getMemoryUsageMB() {
   return Math.round(used.heapUsed / 1024 / 1024);
 }
 
-function isMemoryAvailable(thresholdMB = 256) {
+function isMemoryAvailable(thresholdMB = 512) {
   const totalMem = os.totalmem();
   const freeMem = os.freemem();
   const freePercent = (freeMem / totalMem) * 100;
@@ -23,12 +23,14 @@ function isMemoryAvailable(thresholdMB = 256) {
 
 // Single-shot VIA Rail scrape (no internal loop). Caller schedules as needed.
 async function runViaScraper() {
-  if (!isMemoryAvailable(256)) {
+  if (!isMemoryAvailable(512)) {
     console.warn('⚠️ VIA: Insufficient memory available, skipping launch');
     throw new Error('EAGAIN: Insufficient memory');
   }
 
-  const browser = await puppeteer.launch({
+  let browser = null;
+
+  browser = await puppeteer.launch({
     headless: true,
     args: [
       '--no-sandbox',
@@ -38,13 +40,29 @@ async function runViaScraper() {
       '--disable-extensions',
       '--no-first-run',
       '--no-zygote',
+      '--single-process',
       '--disable-default-apps',
       '--disable-sync',
       '--disable-plugins',
       '--disable-component-extensions-with-background-pages',
-      '--disable-background-networking'
+      '--disable-background-networking',
+      '--disable-background-timer-throttling',
+      '--disable-backgrounding-occluded-windows',
+      '--disable-breakpad',
+      '--disable-client-side-phishing-detection',
+      '--disable-default-apps',
+      '--disable-hang-monitor',
+      '--disable-popup-blocking',
+      '--disable-prompt-on-repost',
+      '--disable-renderer-backgrounding',
+      '--disable-translate',
+      '--metrics-recording-only',
+      '--no-first-run',
+      '--mute-audio',
+      '--disable-web-security'
     ],
-    executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || undefined
+    executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || undefined,
+    timeout: 30000
   });
   const page = await browser.newPage();
   const results = [];
@@ -185,8 +203,19 @@ async function runViaScraper() {
     console.log(`✅ VIA Rail data saved for ${results.length} trains and copied to public folder`);
   } catch (error) {
     console.error('❌ Error fetching VIA Rail data:', error.message);
+    throw error; // Re-throw to trigger retry logic
   } finally {
-    await browser.close();
+    if (browser) {
+      try {
+        await browser.close();
+        console.log('[DEBUG] VIA browser closed');
+      } catch (e) {
+        console.error('[WARN] Error closing VIA browser:', e.message);
+      }
+      browser = null;
+      // Give system time to cleanup processes
+      await new Promise(resolve => setTimeout(resolve, 2000));
+    }
   }
 }
 

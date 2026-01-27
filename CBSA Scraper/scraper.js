@@ -10,7 +10,7 @@ function getMemoryUsageMB() {
   return Math.round(used.heapUsed / 1024 / 1024);
 }
 
-function isMemoryAvailable(thresholdMB = 256) {
+function isMemoryAvailable(thresholdMB = 512) {
   const totalMem = os.totalmem();
   const freeMem = os.freemem();
   const freePercent = (freeMem / totalMem) * 100;
@@ -94,7 +94,7 @@ async function scrapeUSCBP() {
   let browser;
   let sharedPage;
   try {
-    if (!isMemoryAvailable(256)) {
+    if (!isMemoryAvailable(512)) {
       console.warn('⚠️ CBP: Insufficient memory available, skipping launch');
       throw new Error('EAGAIN: Insufficient memory');
     }
@@ -110,13 +110,27 @@ async function scrapeUSCBP() {
         '--disable-extensions',
         '--no-first-run',
         '--no-zygote',
+        '--single-process',
         '--disable-default-apps',
         '--disable-sync',
         '--disable-plugins',
         '--disable-component-extensions-with-background-pages',
-        '--disable-background-networking'
+        '--disable-background-networking',
+        '--disable-background-timer-throttling',
+        '--disable-backgrounding-occluded-windows',
+        '--disable-breakpad',
+        '--disable-client-side-phishing-detection',
+        '--disable-hang-monitor',
+        '--disable-popup-blocking',
+        '--disable-prompt-on-repost',
+        '--disable-renderer-backgrounding',
+        '--disable-translate',
+        '--metrics-recording-only',
+        '--mute-audio',
+        '--disable-web-security'
       ],
-      executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || undefined
+      executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || undefined,
+      timeout: 30000
     });
 
     sharedPage = await browser.newPage();
@@ -179,26 +193,27 @@ async function scrapeUSCBP() {
     };
   } catch (err) {
     console.error('❌ Error in scrapeUSCBP:', err.message);
-    return {
-      bridge: 'Blue Water Bridge',
-      passenger: { USbound: 'N/A', lanes: 'N/A' },
-      commercial: { USbound: 'N/A', lanes: 'N/A' },
-      lastUpdated: new Date().toISOString()
-    };
+    throw err; // Re-throw to trigger retry logic
   } finally {
     if (sharedPage) {
       try {
         await sharedPage.close();
+        console.log('[DEBUG] CBP page closed');
       } catch (e) {
-        console.error('Error closing page:', e.message);
+        console.error('[WARN] Error closing CBP page:', e.message);
       }
+      sharedPage = null;
     }
     if (browser) {
       try {
         await browser.close();
+        console.log('[DEBUG] CBP browser closed');
       } catch (e) {
-        console.error('Error closing browser:', e.message);
+        console.error('[WARN] Error closing CBP browser:', e.message);
       }
+      browser = null;
+      // Give system time to cleanup processes
+      await new Promise(resolve => setTimeout(resolve, 2000));
     }
   }
 }
@@ -258,6 +273,11 @@ async function runScraper() {
   console.log('✅ Combined border wait data updated with trends:', combined);
 }
 
-// 🔥 Trigger
-runScraper();
+// 🔥 Trigger only if run directly (not when imported)
+if (require.main === module) {
+  runScraper().catch(err => {
+    console.error('❌ runScraper failed:', err);
+    process.exit(1);
+  });
+}
 module.exports = { runScraper };
