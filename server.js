@@ -6,7 +6,6 @@ const express = require('express');
 const fs = require('fs');
 const path = require('path');
 const cors = require('cors');
-const { exec } = require('child_process');
 
 const app = express();
 console.log("[DEBUG] server.js loaded");
@@ -34,6 +33,7 @@ app.use('/weather', weatherRouter);
 const { runScraper } = require('./CBSA Scraper/scraper');
 const { runEventsScraper } = require('./community events scraper/scraper');
 const { runViaScraper } = require('./viarailscraper/railscraper');
+const { scrapeCopyrightCompliantNews } = require('./sarnia news scraper/copyright_compliant_scraper');
 
 // -----------------------------
 // Transit Scraper Import
@@ -153,12 +153,15 @@ function enqueuePuppeteerTask(label, fn) {
 // Scraper status tracking for health reporting
 const scraperStatus = {
   events: { lastSuccess: null, lastError: null, lastDurationMs: null },
+  news: { lastSuccess: null, lastError: null, lastDurationMs: null },
   via: { lastSuccess: null, lastError: null, lastDurationMs: null },
   border: { lastSuccess: null, lastError: null, lastDurationMs: null },
   transit: { lastSuccess: null, lastError: null, lastDurationMs: null }
 };
 
 const delay = (ms) => new Promise(res => setTimeout(res, ms));
+const NEWS_INTERVAL_MS = 30 * 60 * 1000;
+let lastNewsRun = 0;
 
 async function withRetries(label, key, fn, retries = 0, backoffMs = 5000) {
   const start = Date.now();
@@ -188,42 +191,11 @@ async function withRetries(label, key, fn, retries = 0, backoffMs = 5000) {
 }
 
 // -----------------------------
-// Copyright-Compliant Sarnia News Scraper (every 20 minutes)
+// Copyright-Compliant Sarnia News Scraper (runs inside main scheduler)
 // -----------------------------
 async function runNewsScraper() {
-  return new Promise((resolve, reject) => {
-    const newsScraperPath = path.join(__dirname, 'sarnia news scraper', 'copyright_compliant_scraper.js');
-    exec(`node "${newsScraperPath}"`, { timeout: 60000 }, (error, stdout, stderr) => {
-      if (error) {
-        // Check if it's a fork error
-        if (stderr && (stderr.includes('Cannot fork') || stderr.includes('fork: Resource temporarily unavailable'))) {
-          console.error(`❌ News scraper error (fork failure - system resource exhaustion): ${error.message}`);
-          reject(new Error('EAGAIN: Cannot fork'));
-        } else {
-          console.error(`❌ News scraper error: ${error.message}`);
-          if (stderr) console.error(`stderr: ${stderr}`);
-          reject(error);
-        }
-        return;
-      }
-      console.log(`📰 News scraper ran at ${new Date().toLocaleString()}`);
-      if (stdout) console.log(`stdout: ${stdout}`);
-      resolve();
-    });
-  });
+  await scrapeCopyrightCompliantNews();
 }
-
-setInterval(() => {
-  runNewsScraper().catch(err => {
-    console.error('[WARN] News scraper failed:', err.message);
-  });
-}, 20 * 60 * 1000);
-
-// Run copyright-compliant news scraper immediately on startup
-console.log('📰 Running initial news scraper...');
-runNewsScraper().catch(err => {
-  console.error('❌ Initial news scraper failed:', err.message);
-});
 
 // -----------------------------
 // Safe runner for scheduled scrapes
@@ -248,6 +220,23 @@ async function runAllScrapers() {
     }
   } catch (err) {
     console.error('[ERROR] ❌ community events scraper failed:', err.stack || err);
+  }
+
+  // News scraper (HTTP-only) - throttle to every 30 minutes
+  try {
+    if (typeof scrapeCopyrightCompliantNews === 'function') {
+      const now = Date.now();
+      if (now - lastNewsRun >= NEWS_INTERVAL_MS) {
+        console.log('[DEBUG] Running news scraper...');
+        await withRetries('news scraper', 'news', () => runNewsScraper(), 1, 5000);
+        lastNewsRun = Date.now();
+        console.log('[INFO] ✅ news scraper finished');
+      } else {
+        console.log('[DEBUG] Skipping news scraper (cooldown)');
+      }
+    }
+  } catch (err) {
+    console.error('[ERROR] ❌ news scraper failed:', err.stack || err);
   }
 
   // Wait to ensure no processes are lingering
